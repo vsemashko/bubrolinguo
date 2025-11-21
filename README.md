@@ -93,9 +93,33 @@ CORS_ORIGIN=http://localhost:3000
 DATABASE_URL=postgresql://localhost:5432/bubrolinguo
 REDIS_URL=redis://localhost:6379
 JWT_SECRET=your-super-secret-key-change-this
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
 ```
 
-4. **Run development servers:**
+4. **Set up the database:**
+
+Create the PostgreSQL database:
+```bash
+createdb bubrolinguo
+```
+
+Run migrations to create tables:
+```bash
+cd apps/api
+npm run db:migrate
+```
+
+Seed the database with initial content:
+```bash
+npm run db:seed
+```
+
+This will populate:
+- **10 A1 lessons** with 60 total exercises covering all 6 exercise types
+- **300 vocabulary words** with Polish/English/Russian translations and IPA pronunciations
+- **58 achievements** for gamification (lessons, vocabulary, streaks, XP, etc.)
+
+5. **Run development servers:**
 
 ```bash
 # Run both web and API in development mode
@@ -159,15 +183,28 @@ npm run dev
 - [x] Basic landing page
 
 ### 🏗️ In Progress
-- [ ] Database schema design
-- [ ] Authentication implementation
-- [ ] UI component library
+- [ ] UI component library refinement
+- [ ] Mobile app development (React Native)
+- [ ] Audio generation for exercises
+
+### ✅ Recently Completed (MVP Backend)
+- [x] Database schema design and implementation
+- [x] Authentication implementation (JWT + refresh tokens)
+- [x] Complete API with all controllers
+- [x] 10 A1 lessons with 60 exercises
+- [x] 300 vocabulary words with translations
+- [x] 58 achievement definitions
+- [x] Spaced repetition (SM-2 algorithm)
+- [x] Progress tracking and statistics
+- [x] Leaderboard system
 
 ### 📋 Next Steps
-- [ ] Lesson content creation
-- [ ] Vocabulary database setup
-- [ ] Character design
+- [ ] Expand to 15+ A1/A2 lessons
+- [ ] Expand vocabulary to 500+ words
+- [ ] Audio generation for vocabulary and exercises
+- [ ] Character design and illustrations
 - [ ] Voice integration planning
+- [ ] Frontend-backend integration testing
 
 ---
 

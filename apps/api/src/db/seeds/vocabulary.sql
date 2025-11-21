@@ -219,14 +219,137 @@ INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_spe
 ('gorący', 'hot', 'горячий', 'adjective', NULL, 'A1', 199, 'gɔrɔnt͡sɨ', 'Gorąca kawa.', 'Hot coffee.', 'Горячий кофе.', NULL, NULL),
 ('zimny', 'cold', 'холодный', 'adjective', NULL, 'A1', 200, 'ʑimnɨ', 'Zimna woda.', 'Cold water.', 'Холодная вода.', NULL, NULL);
 
--- NOTE: This seed file contains 200 essential A1-level Polish words.
--- Additional vocabulary words (201-500) can be added incrementally as the application grows.
--- The current set provides a solid foundation for MVP development covering:
+-- DAYS OF THE WEEK (201-207)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('poniedziałek', 'Monday', 'понедельник', 'noun', 'masculine', 'A1', 201, 'pɔɲɛd͡ʑawɛk', 'W poniedziałek idę do pracy.', 'On Monday I go to work.', 'В понедельник я иду на работу.', 'From "po niedzieli" - after Sunday', 'От "po niedzieli" - после воскресенья'),
+('wtorek', 'Tuesday', 'вторник', 'noun', 'masculine', 'A1', 202, 'ftɔrɛk', 'Wtorek jest drugim dniem tygodnia.', 'Tuesday is the second day of the week.', 'Вторник второй день недели.', NULL, NULL),
+('środa', 'Wednesday', 'среда', 'noun', 'feminine', 'A1', 203, 'ɕrɔda', 'Środa jest w środku tygodnia.', 'Wednesday is in the middle of the week.', 'Среда в середине недели.', 'Means "middle"', 'Означает "середина"'),
+('czwartek', 'Thursday', 'четверг', 'noun', 'masculine', 'A1', 204, 't͡ʂfartɛk', 'W czwartek mam spotkanie.', 'On Thursday I have a meeting.', 'В четверг у меня встреча.', NULL, NULL),
+('piątek', 'Friday', 'пятница', 'noun', 'masculine', 'A1', 205, 'pʲɔntɛk', 'Piątek jest przed weekendem.', 'Friday is before the weekend.', 'Пятница перед выходными.', NULL, NULL),
+('sobota', 'Saturday', 'суббота', 'noun', 'feminine', 'A1', 206, 'sɔbɔta', 'W sobotę odpoczywam.', 'On Saturday I rest.', 'В субботу я отдыхаю.', NULL, NULL),
+('niedziela', 'Sunday', 'воскресенье', 'noun', 'feminine', 'A1', 207, 'ɲɛd͡ʑɛla', 'Niedziela jest dniem wolnym.', 'Sunday is a day off.', 'Воскресенье выходной день.', NULL, NULL);
+
+-- TIME EXPRESSIONS (208-220)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('dzień', 'day', 'день', 'noun', 'masculine', 'A1', 208, 'd͡ʑɛɲ', 'Dzień dobry!', 'Good day!', 'Добрый день!', NULL, NULL),
+('noc', 'night', 'ночь', 'noun', 'feminine', 'A1', 209, 'nɔt͡s', 'Dobranoc!', 'Good night!', 'Доброй ночи!', NULL, NULL),
+('rano', 'morning', 'утро', 'noun', 'neuter', 'A1', 210, 'ranɔ', 'Rano piję kawę.', 'In the morning I drink coffee.', 'Утром я пью кофе.', NULL, NULL),
+('wieczór', 'evening', 'вечер', 'noun', 'masculine', 'A1', 211, 'vʲɛt͡ʂur', 'Dobry wieczór!', 'Good evening!', 'Добрый вечер!', NULL, NULL),
+('godzina', 'hour/o''clock', 'час', 'noun', 'feminine', 'A1', 212, 'gɔd͡ʑina', 'Która godzina?', 'What time is it?', 'Который час?', NULL, NULL),
+('minuta', 'minute', 'минута', 'noun', 'feminine', 'A1', 213, 'minuta', 'Pięć minut.', 'Five minutes.', 'Пять минут.', NULL, NULL),
+('sekunda', 'second', 'секунда', 'noun', 'feminine', 'A1', 214, 'sɛkunda', 'Jedna sekunda.', 'One second.', 'Одна секунда.', NULL, NULL),
+('tydzień', 'week', 'неделя', 'noun', 'masculine', 'A1', 215, 'tɨd͡ʑɛɲ', 'Jeden tydzień ma siedem dni.', 'One week has seven days.', 'Одна неделя имеет семь дней.', NULL, NULL),
+('miesiąc', 'month', 'месяц', 'noun', 'masculine', 'A1', 216, 'mʲɛɕɔnt͡s', 'W tym miesiącu.', 'This month.', 'В этом месяце.', NULL, NULL),
+('rok', 'year', 'год', 'noun', 'masculine', 'A1', 217, 'rɔk', 'Nowy Rok!', 'New Year!', 'Новый год!', NULL, NULL),
+('dzisiaj', 'today', 'сегодня', 'adverb', NULL, 'A1', 218, 'd͡ʑiɕaj', 'Dzisiaj jest piątek.', 'Today is Friday.', 'Сегодня пятница.', NULL, NULL),
+('wczoraj', 'yesterday', 'вчера', 'adverb', NULL, 'A1', 219, 'ft͡ʂɔraj', 'Wczoraj byłem w domu.', 'Yesterday I was at home.', 'Вчера я был дома.', NULL, NULL),
+('jutro', 'tomorrow', 'завтра', 'adverb', NULL, 'A1', 220, 'jutrɔ', 'Jutro idę do szkoły.', 'Tomorrow I go to school.', 'Завтра я иду в школу.', NULL, NULL);
+
+-- PLACES (221-240)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('dom', 'house/home', 'дом', 'noun', 'masculine', 'A1', 221, 'dɔm', 'Jestem w domu.', 'I am at home.', 'Я дома.', NULL, NULL),
+('mieszkanie', 'apartment', 'квартира', 'noun', 'neuter', 'A1', 222, 'mʲɛʃkaɲɛ', 'Mam małe mieszkanie.', 'I have a small apartment.', 'У меня маленькая квартира.', NULL, NULL),
+('pokój', 'room', 'комната', 'noun', 'masculine', 'A1', 223, 'pɔkuj', 'Mój pokój jest duży.', 'My room is big.', 'Моя комната большая.', NULL, NULL),
+('kuchnia', 'kitchen', 'кухня', 'noun', 'feminine', 'A1', 224, 'kuxɲa', 'Gotuję w kuchni.', 'I cook in the kitchen.', 'Я готовлю на кухне.', NULL, NULL),
+('łazienka', 'bathroom', 'ванная', 'noun', 'feminine', 'A1', 225, 'waʑɛnka', 'Łazienka jest czysta.', 'The bathroom is clean.', 'Ванная чистая.', NULL, NULL),
+('szkoła', 'school', 'школа', 'noun', 'feminine', 'A1', 226, 'ʂkɔwa', 'Uczę się w szkole.', 'I study at school.', 'Я учусь в школе.', NULL, NULL),
+('uniwersytet', 'university', 'университет', 'noun', 'masculine', 'A1', 227, 'uɲivɛrsɨtɛt', 'Studiuję na uniwersytecie.', 'I study at university.', 'Я учусь в университете.', NULL, NULL),
+('praca', 'work/job', 'работа', 'noun', 'feminine', 'A1', 228, 'prat͡sa', 'Idę do pracy.', 'I go to work.', 'Я иду на работу.', NULL, NULL),
+('biuro', 'office', 'офис', 'noun', 'neuter', 'A1', 229, 'bʲurɔ', 'Pracuję w biurze.', 'I work in an office.', 'Я работаю в офисе.', NULL, NULL),
+('sklep', 'shop/store', 'магазин', 'noun', 'masculine', 'A1', 230, 'sklɛp', 'Idę do sklepu.', 'I go to the store.', 'Я иду в магазин.', NULL, NULL),
+('restauracja', 'restaurant', 'ресторан', 'noun', 'feminine', 'A1', 231, 'rɛstauratʃja', 'Jemy w restauracji.', 'We eat at a restaurant.', 'Мы едим в ресторане.', NULL, NULL),
+('kino', 'cinema', 'кинотеатр', 'noun', 'neuter', 'A1', 232, 'kʲinɔ', 'Idę do kina.', 'I go to the cinema.', 'Я иду в кино.', NULL, NULL),
+('teatr', 'theater', 'театр', 'noun', 'masculine', 'A1', 233, 'tɛatr', 'Lubię chodzić do teatru.', 'I like going to the theater.', 'Я люблю ходить в театр.', NULL, NULL),
+('muzeum', 'museum', 'музей', 'noun', 'neuter', 'A1', 234, 'muzɛum', 'W weekend odwiedzam muzeum.', 'On weekend I visit a museum.', 'На выходных я посещаю музей.', NULL, NULL),
+('bank', 'bank', 'банк', 'noun', 'masculine', 'A1', 235, 'bank', 'Idę do banku.', 'I go to the bank.', 'Я иду в банк.', NULL, NULL),
+('poczta', 'post office', 'почта', 'noun', 'feminine', 'A1', 236, 'pɔt͡ʂta', 'Na poczcie kupuję znaczki.', 'At the post office I buy stamps.', 'На почте я покупаю марки.', NULL, NULL),
+('szpital', 'hospital', 'больница', 'noun', 'masculine', 'A1', 237, 'ʂpʲital', 'Szpital jest blisko.', 'The hospital is close.', 'Больница близко.', NULL, NULL),
+('apteka', 'pharmacy', 'аптека', 'noun', 'feminine', 'A1', 238, 'aptɛka', 'Kupuję leki w aptece.', 'I buy medicine at the pharmacy.', 'Я покупаю лекарства в аптеке.', NULL, NULL),
+('park', 'park', 'парк', 'noun', 'masculine', 'A1', 239, 'park', 'Spaceruje w parku.', 'I walk in the park.', 'Я гуляю в парке.', NULL, NULL),
+('ulica', 'street', 'улица', 'noun', 'feminine', 'A1', 240, 'ulit͡sa', 'Mieszkam na tej ulicy.', 'I live on this street.', 'Я живу на этой улице.', NULL, NULL);
+
+-- BODY PARTS (241-255)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('głowa', 'head', 'голова', 'noun', 'feminine', 'A1', 241, 'gwɔva', 'Boli mnie głowa.', 'My head hurts.', 'У меня болит голова.', NULL, NULL),
+('twarz', 'face', 'лицо', 'noun', 'feminine', 'A1', 242, 'tfaʂ', 'Umyj twarz.', 'Wash your face.', 'Умой лицо.', NULL, NULL),
+('oko', 'eye', 'глаз', 'noun', 'neuter', 'A1', 243, 'ɔkɔ', 'Mam niebieskie oczy.', 'I have blue eyes.', 'У меня голубые глаза.', NULL, NULL),
+('nos', 'nose', 'нос', 'noun', 'masculine', 'A1', 244, 'nɔs', 'Mój nos jest duży.', 'My nose is big.', 'Мой нос большой.', NULL, NULL),
+('usta', 'mouth', 'рот', 'noun', 'plural', 'A1', 245, 'usta', 'Otwórz usta.', 'Open your mouth.', 'Открой рот.', NULL, NULL),
+('ucho', 'ear', 'ухо', 'noun', 'neuter', 'A1', 246, 'uxɔ', 'Boli mnie ucho.', 'My ear hurts.', 'У меня болит ухо.', NULL, NULL),
+('ręka', 'hand/arm', 'рука', 'noun', 'feminine', 'A1', 247, 'rɛnka', 'Myj ręce.', 'Wash your hands.', 'Мой руки.', NULL, NULL),
+('palec', 'finger/toe', 'палец', 'noun', 'masculine', 'A1', 248, 'palɛt͡s', 'Mam pięć palców.', 'I have five fingers.', 'У меня пять пальцев.', NULL, NULL),
+('noga', 'leg/foot', 'нога', 'noun', 'feminine', 'A1', 249, 'nɔga', 'Boli mnie noga.', 'My leg hurts.', 'У меня болит нога.', NULL, NULL),
+('stopa', 'foot', 'ступня', 'noun', 'feminine', 'A1', 250, 'stɔpa', 'Mam dużą stopę.', 'I have a big foot.', 'У меня большая ступня.', NULL, NULL),
+('plecy', 'back', 'спина', 'noun', 'plural', 'A1', 251, 'plɛt͡sɨ', 'Boli mnie plecy.', 'My back hurts.', 'У меня болит спина.', NULL, NULL),
+('brzuch', 'stomach/belly', 'живот', 'noun', 'masculine', 'A1', 252, 'bʐux', 'Boli mnie brzuch.', 'My stomach hurts.', 'У меня болит живот.', NULL, NULL),
+('serce', 'heart', 'сердце', 'noun', 'neuter', 'A1', 253, 'sɛrt͡sɛ', 'Mam dobre serce.', 'I have a good heart.', 'У меня доброе сердце.', NULL, NULL),
+('włosy', 'hair', 'волосы', 'noun', 'plural', 'A1', 254, 'vwɔsɨ', 'Mam długie włosy.', 'I have long hair.', 'У меня длинные волосы.', NULL, NULL),
+('zęby', 'teeth', 'зубы', 'noun', 'plural', 'A1', 255, 'zɛmbɨ', 'Myję zęby.', 'I brush my teeth.', 'Я чищу зубы.', NULL, NULL);
+
+-- COMMON ADJECTIVES (256-280)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('duży', 'big/large', 'большой', 'adjective', NULL, 'A1', 256, 'duʐɨ', 'To jest duży dom.', 'This is a big house.', 'Это большой дом.', NULL, NULL),
+('mały', 'small/little', 'маленький', 'adjective', NULL, 'A1', 257, 'mawɨ', 'Mały pies.', 'Small dog.', 'Маленькая собака.', NULL, NULL),
+('dobry', 'good', 'хороший', 'adjective', NULL, 'A1', 258, 'dɔbrɨ', 'To jest dobry pomysł.', 'This is a good idea.', 'Это хорошая идея.', NULL, NULL),
+('zły', 'bad/evil/angry', 'плохой/злой', 'adjective', NULL, 'A1', 259, 'zwɨ', 'Zły dzień.', 'Bad day.', 'Плохой день.', NULL, NULL),
+('nowy', 'new', 'новый', 'adjective', NULL, 'A1', 260, 'nɔvɨ', 'Nowy samochód.', 'New car.', 'Новая машина.', NULL, NULL),
+('stary', 'old', 'старый', 'adjective', NULL, 'A1', 261, 'starɨ', 'Stary dom.', 'Old house.', 'Старый дом.', NULL, NULL),
+('młody', 'young', 'молодой', 'adjective', NULL, 'A1', 262, 'mwɔdɨ', 'Młoda kobieta.', 'Young woman.', 'Молодая женщина.', NULL, NULL),
+('piękny', 'beautiful', 'красивый', 'adjective', NULL, 'A1', 263, 'pʲɛknɨ', 'Piękna pogoda.', 'Beautiful weather.', 'Красивая погода.', NULL, NULL),
+('brzydki', 'ugly', 'уродливый', 'adjective', NULL, 'A1', 264, 'bʐɨtkʲi', 'Brzydki budynek.', 'Ugly building.', 'Уродливое здание.', NULL, NULL),
+('wysoki', 'tall/high', 'высокий', 'adjective', NULL, 'A1', 265, 'vɨsɔkʲi', 'Wysoki mężczyzna.', 'Tall man.', 'Высокий мужчина.', NULL, NULL),
+('niski', 'short/low', 'низкий', 'adjective', NULL, 'A1', 266, 'ɲiskʲi', 'Niski stół.', 'Low table.', 'Низкий стол.', NULL, NULL),
+('długi', 'long', 'длинный', 'adjective', NULL, 'A1', 267, 'dwugʲi', 'Długa droga.', 'Long road.', 'Длинная дорога.', NULL, NULL),
+('krótki', 'short', 'короткий', 'adjective', NULL, 'A1', 268, 'krutkʲi', 'Krótkie włosy.', 'Short hair.', 'Короткие волосы.', NULL, NULL),
+('szeroki', 'wide', 'широкий', 'adjective', NULL, 'A1', 269, 'ʂɛrɔkʲi', 'Szeroka ulica.', 'Wide street.', 'Широкая улица.', NULL, NULL),
+('wąski', 'narrow', 'узкий', 'adjective', NULL, 'A1', 270, 'vɔnskʲi', 'Wąska ulica.', 'Narrow street.', 'Узкая улица.', NULL, NULL),
+('ciężki', 'heavy/difficult', 'тяжёлый', 'adjective', NULL, 'A1', 271, 't͡ɕɛnʂkʲi', 'Ciężka torba.', 'Heavy bag.', 'Тяжёлая сумка.', NULL, NULL),
+('lekki', 'light/easy', 'лёгкий', 'adjective', NULL, 'A1', 272, 'lɛkkʲi', 'Lekka torba.', 'Light bag.', 'Лёгкая сумка.', NULL, NULL),
+('szybki', 'fast/quick', 'быстрый', 'adjective', NULL, 'A1', 273, 'ʂɨbkʲi', 'Szybki samochód.', 'Fast car.', 'Быстрая машина.', NULL, NULL),
+('wolny', 'slow/free', 'медленный/свободный', 'adjective', NULL, 'A1', 274, 'vɔlnɨ', 'Wolny dzień.', 'Free day.', 'Свободный день.', NULL, NULL),
+('drogi', 'expensive/dear', 'дорогой', 'adjective', NULL, 'A1', 275, 'drɔgʲi', 'Droga restauracja.', 'Expensive restaurant.', 'Дорогой ресторан.', NULL, NULL),
+('tani', 'cheap', 'дешёвый', 'adjective', NULL, 'A1', 276, 'taɲi', 'Tani hotel.', 'Cheap hotel.', 'Дешёвый отель.', NULL, NULL),
+('trudny', 'difficult', 'трудный', 'adjective', NULL, 'A1', 277, 'trudnɨ', 'Trudny egzamin.', 'Difficult exam.', 'Трудный экзамен.', NULL, NULL),
+('łatwy', 'easy', 'лёгкий', 'adjective', NULL, 'A1', 278, 'watvɨ', 'Łatwy test.', 'Easy test.', 'Лёгкий тест.', NULL, NULL),
+('czysty', 'clean', 'чистый', 'adjective', NULL, 'A1', 279, 't͡ʂɨstɨ', 'Czysta woda.', 'Clean water.', 'Чистая вода.', NULL, NULL),
+('brudny', 'dirty', 'грязный', 'adjective', NULL, 'A1', 280, 'brudnɨ', 'Brudne ręce.', 'Dirty hands.', 'Грязные руки.', NULL, NULL);
+
+-- COMMON PREPOSITIONS & CONJUNCTIONS (281-300)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('w', 'in/at', 'в', 'preposition', NULL, 'A1', 281, 'v', 'Jestem w domu.', 'I am at home.', 'Я дома.', NULL, NULL),
+('na', 'on/at/for', 'на', 'preposition', NULL, 'A1', 282, 'na', 'Książka jest na stole.', 'The book is on the table.', 'Книга на столе.', NULL, NULL),
+('do', 'to/into', 'в/к', 'preposition', NULL, 'A1', 283, 'dɔ', 'Idę do szkoły.', 'I go to school.', 'Я иду в школу.', NULL, NULL),
+('z', 'with/from', 'с/из', 'preposition', NULL, 'A1', 284, 'z', 'Idę z przyjacielem.', 'I go with a friend.', 'Я иду с другом.', NULL, NULL),
+('o', 'about/at', 'о/в', 'preposition', NULL, 'A1', 285, 'ɔ', 'Mówię o tobie.', 'I talk about you.', 'Я говорю о тебе.', NULL, NULL),
+('dla', 'for', 'для', 'preposition', NULL, 'A1', 286, 'dla', 'To jest dla ciebie.', 'This is for you.', 'Это для тебя.', NULL, NULL),
+('bez', 'without', 'без', 'preposition', NULL, 'A1', 287, 'bɛs', 'Kawa bez cukru.', 'Coffee without sugar.', 'Кофе без сахара.', NULL, NULL),
+('przed', 'before/in front of', 'перед', 'preposition', NULL, 'A1', 288, 'pʂɛt', 'Przed domem.', 'In front of the house.', 'Перед домом.', NULL, NULL),
+('po', 'after/around', 'после/по', 'preposition', NULL, 'A1', 289, 'pɔ', 'Po lekcji.', 'After the lesson.', 'После урока.', NULL, NULL),
+('pod', 'under', 'под', 'preposition', NULL, 'A1', 290, 'pɔt', 'Pod stołem.', 'Under the table.', 'Под столом.', NULL, NULL),
+('nad', 'above/over', 'над', 'preposition', NULL, 'A1', 291, 'nat', 'Nad morzem.', 'By the sea.', 'У моря.', NULL, NULL),
+('i', 'and', 'и', 'conjunction', NULL, 'A1', 292, 'i', 'Ty i ja.', 'You and I.', 'Ты и я.', NULL, NULL),
+('ale', 'but', 'но', 'conjunction', NULL, 'A1', 293, 'alɛ', 'Chcę, ale nie mogę.', 'I want to, but I can''t.', 'Я хочу, но не могу.', NULL, NULL),
+('lub', 'or', 'или', 'conjunction', NULL, 'A1', 294, 'lup', 'Kawa lub herbata?', 'Coffee or tea?', 'Кофе или чай?', NULL, NULL),
+('bo', 'because', 'потому что', 'conjunction', NULL, 'A1', 295, 'bɔ', 'Jestem zmęczony, bo dużo pracuję.', 'I am tired because I work a lot.', 'Я устал, потому что много работаю.', NULL, NULL),
+('że', 'that', 'что', 'conjunction', NULL, 'A1', 296, 'ʐɛ', 'Myślę, że tak.', 'I think so.', 'Я думаю, что так.', NULL, NULL),
+('jeśli', 'if', 'если', 'conjunction', NULL, 'A1', 297, 'jɛɕli', 'Jeśli chcesz...', 'If you want...', 'Если хочешь...', NULL, NULL),
+('gdy', 'when', 'когда', 'conjunction', NULL, 'A1', 298, 'gdɨ', 'Gdy byłem mały...', 'When I was young...', 'Когда я был маленький...', NULL, NULL),
+('jak', 'how/like/as', 'как', 'adverb', NULL, 'A1', 299, 'jak', 'Jak się masz?', 'How are you?', 'Как дела?', NULL, NULL),
+('bardzo', 'very/much', 'очень', 'adverb', NULL, 'A1', 300, 'bardzɔ', 'Bardzo dobrze.', 'Very good.', 'Очень хорошо.', NULL, NULL);
+
+-- NOTE: This seed file now contains 300 essential A1-level Polish words.
+-- The expanded vocabulary provides comprehensive coverage for beginners:
 -- - Pronouns (15 words)
 -- - Common verbs in present tense (65 words)
 -- - Numbers 0-100 and ordinals (30 words)
 -- - Colors (15 words)
 -- - Family members (20 words)
 -- - Food, drinks, and dining (55 words)
+-- - Days of the week (7 words)
+-- - Time expressions (13 words)
+-- - Places and locations (20 words)
+-- - Body parts (15 words)
+-- - Common adjectives (25 words)
+-- - Prepositions and conjunctions (20 words)
 --
--- Total: 200 words with complete translations, IPA pronunciations, and example sentences in Polish, English, and Russian.
+-- Total: 300 words with complete translations, IPA pronunciations, and example sentences in Polish, English, and Russian.
