@@ -104,13 +104,15 @@ This will populate:
   - 10 B1 lessons (Intermediate)
   - 5 B2 lessons (Upper Intermediate)
 - **Mock exam preparation** with official format simulation:
-  - 4 mock exams (A1, A2, B1, B2) with 25+ sample questions
+  - 4 mock exams (A1, A2, B1, B2) with 93+ questions
+  - All sections: Reading, Listening, Writing, Speaking
   - 14 study resources (strategies, tips, common mistakes)
-  - Analytics and progress tracking
-- **1,300+ vocabulary words** with Polish/English/Russian translations and IPA
+  - Detailed grading rubrics and analytics
+- **1,700 vocabulary words** with Polish/English/Russian translations and IPA
   - 425 A1-A2 words (basic-elementary)
-  - 500+ B1 words (intermediate)
-  - 400+ B2 words (upper-intermediate)
+  - 900 B1-B2 words (intermediate-upper intermediate)
+  - 300 specialized topic words (food, weather, technology, emotions, etc.)
+  - 75 C1 preview words (academic and professional vocabulary)
 - **58 achievements** for gamification
 
 6. **Run development servers:**
@@ -134,7 +136,7 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 
 ### Development Guides
 - **[Development Guide](./DEVELOPMENT.md)** - Complete local development setup
-- **[API Documentation](./apps/api/API.md)** - API endpoints and usage
+- **[API Documentation](./API_DOCUMENTATION.md)** - Complete REST API specification (40+ endpoints)
 - **[Integration Guide](./INTEGRATION.md)** - Frontend-backend integration
 - **[Deployment Guide](./DEPLOYMENT.md)** - Production deployment
 - **[Production Checklist](./PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
@@ -142,7 +144,8 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 
 ### Content & Learning Resources
 - **[Content Expansion Plan](./CONTENT_EXPANSION_PLAN.md)** - 30 lessons + exam prep roadmap
-- **[Polish Grammar Reference](./POLISH_GRAMMAR_REFERENCE.md)** - Complete A1-B2 grammar guide
+- **[Polish Grammar Reference](./POLISH_GRAMMAR_REFERENCE.md)** - Complete A1-B2 grammar guide (755 lines)
+- **[Vocabulary Database](./apps/api/src/db/seeds/)** - 1,700 words across all levels with IPA
 
 ### Product Requirements
 - **[PRD Overview](./docs/prd-overview.md)** - High-level product vision
@@ -184,8 +187,8 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - [x] Authentication implementation (JWT + refresh tokens)
 - [x] Complete API with all controllers
 - [x] 30 A1-B2 lessons with 180 exercises
-- [x] Mock exam preparation module (A1, B1 with study resources)
-- [x] 1,300+ vocabulary words with translations (A1-B2)
+- [x] Mock exam preparation module (93+ questions across A1, A2, B1, B2)
+- [x] 1,700 vocabulary words with translations (A1-C1 preview)
 - [x] 58 achievement definitions
 - [x] Spaced repetition (SM-2 algorithm)
 - [x] Progress tracking and statistics
@@ -199,9 +202,12 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - [x] CI/CD pipeline with GitHub Actions
 
 ### 📋 Next Steps
-- [x] Expand to 30 A1-B2 lessons (COMPLETED)
-- [x] Expand vocabulary to 1,300+ words (COMPLETED)
-- [ ] Complete vocabulary to 1,600+ words (add remaining ~300 words)
+- [x] Expand to 30 A1-B2 lessons (COMPLETED - 180 exercises)
+- [x] Expand vocabulary to 1,700 words (COMPLETED - all levels A1-C1 preview)
+- [x] Comprehensive exam question bank (COMPLETED - 93+ questions)
+- [x] Complete API documentation (COMPLETED - 40+ endpoints)
+- [ ] Implement backend (lessons, vocabulary, exam endpoints)
+- [ ] Connect frontend to API endpoints
 - [ ] Implement backend audio generation (Google Cloud TTS)
 - [ ] Character design and illustrations
 - [ ] Voice interaction features
