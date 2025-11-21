@@ -99,7 +99,11 @@ npm run db:init
 ```
 
 This will populate:
-- **15 A1-A2 lessons** with 90 exercises (all 6 exercise types)
+- **30 lessons (A1-B2)** with 180 exercises (all 6 exercise types)
+  - 15 A1-A2 lessons (Basic to Elementary)
+  - 10 B1 lessons (Intermediate)
+  - 5 B2 lessons (Upper Intermediate)
+- **Mock exam preparation** with official format simulation for A1-B2 levels
 - **425 vocabulary words** with Polish/English/Russian translations and IPA
 - **58 achievements** for gamification
 
@@ -169,7 +173,8 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - [x] Database schema design and implementation
 - [x] Authentication implementation (JWT + refresh tokens)
 - [x] Complete API with all controllers
-- [x] 15 A1-A2 lessons with 90 exercises
+- [x] 30 A1-B2 lessons with 180 exercises
+- [x] Mock exam preparation module (A1, B1 with study resources)
 - [x] 425 vocabulary words with translations
 - [x] 58 achievement definitions
 - [x] Spaced repetition (SM-2 algorithm)
@@ -184,7 +189,7 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - [x] CI/CD pipeline with GitHub Actions
 
 ### 📋 Next Steps
-- [ ] Expand to 30+ A1-B1 lessons
+- [x] Expand to 30 A1-B2 lessons (COMPLETED)
 - [ ] Expand vocabulary to 1000+ words
 - [ ] Implement backend audio generation (Google Cloud TTS)
 - [ ] Character design and illustrations
