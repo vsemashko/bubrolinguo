@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Build artifacts
+dist
+
+# Development files
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Testing
+coverage
+*.test.ts
+*.spec.ts
+
+# Documentation
+README.md
+*.md
+
+# Misc
+.DS_Store
