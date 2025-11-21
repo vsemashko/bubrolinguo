@@ -11,6 +11,9 @@ import { Progress, Button, Card } from '@/components/ui';
 import MultipleChoiceExerciseComponent from './MultipleChoiceExercise';
 import TranslationExerciseComponent from './TranslationExercise';
 import FillBlankExerciseComponent from './FillBlankExercise';
+import ListeningExerciseComponent from './ListeningExercise';
+import SpeakingExerciseComponent from './SpeakingExercise';
+import MatchingExerciseComponent from './MatchingExercise';
 
 interface LessonPlayerProps {
   lesson: Lesson;
@@ -117,6 +120,30 @@ export const LessonPlayer: React.FC<LessonPlayerProps> = ({
       case 'fill_blank':
         return (
           <FillBlankExerciseComponent
+            exercise={exercise}
+            language={language}
+            onAnswer={handleAnswer}
+          />
+        );
+      case 'listening':
+        return (
+          <ListeningExerciseComponent
+            exercise={exercise}
+            language={language}
+            onAnswer={handleAnswer}
+          />
+        );
+      case 'speaking':
+        return (
+          <SpeakingExerciseComponent
+            exercise={exercise}
+            language={language}
+            onAnswer={handleAnswer}
+          />
+        );
+      case 'matching':
+        return (
+          <MatchingExerciseComponent
             exercise={exercise}
             language={language}
             onAnswer={handleAnswer}
