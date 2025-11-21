@@ -12,6 +12,7 @@ import usersRoutes from './routes/users.routes';
 import lessonsRoutes from './routes/lessons.routes';
 import vocabularyRoutes from './routes/vocabulary.routes';
 import progressRoutes from './routes/progress.routes';
+import examsRoutes from './routes/exams.routes';
 
 // Load environment variables
 dotenv.config();
@@ -52,6 +53,7 @@ app.use('/api/v1/users', authenticateToken, usersRoutes); // Protected routes
 app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows user progress if logged in)
 app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
 app.use('/api/v1/progress', authenticateToken, progressRoutes); // Protected routes
+app.use('/api/v1/exams', authenticateToken, examsRoutes); // Protected exam routes
 
 // 404 handler
 app.use((req: Request, res: Response) => {

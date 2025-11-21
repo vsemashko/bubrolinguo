@@ -62,28 +62,68 @@ async function seedDatabase() {
       logger.info(`Skipping achievements (already seeded: ${achievementsCount} records)`);
     }
 
-    // 2. Seed lessons
+    // 2. Seed lessons (A1-B2)
     logger.info('\n=== Seeding Lessons ===');
     const lessonsCount = await getTableCount('lessons');
     if (lessonsCount === 0) {
+      // Seed all lesson levels
       await runSeedFile(
         path.join(seedsDir, 'lessons.sql'),
-        '10 A1-level lessons with exercises'
+        'A1-A2 lessons (15 lessons)'
       );
+      await runSeedFile(
+        path.join(seedsDir, 'lessons-b1.sql'),
+        'B1 lessons (10 lessons)'
+      );
+      await runSeedFile(
+        path.join(seedsDir, 'lessons-b2.sql'),
+        'B2 lessons (5 lessons)'
+      );
+      logger.info(`✓ Total lessons seeded: 30 (A1-B2)`);
     } else {
       logger.info(`Skipping lessons (already seeded: ${lessonsCount} records)`);
     }
 
-    // 3. Seed vocabulary
+    // 3. Seed vocabulary (1,700 words)
     logger.info('\n=== Seeding Vocabulary ===');
     const vocabCount = await getTableCount('vocabulary');
     if (vocabCount === 0) {
       await runSeedFile(
         path.join(seedsDir, 'vocabulary.sql'),
-        '200 essential A1 vocabulary words'
+        'A1-A2 vocabulary (425 words)'
       );
+      await runSeedFile(
+        path.join(seedsDir, 'vocabulary-b1-b2.sql'),
+        'B1-B2 vocabulary (900 words)'
+      );
+      await runSeedFile(
+        path.join(seedsDir, 'vocabulary-specialized.sql'),
+        'Specialized vocabulary (300 words)'
+      );
+      await runSeedFile(
+        path.join(seedsDir, 'vocabulary-c1-preview.sql'),
+        'C1 preview vocabulary (75 words)'
+      );
+      logger.info(`✓ Total vocabulary seeded: 1,700 words`);
     } else {
       logger.info(`Skipping vocabulary (already seeded: ${vocabCount} records)`);
+    }
+
+    // 4. Seed exam preparation
+    logger.info('\n=== Seeding Exam Preparation ===');
+    const examsCount = await getTableCount('mock_exams');
+    if (examsCount === 0) {
+      await runSeedFile(
+        path.join(seedsDir, 'exam-prep.sql'),
+        'Mock exams (A1, A2, B1, B2) with study resources'
+      );
+      await runSeedFile(
+        path.join(seedsDir, 'exam-questions-expanded.sql'),
+        'Expanded exam questions (93+ questions)'
+      );
+      logger.info(`✓ Mock exams and questions seeded`);
+    } else {
+      logger.info(`Skipping exam preparation (already seeded: ${examsCount} records)`);
     }
 
     logger.info('\n✓ Database seeding completed successfully!');
@@ -91,6 +131,9 @@ async function seedDatabase() {
     logger.info(`  - Achievements: ${await getTableCount('achievements')}`);
     logger.info(`  - Lessons: ${await getTableCount('lessons')}`);
     logger.info(`  - Vocabulary: ${await getTableCount('vocabulary')}`);
+    logger.info(`  - Mock Exams: ${await getTableCount('mock_exams')}`);
+    logger.info(`  - Exam Questions: ${await getTableCount('exam_questions')}`);
+    logger.info(`  - Study Resources: ${await getTableCount('exam_study_resources')}`);
 
   } catch (error) {
     logger.error('Database seeding failed', { error });
