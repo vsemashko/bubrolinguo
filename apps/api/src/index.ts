@@ -6,6 +6,7 @@ import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { testConnection, closePool } from './db/connection';
 import authRoutes from './routes/auth.routes';
+import usersRoutes from './routes/users.routes';
 import lessonsRoutes from './routes/lessons.routes';
 import vocabularyRoutes from './routes/vocabulary.routes';
 import progressRoutes from './routes/progress.routes';
@@ -42,6 +43,7 @@ app.get('/health', (req: Request, res: Response) => {
 
 // API Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/lessons', lessonsRoutes);
 app.use('/api/v1/vocabulary', vocabularyRoutes);
 app.use('/api/v1/progress', progressRoutes);
