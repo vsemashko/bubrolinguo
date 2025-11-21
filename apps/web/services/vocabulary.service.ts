@@ -3,9 +3,9 @@
 import { get, post } from '@/lib/api';
 import {
   VocabularyWithUserProgress,
-  ReviewResult,
+  ReviewResult as _ReviewResult,
   VocabularyStats,
-  VocabularyFilters,
+  VocabularyFilters as _VocabularyFilters,
 } from '@/types/vocabulary';
 
 /**

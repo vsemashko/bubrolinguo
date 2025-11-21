@@ -47,7 +47,7 @@ export const MatchingExerciseComponent: React.FC<MatchingExerciseProps> = ({
   }, [exercise]);
 
   const handlePolishClick = (polish: string) => {
-    if (isSubmitted || matches.has(polish)) return;
+    if (isSubmitted || matches.has(polish)) {return;}
 
     setSelectedPolish(polish);
 
@@ -58,7 +58,7 @@ export const MatchingExerciseComponent: React.FC<MatchingExerciseProps> = ({
   };
 
   const handleTranslationClick = (translation: string) => {
-    if (isSubmitted) return;
+    if (isSubmitted) {return;}
 
     // Check if this translation is already matched
     const isMatched = Array.from(matches.values()).includes(translation);

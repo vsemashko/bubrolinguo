@@ -35,7 +35,7 @@ export const FillBlankExerciseComponent: React.FC<FillBlankExerciseProps> = ({
   };
 
   const handleSubmit = () => {
-    if (!userAnswer.trim()) return;
+    if (!userAnswer.trim()) {return;}
 
     const correct = checkAnswer(userAnswer);
     setIsCorrect(correct);

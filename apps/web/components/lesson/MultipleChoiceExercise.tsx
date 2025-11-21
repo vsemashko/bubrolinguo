@@ -23,7 +23,7 @@ export const MultipleChoiceExerciseComponent: React.FC<
     language === 'en' ? exercise.explanation_en : exercise.explanation_ru;
 
   const handleSubmit = () => {
-    if (!selectedAnswer) return;
+    if (!selectedAnswer) {return;}
 
     const correct = selectedAnswer === exercise.correct_answer;
     setIsCorrect(correct);

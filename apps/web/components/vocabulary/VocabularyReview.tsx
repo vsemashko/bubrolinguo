@@ -107,10 +107,10 @@ export const VocabularyReview: React.FC<VocabularyReviewProps> = ({
   };
 
   const getQualityButtonColor = (quality: number): string => {
-    if (quality === 0 || quality === 1) return 'bg-red-500 hover:bg-red-600';
-    if (quality === 2) return 'bg-orange-500 hover:bg-orange-600';
-    if (quality === 3) return 'bg-yellow-500 hover:bg-yellow-600';
-    if (quality === 4) return 'bg-green-500 hover:bg-green-600';
+    if (quality === 0 || quality === 1) {return 'bg-red-500 hover:bg-red-600';}
+    if (quality === 2) {return 'bg-orange-500 hover:bg-orange-600';}
+    if (quality === 3) {return 'bg-yellow-500 hover:bg-yellow-600';}
+    if (quality === 4) {return 'bg-green-500 hover:bg-green-600';}
     return 'bg-emerald-500 hover:bg-emerald-600';
   };
 

@@ -33,7 +33,7 @@ export const ListeningExerciseComponent: React.FC<ListeningExerciseProps> = ({
   };
 
   const handleSubmit = () => {
-    if (!selectedAnswer) return;
+    if (!selectedAnswer) {return;}
 
     const correct = selectedAnswer === exercise.correct_answer;
     setIsCorrect(correct);

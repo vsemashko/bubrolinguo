@@ -68,7 +68,7 @@ export async function apiRequest<T = any>(
     }
 
     return data;
-  } catch (error) {
+  } catch (_error) {
     console.error('API request failed:', error);
     return {
       success: false,

@@ -55,7 +55,7 @@ export function trackPageView(page: PageView) {
     console.log('[Analytics] Page view:', page);
   }
 
-  if (!ANALYTICS_CONFIG.enabled) return;
+  if (!ANALYTICS_CONFIG.enabled) {return;}
 
   // Google Analytics
   if (window.gtag) {
@@ -84,7 +84,7 @@ export function trackEvent(event: AnalyticsEvent) {
     console.log('[Analytics] Event:', event);
   }
 
-  if (!ANALYTICS_CONFIG.enabled) return;
+  if (!ANALYTICS_CONFIG.enabled) {return;}
 
   // Google Analytics
   if (window.gtag) {

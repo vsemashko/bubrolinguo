@@ -73,7 +73,7 @@ export const TranslationExerciseComponent: React.FC<
   };
 
   const handleSubmit = () => {
-    if (!userAnswer.trim()) return;
+    if (!userAnswer.trim()) {return;}
 
     const correct = checkAnswer(userAnswer);
     setIsCorrect(correct);

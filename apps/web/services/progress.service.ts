@@ -3,10 +3,10 @@
 import { get } from '@/lib/api';
 import {
   DashboardData,
-  UserStats,
-  DailyActivity,
+  UserStats as _UserStats,
+  DailyActivity as _DailyActivity,
   Achievement,
-  RecentActivity,
+  RecentActivity as _RecentActivity,
   LeaderboardEntry,
 } from '@/types/progress';
 

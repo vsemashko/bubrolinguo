@@ -93,9 +93,9 @@ export const LessonPlayer: React.FC<LessonPlayerProps> = ({
 
   const calculateXP = (score: number, baseXP: number): number => {
     // Full XP for 100%, reduced for lower scores
-    if (score >= 90) return baseXP;
-    if (score >= 80) return Math.floor(baseXP * 0.9);
-    if (score >= 70) return Math.floor(baseXP * 0.8);
+    if (score >= 90) {return baseXP;}
+    if (score >= 80) {return Math.floor(baseXP * 0.9);}
+    if (score >= 70) {return Math.floor(baseXP * 0.8);}
     return Math.floor(baseXP * 0.7);
   };
 

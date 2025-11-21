@@ -36,10 +36,10 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   };
 
   const getIntensityColor = (xp: number): string => {
-    if (xp === 0) return 'bg-gray-100';
-    if (xp < 25) return 'bg-green-200';
-    if (xp < 50) return 'bg-green-400';
-    if (xp < 100) return 'bg-green-600';
+    if (xp === 0) {return 'bg-gray-100';}
+    if (xp < 25) {return 'bg-green-200';}
+    if (xp < 50) {return 'bg-green-400';}
+    if (xp < 100) {return 'bg-green-600';}
     return 'bg-green-800';
   };
 

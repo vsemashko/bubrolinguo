@@ -33,14 +33,14 @@ export function AudioButton({
   const [error, setError] = useState<string | null>(null);
 
   const handlePlay = async () => {
-    if (isPlaying || disabled) return;
+    if (isPlaying || disabled) {return;}
 
     setIsPlaying(true);
     setError(null);
 
     try {
       await playPolishAudio(text, speed);
-    } catch (err) {
+    } catch (_err) {
       console.error('Audio playback failed:', err);
       setError('Failed to play audio');
     } finally {

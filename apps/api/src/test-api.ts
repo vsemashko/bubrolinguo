@@ -32,12 +32,12 @@ async function runTests() {
   console.log(`API URL: ${API_URL}\n`);
 
   let authToken = '';
-  let userId = '';
+  let _userId = '';
 
   // Test 1: Health Check
   await test('GET / - Health check', async () => {
     const response = await api.get('/');
-    if (!response.data.success) throw new Error('Health check failed');
+    if (!response.data.success) {throw new Error('Health check failed');}
   });
 
   // Test 2: Register a new user
@@ -50,11 +50,11 @@ async function runTests() {
       interfaceLanguage: 'en',
     });
 
-    if (!response.data.success) throw new Error('Registration failed');
-    if (!response.data.data.token) throw new Error('No token received');
+    if (!response.data.success) {throw new Error('Registration failed');}
+    if (!response.data.data.token) {throw new Error('No token received');}
 
     authToken = response.data.data.token;
-    userId = response.data.data.user.id;
+    _userId = response.data.data.user.id;
   });
 
   // Test 3: Get current user
@@ -63,16 +63,16 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get user');
-    if (!response.data.data.user.id) throw new Error('No user ID in response');
+    if (!response.data.success) {throw new Error('Failed to get user');}
+    if (!response.data.data.user.id) {throw new Error('No user ID in response');}
   });
 
   // Test 4: Get lessons (public)
   await test('GET /api/v1/lessons - Get all lessons', async () => {
     const response = await api.get('/api/v1/lessons');
 
-    if (!response.data.success) throw new Error('Failed to get lessons');
-    if (!Array.isArray(response.data.data.lessons)) throw new Error('Lessons is not an array');
+    if (!response.data.success) {throw new Error('Failed to get lessons');}
+    if (!Array.isArray(response.data.data.lessons)) {throw new Error('Lessons is not an array');}
   });
 
   // Test 5: Get lessons with auth (should show progress)
@@ -81,7 +81,7 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get lessons');
+    if (!response.data.success) {throw new Error('Failed to get lessons');}
     if (response.data.data.lessons.length === 0) {
       console.log('   ⚠️  Warning: No lessons found. Did you run db:seed?');
     }
@@ -103,8 +103,8 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get lesson');
-    if (!response.data.data.lesson.exercises) throw new Error('No exercises in lesson');
+    if (!response.data.success) {throw new Error('Failed to get lesson');}
+    if (!response.data.data.lesson.exercises) {throw new Error('No exercises in lesson');}
   });
 
   // Test 7: Get vocabulary review queue
@@ -113,7 +113,7 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get review queue');
+    if (!response.data.success) {throw new Error('Failed to get review queue');}
   });
 
   // Test 8: Get vocabulary stats
@@ -122,7 +122,7 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get vocabulary stats');
+    if (!response.data.success) {throw new Error('Failed to get vocabulary stats');}
   });
 
   // Test 9: Get dashboard data
@@ -131,8 +131,8 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get dashboard');
-    if (!response.data.data.user) throw new Error('No user in dashboard');
+    if (!response.data.success) {throw new Error('Failed to get dashboard');}
+    if (!response.data.data.user) {throw new Error('No user in dashboard');}
   });
 
   // Test 10: Get achievements
@@ -141,8 +141,8 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get achievements');
-    if (!Array.isArray(response.data.data.achievements)) throw new Error('Achievements is not an array');
+    if (!response.data.success) {throw new Error('Failed to get achievements');}
+    if (!Array.isArray(response.data.data.achievements)) {throw new Error('Achievements is not an array');}
 
     if (response.data.data.achievements.length === 0) {
       console.log('   ⚠️  Warning: No achievements found. Did you run db:seed?');
@@ -155,7 +155,7 @@ async function runTests() {
       headers: { Authorization: `Bearer ${authToken}` },
     });
 
-    if (!response.data.success) throw new Error('Failed to get leaderboard');
+    if (!response.data.success) {throw new Error('Failed to get leaderboard');}
   });
 
   // Test 12: Update user profile
@@ -171,7 +171,7 @@ async function runTests() {
       }
     );
 
-    if (!response.data.success) throw new Error('Failed to update profile');
+    if (!response.data.success) {throw new Error('Failed to update profile');}
   });
 
   // Test 13: Invalid auth token

@@ -1,6 +1,6 @@
 // Authentication Utility Functions
 
-import { LoginRequest, RegisterRequest, AuthResponse } from '@/types/auth';
+import { LoginRequest as _LoginRequest, RegisterRequest, AuthResponse } from '@/types/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -41,7 +41,7 @@ export async function login(
     }
 
     return data;
-  } catch (error) {
+  } catch (_error) {
     return {
       success: false,
       error: {
@@ -86,7 +86,7 @@ export async function register(data: RegisterRequest): Promise<AuthResponse> {
     }
 
     return result;
-  } catch (error) {
+  } catch (_error) {
     return {
       success: false,
       error: {
@@ -113,7 +113,7 @@ export async function logout(): Promise<void> {
         },
       });
     }
-  } catch (error) {
+  } catch (_error) {
     // Ignore errors during logout
   } finally {
     // Always clear local storage
@@ -126,7 +126,7 @@ export async function logout(): Promise<void> {
  * Get current auth token
  */
 export function getAuthToken(): string | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {return null;}
   return localStorage.getItem('auth_token');
 }
 
@@ -168,7 +168,7 @@ export async function refreshToken(): Promise<string | null> {
     }
 
     return null;
-  } catch (error) {
+  } catch (_error) {
     return null;
   }
 }

@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem('refresh_token');
         setUser(null);
       }
-    } catch (error) {
+    } catch (_error) {
       console.error('Failed to load user:', error);
       setUser(null);
     } finally {
@@ -78,7 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         success: false,
         error: response.error || { message: 'Login failed' },
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         success: false,
         error: { message: 'Network error. Please try again.' },
@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         success: false,
         error: response.error || { message: 'Registration failed' },
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         success: false,
         error: { message: 'Network error. Please try again.' },

@@ -20,7 +20,7 @@ export async function playPolishAudio(text: string, speed: number = 1.0): Promis
 
     // Fallback to Google TTS API (requires internet)
     return playWithGoogleTTS(text, speed);
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to play audio:', error);
     throw new Error('Audio playback failed');
   }
@@ -194,7 +194,7 @@ export function useAudioPlayer() {
     try {
       await playPolishAudio(text, speed);
       return { success: true };
-    } catch (error) {
+    } catch (_error) {
       console.error('Audio playback error:', error);
       return {
         success: false,

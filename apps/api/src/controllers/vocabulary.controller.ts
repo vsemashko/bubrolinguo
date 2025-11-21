@@ -98,7 +98,7 @@ export async function submitReviewResults(req: Request, res: Response) {
 
     await transaction(async (client) => {
       for (const result of results) {
-        const { vocabularyId, quality, timeSpent, correct } = result;
+        const { vocabularyId, quality, timeSpent: _timeSpent, correct } = result;
 
         // Get current user vocabulary data
         const uvResult = await client.query(
@@ -107,7 +107,7 @@ export async function submitReviewResults(req: Request, res: Response) {
           [userId, vocabularyId]
         );
 
-        if (uvResult.rows.length === 0) continue;
+        if (uvResult.rows.length === 0) {continue;}
 
         const uv = uvResult.rows[0];
 
@@ -118,7 +118,7 @@ export async function submitReviewResults(req: Request, res: Response) {
 
         // Update easiness factor
         newEasinessFactor = newEasinessFactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
-        if (newEasinessFactor < 1.3) newEasinessFactor = 1.3;
+        if (newEasinessFactor < 1.3) {newEasinessFactor = 1.3;}
 
         // Calculate new interval
         if (quality < 3) {
@@ -135,7 +135,7 @@ export async function submitReviewResults(req: Request, res: Response) {
             newInterval = Math.round(uv.interval_days * newEasinessFactor);
           }
           newProficiencyLevel++;
-          if (newProficiencyLevel > 5) newProficiencyLevel = 5;
+          if (newProficiencyLevel > 5) {newProficiencyLevel = 5;}
         }
 
         // Calculate next review date
@@ -144,8 +144,8 @@ export async function submitReviewResults(req: Request, res: Response) {
 
         // Determine status
         let status = 'learning';
-        if (newProficiencyLevel >= 5) status = 'mastered';
-        else if (quality < 3 && uv.times_reviewed > 0) status = 'relearning';
+        if (newProficiencyLevel >= 5) {status = 'mastered';}
+        else if (quality < 3 && uv.times_reviewed > 0) {status = 'relearning';}
 
         // Update user vocabulary
         await client.query(

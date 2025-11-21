@@ -98,7 +98,7 @@ export const SpeakingExerciseComponent: React.FC<SpeakingExerciseProps> = ({
 
       setIsRecording(true);
       setHasRecorded(true);
-    } catch (err) {
+    } catch (_err) {
       setError(
         language === 'en'
           ? 'Microphone access denied. Please allow microphone access.'
@@ -132,7 +132,7 @@ export const SpeakingExerciseComponent: React.FC<SpeakingExerciseProps> = ({
     const longer = str1.length > str2.length ? str1 : str2;
     const shorter = str1.length > str2.length ? str2 : str1;
 
-    if (longer.length === 0) return 1.0;
+    if (longer.length === 0) {return 1.0;}
 
     const editDistance = levenshteinDistance(longer, shorter);
     return (longer.length - editDistance) / longer.length;
