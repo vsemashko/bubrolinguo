@@ -61,7 +61,9 @@ export function VocabularyReview() {
 
   async function handleAnswer(correct: boolean) {
     const word = words[currentIndex];
-    if (!word) return;
+    if (!word) {
+      return;
+    }
 
     try {
       // Submit review result
