@@ -93,7 +93,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * POST /api/v1/auth/refresh
  * Refresh access token
  */
-router.post('/refresh', async (req: Request, res: Response) => {
+router.post('/refresh', async (_req: Request, res: Response) => {
   // TODO: Implement token refresh logic
   res.json({
     success: true,
@@ -107,7 +107,7 @@ router.post('/refresh', async (req: Request, res: Response) => {
  * POST /api/v1/auth/logout
  * Logout user
  */
-router.post('/logout', async (req: Request, res: Response) => {
+router.post('/logout', async (_req: Request, res: Response) => {
   // TODO: Implement logout logic (invalidate token)
   res.json({
     success: true,

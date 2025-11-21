@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { authMiddleware } from '../middleware/auth.middleware';
+import { authenticateToken } from '../middleware/auth.middleware';
 import * as examsController from '../controllers/exams.controller';
 
 const router = Router();
 
 // All exam routes require authentication
-router.use(authMiddleware);
+router.use(authenticateToken);
 
 /**
  * @route   GET /api/v1/exams

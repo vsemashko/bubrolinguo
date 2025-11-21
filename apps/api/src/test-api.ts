@@ -32,7 +32,7 @@ async function runTests() {
   console.log(`API URL: ${API_URL}\n`);
 
   let authToken = '';
-  let _userId = '';
+  // let userId = ''; // Reserved for future use
 
   // Test 1: Health Check
   await test('GET / - Health check', async () => {
@@ -54,7 +54,7 @@ async function runTests() {
     if (!response.data.data.token) {throw new Error('No token received');}
 
     authToken = response.data.data.token;
-    _userId = response.data.data.user.id;
+    // userId = response.data.data.user.id; // Reserved for future use
   });
 
   // Test 3: Get current user

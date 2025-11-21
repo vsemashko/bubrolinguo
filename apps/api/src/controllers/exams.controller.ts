@@ -74,7 +74,7 @@ export async function getMockExams(req: Request, res: Response) {
  */
 export async function getExamById(req: Request, res: Response) {
   try {
-    const userId = (req as any).userId;
+    // const userId = (req as any).userId; // Reserved for future access control
     const { id } = req.params;
 
     const examResult = await query(
@@ -241,7 +241,9 @@ export async function submitSectionAnswers(req: Request, res: Response) {
           [question_id]
         );
 
-        if (questionResult.rows.length === 0) continue;
+        if (questionResult.rows.length === 0) {
+          continue;
+        }
 
         const question = questionResult.rows[0];
         pointsPossible += question.points;
@@ -347,7 +349,7 @@ export async function submitSectionAnswers(req: Request, res: Response) {
  */
 export async function completeExamAttempt(req: Request, res: Response) {
   try {
-    const userId = (req as any).userId;
+    // const userId = (req as any).userId; // Reserved for future access control
     const { attemptId } = req.params;
 
     const results = await transaction(async (client) => {

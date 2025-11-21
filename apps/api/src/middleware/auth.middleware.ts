@@ -12,7 +12,7 @@ interface JwtPayload {
  * Authentication middleware
  * Verifies JWT token and attaches userId to request
  */
-export function authenticateToken(req: Request, res: Response, next: NextFunction) {
+export function authenticateToken(req: Request, _res: Response, next: NextFunction) {
   try {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
@@ -52,7 +52,7 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
  * Optional authentication middleware
  * Attaches userId if token is present, but doesn't throw if missing
  */
-export function optionalAuth(req: Request, res: Response, next: NextFunction) {
+export function optionalAuth(req: Request, _res: Response, next: NextFunction) {
   try {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];

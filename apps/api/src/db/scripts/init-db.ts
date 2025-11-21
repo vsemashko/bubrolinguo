@@ -12,7 +12,7 @@
  *   NODE_ENV=production npm run db:init
  */
 
-import { runMigrations } from '../migrate';
+import { runMigration } from '../migrate';
 import { seedDatabase } from './seed';
 
 async function initializeDatabase() {
@@ -21,7 +21,7 @@ async function initializeDatabase() {
   try {
     // Step 1: Run migrations
     console.log('📋 Step 1: Running migrations...');
-    await runMigrations();
+    await runMigration();
     console.log('✅ Migrations completed successfully\n');
 
     // Step 2: Seed database

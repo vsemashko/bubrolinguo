@@ -275,7 +275,7 @@ export async function getNextLesson(req: Request, res: Response) {
       xp_reward: row.xp_reward,
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: { lesson },
     });
