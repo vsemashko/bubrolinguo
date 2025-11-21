@@ -107,7 +107,10 @@ This will populate:
   - 4 mock exams (A1, A2, B1, B2) with 25+ sample questions
   - 14 study resources (strategies, tips, common mistakes)
   - Analytics and progress tracking
-- **425 vocabulary words** with Polish/English/Russian translations and IPA
+- **1,300+ vocabulary words** with Polish/English/Russian translations and IPA
+  - 425 A1-A2 words (basic-elementary)
+  - 500+ B1 words (intermediate)
+  - 400+ B2 words (upper-intermediate)
 - **58 achievements** for gamification
 
 6. **Run development servers:**
@@ -182,7 +185,7 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - [x] Complete API with all controllers
 - [x] 30 A1-B2 lessons with 180 exercises
 - [x] Mock exam preparation module (A1, B1 with study resources)
-- [x] 425 vocabulary words with translations
+- [x] 1,300+ vocabulary words with translations (A1-B2)
 - [x] 58 achievement definitions
 - [x] Spaced repetition (SM-2 algorithm)
 - [x] Progress tracking and statistics
@@ -197,7 +200,8 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 
 ### 📋 Next Steps
 - [x] Expand to 30 A1-B2 lessons (COMPLETED)
-- [ ] Expand vocabulary to 1000+ words
+- [x] Expand vocabulary to 1,300+ words (COMPLETED)
+- [ ] Complete vocabulary to 1,600+ words (add remaining ~300 words)
 - [ ] Implement backend audio generation (Google Cloud TTS)
 - [ ] Character design and illustrations
 - [ ] Voice interaction features

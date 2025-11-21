@@ -256,6 +256,7 @@
 - **Mock Exams:** 4 exams (A1 complete, A2 complete, B1 partial, B2 complete)
 - **Exam Questions Created:** 25+ sample questions across all difficulty levels
 - **Study Resources:** 14 strategies and tips covering all sections
+- **Vocabulary Database:** 1,300+ words (425 A1-A2 + 500 B1 + 400 B2)
 
 ### 📖 Grammar Reference:
 - ✅ **Complete Polish Grammar Reference Guide** - A1 to B2 levels
@@ -269,6 +270,26 @@
   - Time expressions and irregular verbs
   - 60+ pages of comprehensive grammar explanations
 
+### 📚 Vocabulary Expansion:
+- ✅ **B1-B2 Vocabulary Database** - 900+ new words
+  - **B1 Level (500+ words):**
+    - Aspect verb pairs (robić/zrobić, pisać/napisać, etc.)
+    - Instrumental case vocabulary (professions, tools)
+    - Comparatives and superlatives (większy, lepszy, etc.)
+    - Modal expressions (musieć, powinien, trzeba)
+    - Conjunctions (ponieważ, chociaż, żeby, etc.)
+    - Medical vocabulary (ból, gorączka, apteka)
+    - Travel and transportation (bilet, pociąg, dworzec)
+    - Cultural vocabulary (święta, tradycje, imieniny)
+    - Business Polish (firma, biuro, spotkanie, umowa)
+  - **B2 Level (400+ words):**
+    - Conditional and hypothetical expressions
+    - Passive voice vocabulary
+    - Reported speech verbs (twierdzić, zaprzeczać)
+    - Abstract topics (społeczeństwo, polityka, środowisko)
+    - Advanced academic vocabulary
+  - All entries include: Polish/English/Russian, IPA, example sentences
+
 ### 🎯 Next Steps (Future Implementation):
 1. Implement exam practice API endpoints
 2. Create exam prep UI components in Next.js
@@ -276,6 +297,6 @@
 4. Add C1/C2 level content
 5. Record native speaker audio
 6. Create visual aids and illustrations
-7. Expand vocabulary to 1,600+ words
+7. Complete vocabulary expansion to 1,600+ words target
 
 **Status:** All planned content for this session has been successfully created and documented. The application now has complete lesson content (A1-B2), exam preparation module, and comprehensive grammar reference.
