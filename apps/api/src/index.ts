@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { authenticateToken, optionalAuth } from './middleware/auth.middleware';
+import { apiLimiter, authLimiter } from './middleware/rateLimiter';
 import { testConnection, closePool } from './db/connection';
 import authRoutes from './routes/auth.routes';
 import usersRoutes from './routes/users.routes';
@@ -27,6 +28,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Apply general rate limiting to all routes
+app.use(apiLimiter);
+
 // Request logging
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.path}`);
@@ -43,7 +47,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // API Routes
-app.use('/api/v1/auth', authRoutes); // Auth routes don't need authentication
+app.use('/api/v1/auth', authLimiter, authRoutes); // Auth routes with strict rate limiting
 app.use('/api/v1/users', authenticateToken, usersRoutes); // Protected routes
 app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows user progress if logged in)
 app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
