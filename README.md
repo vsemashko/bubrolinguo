@@ -46,9 +46,10 @@ bubrolinguo/
 - **Runtime:** Node.js 20+
 - **Framework:** Express.js
 - **Language:** TypeScript
-- **Database:** PostgreSQL (planned)
-- **Cache:** Redis (planned)
-- **Authentication:** JWT
+- **Database:** PostgreSQL 15
+- **Cache:** Redis 7
+- **Authentication:** JWT with refresh tokens
+- **Security:** Helmet, CORS, bcrypt, Zod validation
 
 ### Mobile (Coming Soon)
 - **Framework:** React Native
@@ -60,10 +61,13 @@ bubrolinguo/
 
 ### Prerequisites
 
-- Node.js 20+ and npm 10+
-- Git
+- **Node.js 20+** and npm 10+
+- **Docker Desktop** (recommended) OR PostgreSQL 15+ and Redis 7+
+- **Git**
 
 ### Installation
+
+#### Option 1: Using Docker (Recommended) 🐳
 
 1. **Clone the repository:**
 ```bash
@@ -71,101 +75,75 @@ git clone https://github.com/vsemashko/bubrolinguo.git
 cd bubrolinguo
 ```
 
-2. **Install dependencies:**
+2. **Start database services:**
 ```bash
-npm install
+docker-compose up -d
 ```
 
-3. **Set up environment variables:**
-
-Create `.env.local` files in both apps:
-
-**apps/web/.env.local:**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-```
-
-**apps/api/.env:**
-```env
-PORT=3001
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:3000
-DATABASE_URL=postgresql://localhost:5432/bubrolinguo
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your-super-secret-key-change-this
-JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
-```
-
-4. **Set up the database:**
-
-Create the PostgreSQL database:
+3. **Install dependencies:**
 ```bash
-createdb bubrolinguo
+cd apps/api && npm install && cd ../..
+cd apps/web && npm install && cd ../..
 ```
 
-Run migrations to create tables:
+4. **Set up environment variables:**
+```bash
+cp apps/api/.env.example apps/api/.env
+cp apps/web/.env.example apps/web/.env.local
+```
+
+5. **Initialize database:**
 ```bash
 cd apps/api
-npm run db:migrate
-```
-
-Seed the database with initial content:
-```bash
-npm run db:seed
+npm run db:init
 ```
 
 This will populate:
-- **10 A1 lessons** with 60 total exercises covering all 6 exercise types
-- **300 vocabulary words** with Polish/English/Russian translations and IPA pronunciations
-- **58 achievements** for gamification (lessons, vocabulary, streaks, XP, etc.)
+- **15 A1-A2 lessons** with 90 exercises (all 6 exercise types)
+- **425 vocabulary words** with Polish/English/Russian translations and IPA
+- **58 achievements** for gamification
 
-5. **Run development servers:**
-
+6. **Run development servers:**
 ```bash
-# Run both web and API in development mode
+# From project root
 npm run dev
 ```
 
-Or run individually:
+**You're ready!** 🎉
+- **Web App:** http://localhost:3000
+- **API Server:** http://localhost:3001
+- **Database UI:** http://localhost:5050 (run with `docker-compose --profile tools up -d`)
 
-```bash
-# Web app only (http://localhost:3000)
-cd apps/web
-npm run dev
+#### Option 2: Manual Setup (Without Docker)
 
-# API server only (http://localhost:3001)
-cd apps/api
-npm run dev
-```
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 
 ---
 
 ## 📚 Documentation
+
+### Development Guides
+- **[Development Guide](./DEVELOPMENT.md)** - Complete local development setup
+- **[API Documentation](./apps/api/API.md)** - API endpoints and usage
+- **[Integration Guide](./INTEGRATION.md)** - Frontend-backend integration
+- **[Deployment Guide](./DEPLOYMENT.md)** - Production deployment
+- **[Production Checklist](./PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
+- **[Project Review](./PROJECT_REVIEW.md)** - Comprehensive code review
 
 ### Product Requirements
 - **[PRD Overview](./docs/prd-overview.md)** - High-level product vision
 - **[Vision & Scope](./docs/prd-vision-scope.md)** - Strategy, personas, competitive analysis
 - **[Technical Architecture](./docs/prd-architecture.md)** - System design and tech stack
 - **[Content Strategy](./docs/prd-content-strategy.md)** - Content creation and sourcing
-- **[Features](./docs/)** - Core features, AI, vocabulary, characters, voice
 - **[Roadmap](./docs/prd-roadmap.md)** - Development phases
 - **[Monetization](./docs/prd-monetization.md)** - Business model
 
 ### Development Roadmap
 - **[Roadmap Overview](./roadmap/README.md)** - Phase tracking and progress
-- **[Pre-Launch](./roadmap/pre-launch.md)** - 48 tasks before development
 - **[Phase 1: MVP](./roadmap/phase-1-mvp.md)** - 125 tasks (Months 1-6)
 - **[Phase 2: Enhanced](./roadmap/phase-2-enhanced.md)** - 98 tasks (Months 7-12)
 - **[Phase 3: Advanced](./roadmap/phase-3-advanced.md)** - 87 tasks (Months 13-18)
 - **[Phase 4: Scale](./roadmap/phase-4-scale.md)** - 64 tasks (Months 19-24)
-
-### Personas
-- **[Quick Reference](./docs/personas-quick-reference.md)** - Meet our memorable users!
-  - 🦫 Bubr the Beaver - The Motivated Builder
-  - 🐱 Crazy Cat Lady Irina - The Perfectionist
-  - 🐻 Wojtek the Party Bear - The Heritage Learner
-  - 😰 Stressed-Out Sergei - The Corporate Refugee
-  - 😊 Emma "Babcia's Favorite" - The Guilty Grandchild
 
 ---
 
@@ -187,24 +165,33 @@ npm run dev
 - [ ] Mobile app development (React Native)
 - [ ] Audio generation for exercises
 
-### ✅ Recently Completed (MVP Backend)
+### ✅ Recently Completed (MVP Backend + UX)
 - [x] Database schema design and implementation
 - [x] Authentication implementation (JWT + refresh tokens)
 - [x] Complete API with all controllers
-- [x] 10 A1 lessons with 60 exercises
-- [x] 300 vocabulary words with translations
+- [x] 15 A1-A2 lessons with 90 exercises
+- [x] 425 vocabulary words with translations
 - [x] 58 achievement definitions
 - [x] Spaced repetition (SM-2 algorithm)
 - [x] Progress tracking and statistics
 - [x] Leaderboard system
+- [x] Error handling (ErrorBoundary, Toast notifications)
+- [x] Loading states (Skeleton components)
+- [x] Audio pronunciation (Web Speech API)
+- [x] Analytics infrastructure (GA4, Plausible)
+- [x] Frontend-backend integration
+- [x] Docker Compose for local development
+- [x] CI/CD pipeline with GitHub Actions
 
 ### 📋 Next Steps
-- [ ] Expand to 15+ A1/A2 lessons
-- [ ] Expand vocabulary to 500+ words
-- [ ] Audio generation for vocabulary and exercises
+- [ ] Expand to 30+ A1-B1 lessons
+- [ ] Expand vocabulary to 1000+ words
+- [ ] Implement backend audio generation (Google Cloud TTS)
 - [ ] Character design and illustrations
-- [ ] Voice integration planning
-- [ ] Frontend-backend integration testing
+- [ ] Voice interaction features
+- [ ] Mobile app development (React Native)
+- [ ] Unit and E2E testing
+- [ ] Dependency updates and security improvements
 
 ---
 
@@ -238,7 +225,13 @@ cd apps/api && npm run build
 
 ## 🚢 Deployment
 
-(Coming soon - deployment instructions for production)
+See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for comprehensive production deployment instructions covering:
+- Railway (API + Database)
+- Vercel (Web App)
+- Render (Alternative hosting)
+- Environment configuration
+- CI/CD setup
+- Production monitoring
 
 ---
 

@@ -1,0 +1,112 @@
+# Docker Compose for Bubrolinguo Local Development
+# This sets up PostgreSQL, Redis, and PgAdmin for local development
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: bubrolinguo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bubrolinguo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./apps/api/src/db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bubrolinguo-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: bubrolinguo-redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bubrolinguo-network
+
+  # PgAdmin (Database Management UI) - Optional
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: bubrolinguo-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@bubrolinguo.local
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    ports:
+      - '5050:80'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - bubrolinguo-network
+    profiles:
+      - tools  # Only start with --profile tools
+
+  # API Server (Development) - Optional
+  # Uncomment to run API in Docker
+  # api:
+  #   build:
+  #     context: ./apps/api
+  #     dockerfile: Dockerfile.dev
+  #   container_name: bubrolinguo-api
+  #   restart: unless-stopped
+  #   environment:
+  #     NODE_ENV: development
+  #     PORT: 3001
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_NAME: bubrolinguo
+  #     DB_USER: postgres
+  #     DB_PASSWORD: postgres
+  #     REDIS_HOST: redis
+  #     REDIS_PORT: 6379
+  #     JWT_SECRET: dev-secret-key
+  #     JWT_REFRESH_SECRET: dev-refresh-secret
+  #     CORS_ORIGIN: http://localhost:3000
+  #   ports:
+  #     - '3001:3001'
+  #   volumes:
+  #     - ./apps/api:/app
+  #     - /app/node_modules
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - bubrolinguo-network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  bubrolinguo-network:
+    driver: bridge
