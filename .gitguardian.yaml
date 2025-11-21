@@ -1,0 +1,34 @@
+# GitGuardian configuration for Bubrolinguo project
+# This file configures GitGuardian to reduce false positives while maintaining security
+
+version: 2
+
+# Paths to exclude from scanning (test files, examples, mocks)
+paths-ignore:
+  - "**/__tests__/**"
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**/*.spec.ts"
+  - "**/*.spec.tsx"
+  - "**/test-*.ts"
+  - "**/mock-*.ts"
+  - "**/*.mock.ts"
+  - "**/fixtures/**"
+  - "**/examples/**"
+  - "**/.env.example"
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.next/**"
+
+# Specific patterns to ignore (test passwords, example data)
+matches-ignore:
+  - name: Test password examples
+    match: TestPass123!
+  - name: Example passwords
+    match: ExamplePass
+  - name: Test secrets
+    match: test-secret-key
+
+# Minimum entropy for generic secrets (reduce false positives)
+minimum_occurrences: 1
