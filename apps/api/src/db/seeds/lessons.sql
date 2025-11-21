@@ -1139,3 +1139,573 @@ INSERT INTO lessons (
     ]
   }'::jsonb
 );
+
+-- Lesson 11: Weather and Seasons
+INSERT INTO lessons (
+  title_en, title_ru, description_en, description_ru,
+  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+) VALUES (
+  'Weather and Seasons',
+  'Погода и времена года',
+  'Learn to talk about weather conditions and seasons in Polish',
+  'Научитесь говорить о погоде и временах года по-польски',
+  'A1',
+  11,
+  18,
+  25,
+  true,
+  '{
+    "exercises": [
+      {
+        "id": "ex1",
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say \"It is sunny\" in Polish?",
+          "ru": "Как сказать \"Солнечно\" по-польски?"
+        },
+        "options": [
+          {"id": "a", "text": "Jest słonecznie", "isCorrect": true},
+          {"id": "b", "text": "Jest zimno", "isCorrect": false},
+          {"id": "c", "text": "Pada deszcz", "isCorrect": false},
+          {"id": "d", "text": "Jest wietrznie", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Jest słonecznie\" means it is sunny. \"Słońce\" is sun, \"słonecznie\" is sunny.",
+          "ru": "\"Jest słonecznie\" означает солнечно. \"Słońce\" - солнце, \"słonecznie\" - солнечно."
+        }
+      },
+      {
+        "id": "ex2",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Dzisiaj _____ deszcz.",
+          "en": "Today it is raining.",
+          "ru": "Сегодня идёт дождь."
+        },
+        "correctAnswer": "pada",
+        "acceptableAnswers": ["pada"],
+        "hint": {
+          "en": "The verb \"to fall\" for rain",
+          "ru": "Глагол \"падать\" для дождя"
+        }
+      },
+      {
+        "id": "ex3",
+        "type": "matching",
+        "instruction": {
+          "en": "Match the seasons with their Polish names",
+          "ru": "Сопоставьте времена года с их польскими названиями"
+        },
+        "pairs": [
+          {"left": "spring", "right": "wiosna", "pairId": 1},
+          {"left": "summer", "right": "lato", "pairId": 2},
+          {"left": "autumn/fall", "right": "jesień", "pairId": 3},
+          {"left": "winter", "right": "zima", "pairId": 4}
+        ]
+      },
+      {
+        "id": "ex4",
+        "type": "translation",
+        "prompt": {
+          "en": "Translate to Polish: It is cold",
+          "ru": "Переведите на польский: Холодно"
+        },
+        "correctAnswer": "Jest zimno",
+        "acceptableAnswers": ["Jest zimno", "jest zimno"],
+        "hint": {
+          "en": "Use the impersonal construction",
+          "ru": "Используйте безличную конструкцию"
+        }
+      },
+      {
+        "id": "ex5",
+        "type": "multiple_choice",
+        "question": {
+          "en": "What does \"pada śnieg\" mean?",
+          "ru": "Что означает \"pada śnieg\"?"
+        },
+        "options": [
+          {"id": "a", "text": "It is snowing", "isCorrect": true},
+          {"id": "b", "text": "It is hot", "isCorrect": false},
+          {"id": "c", "text": "It is windy", "isCorrect": false},
+          {"id": "d", "text": "It is cloudy", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Pada śnieg\" literally means \"snow is falling\" - it is snowing.",
+          "ru": "\"Pada śnieg\" буквально означает \"снег падает\" - идёт снег."
+        }
+      },
+      {
+        "id": "ex6",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "W _____ jest gorąco.",
+          "en": "In summer it is hot.",
+          "ru": "Летом жарко."
+        },
+        "correctAnswer": "lecie",
+        "acceptableAnswers": ["lecie"],
+        "hint": {
+          "en": "Summer in locative case",
+          "ru": "Лето в предложном падеже"
+        }
+      }
+    ]
+  }'::jsonb
+);
+
+-- Lesson 12: Likes and Dislikes
+INSERT INTO lessons (
+  title_en, title_ru, description_en, description_ru,
+  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+) VALUES (
+  'Expressing Likes and Dislikes',
+  'Выражение симпатий и антипатий',
+  'Learn how to express what you like and don''t like in Polish',
+  'Научитесь выражать, что вам нравится и не нравится',
+  'A1',
+  12,
+  15,
+  20,
+  true,
+  '{
+    "exercises": [
+      {
+        "id": "ex1",
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say \"I like music\" in Polish?",
+          "ru": "Как сказать \"Мне нравится музыка\" по-польски?"
+        },
+        "options": [
+          {"id": "a", "text": "Lubię muzykę", "isCorrect": true},
+          {"id": "b", "text": "Kocham muzykę", "isCorrect": false},
+          {"id": "c", "text": "Słucham muzyki", "isCorrect": false},
+          {"id": "d", "text": "Mam muzykę", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Lubię\" means I like (less intense than love). Use accusative case for the object.",
+          "ru": "\"Lubię\" означает мне нравится (менее интенсивно чем любить). Используйте винительный падеж."
+        }
+      },
+      {
+        "id": "ex2",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Nie _____ kawy.",
+          "en": "I don''t like coffee.",
+          "ru": "Мне не нравится кофе."
+        },
+        "correctAnswer": "lubię",
+        "acceptableAnswers": ["lubię", "lubie"],
+        "hint": {
+          "en": "Same verb as ''like'', just add ''nie''",
+          "ru": "Тот же глагол что и ''нравится'', просто добавьте ''nie''"
+        }
+      },
+      {
+        "id": "ex3",
+        "type": "matching",
+        "instruction": {
+          "en": "Match the expressions with their meanings",
+          "ru": "Сопоставьте выражения с их значениями"
+        },
+        "pairs": [
+          {"left": "Lubię", "right": "I like", "pairId": 1},
+          {"left": "Kocham", "right": "I love", "pairId": 2},
+          {"left": "Nienawidzę", "right": "I hate", "pairId": 3},
+          {"left": "Wolę", "right": "I prefer", "pairId": 4}
+        ]
+      },
+      {
+        "id": "ex4",
+        "type": "translation",
+        "prompt": {
+          "en": "Translate to Polish: I love Poland",
+          "ru": "Переведите на польский: Я люблю Польшу"
+        },
+        "correctAnswer": "Kocham Polskę",
+        "acceptableAnswers": ["Kocham Polskę", "kocham Polskę", "Kocham Polske", "kocham polskę"],
+        "hint": {
+          "en": "Use the strong verb for love",
+          "ru": "Используйте сильный глагол для любви"
+        }
+      },
+      {
+        "id": "ex5",
+        "type": "multiple_choice",
+        "question": {
+          "en": "What does \"Wolę herbatę niż kawę\" mean?",
+          "ru": "Что означает \"Wolę herbatę niż kawę\"?"
+        },
+        "options": [
+          {"id": "a", "text": "I prefer tea to coffee", "isCorrect": true},
+          {"id": "b", "text": "I like tea and coffee", "isCorrect": false},
+          {"id": "c", "text": "I hate tea and coffee", "isCorrect": false},
+          {"id": "d", "text": "I drink tea not coffee", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Wolę X niż Y\" means I prefer X to Y.",
+          "ru": "\"Wolę X niż Y\" означает я предпочитаю X, а не Y."
+        }
+      },
+      {
+        "id": "ex6",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Bardzo _____ czytać książki.",
+          "en": "I really like reading books.",
+          "ru": "Мне очень нравится читать книги."
+        },
+        "correctAnswer": "lubię",
+        "acceptableAnswers": ["lubię", "lubie"],
+        "hint": {
+          "en": "Bardzo makes it stronger - ''very much like''",
+          "ru": "Bardzo делает его сильнее - ''очень нравится''"
+        }
+      }
+    ]
+  }'::jsonb
+);
+
+-- Lesson 13: Present Continuous Actions
+INSERT INTO lessons (
+  title_en, title_ru, description_en, description_ru,
+  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+) VALUES (
+  'What Are You Doing? - Present Actions',
+  'Что ты делаешь? - Настоящие действия',
+  'Learn to describe ongoing actions in the present',
+  'Научитесь описывать текущие действия',
+  'A1',
+  13,
+  20,
+  25,
+  true,
+  '{
+    "exercises": [
+      {
+        "id": "ex1",
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you ask \"What are you doing?\" in Polish?",
+          "ru": "Как спросить \"Что ты делаешь?\" по-польски?"
+        },
+        "options": [
+          {"id": "a", "text": "Co robisz?", "isCorrect": true},
+          {"id": "b", "text": "Co masz?", "isCorrect": false},
+          {"id": "c", "text": "Gdzie jesteś?", "isCorrect": false},
+          {"id": "d", "text": "Jak się masz?", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Co robisz?\" uses the verb ''robić'' (to do/make) in present tense.",
+          "ru": "\"Co robisz?\" использует глагол ''robić'' (делать) в настоящем времени."
+        }
+      },
+      {
+        "id": "ex2",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Teraz _____ telewizję.",
+          "en": "Now I am watching television.",
+          "ru": "Сейчас я смотрю телевизор."
+        },
+        "correctAnswer": "oglądam",
+        "acceptableAnswers": ["oglądam", "ogladam"],
+        "hint": {
+          "en": "The verb ''to watch'' in first person",
+          "ru": "Глагол ''смотреть'' в первом лице"
+        }
+      },
+      {
+        "id": "ex3",
+        "type": "matching",
+        "instruction": {
+          "en": "Match the ongoing actions with their Polish translations",
+          "ru": "Сопоставьте текущие действия с их польскими переводами"
+        },
+        "pairs": [
+          {"left": "I am eating", "right": "Jem", "pairId": 1},
+          {"left": "I am reading", "right": "Czytam", "pairId": 2},
+          {"left": "I am writing", "right": "Piszę", "pairId": 3},
+          {"left": "I am sleeping", "right": "Śpię", "pairId": 4}
+        ]
+      },
+      {
+        "id": "ex4",
+        "type": "translation",
+        "prompt": {
+          "en": "Translate to Polish: She is cooking",
+          "ru": "Переведите на польский: Она готовит"
+        },
+        "correctAnswer": "Ona gotuje",
+        "acceptableAnswers": ["Ona gotuje", "ona gotuje", "Gotuje"],
+        "hint": {
+          "en": "Polish doesn''t need a separate continuous form",
+          "ru": "В польском нет отдельной продолженной формы"
+        }
+      },
+      {
+        "id": "ex5",
+        "type": "multiple_choice",
+        "question": {
+          "en": "What does \"Pracuję nad projektem\" mean?",
+          "ru": "Что означает \"Pracuję nad projektem\"?"
+        },
+        "options": [
+          {"id": "a", "text": "I am working on a project", "isCorrect": true},
+          {"id": "b", "text": "I finished a project", "isCorrect": false},
+          {"id": "c", "text": "I need a project", "isCorrect": false},
+          {"id": "d", "text": "I like projects", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "\"Pracuję nad\" means I am working on (something). ''Nad'' means over/on.",
+          "ru": "\"Pracuję nad\" означает я работаю над (чем-то). ''Nad'' означает над."
+        }
+      },
+      {
+        "id": "ex6",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "W tej chwili _____ z przyjacielem.",
+          "en": "Right now I am talking with a friend.",
+          "ru": "Прямо сейчас я разговариваю с другом."
+        },
+        "correctAnswer": "rozmawiam",
+        "acceptableAnswers": ["rozmawiam"],
+        "hint": {
+          "en": "The verb ''to talk/chat'' - rozmawiać",
+          "ru": "Глагол ''разговаривать'' - rozmawiać"
+        }
+      }
+    ]
+  }'::jsonb
+);
+
+-- Lesson 14: Past Tense Introduction
+INSERT INTO lessons (
+  title_en, title_ru, description_en, description_ru,
+  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+) VALUES (
+  'Talking About the Past',
+  'Разговор о прошлом',
+  'Learn basic past tense verbs in Polish',
+  'Изучите базовые глаголы прошедшего времени',
+  'A2',
+  14,
+  22,
+  30,
+  true,
+  '{
+    "exercises": [
+      {
+        "id": "ex1",
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say \"I was\" (masculine) in Polish?",
+          "ru": "Как сказать \"я был\" по-польски?"
+        },
+        "options": [
+          {"id": "a", "text": "byłem", "isCorrect": true},
+          {"id": "b", "text": "jestem", "isCorrect": false},
+          {"id": "c", "text": "będę", "isCorrect": false},
+          {"id": "d", "text": "byłam", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "''Byłem'' is past tense of ''być'' for masculine subject. ''Byłam'' is for feminine.",
+          "ru": "''Byłem'' - прошедшее время глагола ''być'' для мужского рода. ''Byłam'' - для женского."
+        }
+      },
+      {
+        "id": "ex2",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Wczoraj _____ w kinie.",
+          "en": "Yesterday I was at the cinema. (masculine speaker)",
+          "ru": "Вчера я был в кино."
+        },
+        "correctAnswer": "byłem",
+        "acceptableAnswers": ["byłem", "bylem"],
+        "hint": {
+          "en": "Past tense of ''to be'' - masculine",
+          "ru": "Прошедшее время глагола ''быть'' - мужской род"
+        }
+      },
+      {
+        "id": "ex3",
+        "type": "matching",
+        "instruction": {
+          "en": "Match present tense with past tense (masculine)",
+          "ru": "Сопоставьте настоящее время с прошедшим (мужской род)"
+        },
+        "pairs": [
+          {"left": "jestem (I am)", "right": "byłem (I was)", "pairId": 1},
+          {"left": "mam (I have)", "right": "miałem (I had)", "pairId": 2},
+          {"left": "robię (I do)", "right": "robiłem (I did)", "pairId": 3},
+          {"left": "idę (I go)", "right": "szedłem (I went)", "pairId": 4}
+        ]
+      },
+      {
+        "id": "ex4",
+        "type": "translation",
+        "prompt": {
+          "en": "Translate to Polish: I read a book (past, masculine)",
+          "ru": "Переведите на польский: Я читал книгу"
+        },
+        "correctAnswer": "Czytałem książkę",
+        "acceptableAnswers": ["Czytałem książkę", "czytalem ksiazke", "Czytałem ksiażkę"],
+        "hint": {
+          "en": "Add -łem to the verb stem",
+          "ru": "Добавьте -łem к основе глагола"
+        }
+      },
+      {
+        "id": "ex5",
+        "type": "multiple_choice",
+        "question": {
+          "en": "What does \"Jadłem śniadanie\" mean?",
+          "ru": "Что означает \"Jadłem śniadanie\"?"
+        },
+        "options": [
+          {"id": "a", "text": "I ate breakfast", "isCorrect": true},
+          {"id": "b", "text": "I am eating breakfast", "isCorrect": false},
+          {"id": "c", "text": "I will eat breakfast", "isCorrect": false},
+          {"id": "d", "text": "I like breakfast", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "''Jadłem'' is past tense of ''jeść'' (to eat) - masculine form.",
+          "ru": "''Jadłem'' - прошедшее время глагола ''jeść'' (есть) - мужской род."
+        }
+      },
+      {
+        "id": "ex6",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "W zeszłym tygodniu _____ do Warszawy.",
+          "en": "Last week I went to Warsaw. (masculine)",
+          "ru": "На прошлой неделе я ездил в Варшаву."
+        },
+        "correctAnswer": "jechałem",
+        "acceptableAnswers": ["jechałem", "jechalem"],
+        "hint": {
+          "en": "Past tense of ''jechać'' (to go by vehicle)",
+          "ru": "Прошедшее время глагола ''jechać'' (ехать)"
+        }
+      }
+    ]
+  }'::jsonb
+);
+
+-- Lesson 15: Future Plans and Intentions
+INSERT INTO lessons (
+  title_en, title_ru, description_en, description_ru,
+  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+) VALUES (
+  'Future Plans and Intentions',
+  'Планы и намерения на будущее',
+  'Learn to talk about future plans and intentions',
+  'Научитесь говорить о будущих планах и намерениях',
+  'A2',
+  15,
+  20,
+  30,
+  true,
+  '{
+    "exercises": [
+      {
+        "id": "ex1",
+        "type": "multiple_choice",
+        "question": {
+          "en": "How do you say \"I will be\" in Polish?",
+          "ru": "Как сказать \"я буду\" по-польски?"
+        },
+        "options": [
+          {"id": "a", "text": "będę", "isCorrect": true},
+          {"id": "b", "text": "jestem", "isCorrect": false},
+          {"id": "c", "text": "byłem", "isCorrect": false},
+          {"id": "d", "text": "będzie", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "''Będę'' is the future tense of ''być'' (to be) for first person.",
+          "ru": "''Będę'' - будущее время глагола ''być'' (быть) для первого лица."
+        }
+      },
+      {
+        "id": "ex2",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "Jutro _____ do kina.",
+          "en": "Tomorrow I will go to the cinema.",
+          "ru": "Завтра я пойду в кино."
+        },
+        "correctAnswer": "pójdę",
+        "acceptableAnswers": ["pójdę", "pojde", "będę iść"],
+        "hint": {
+          "en": "Perfective future of ''iść'' (to go)",
+          "ru": "Совершенный вид будущего времени ''iść'' (идти)"
+        }
+      },
+      {
+        "id": "ex3",
+        "type": "matching",
+        "instruction": {
+          "en": "Match the time expressions with plans",
+          "ru": "Сопоставьте временные выражения с планами"
+        },
+        "pairs": [
+          {"left": "Jutro", "right": "Tomorrow", "pairId": 1},
+          {"left": "W przyszłym tygodniu", "right": "Next week", "pairId": 2},
+          {"left": "Za miesiąc", "right": "In a month", "pairId": 3},
+          {"left": "Wkrótce", "right": "Soon", "pairId": 4}
+        ]
+      },
+      {
+        "id": "ex4",
+        "type": "translation",
+        "prompt": {
+          "en": "Translate to Polish: I will study Polish",
+          "ru": "Переведите на польский: Я буду учить польский"
+        },
+        "correctAnswer": "Będę uczyć się polskiego",
+        "acceptableAnswers": ["Będę uczyć się polskiego", "bede uczyc sie polskiego", "Będę się uczyć polskiego"],
+        "hint": {
+          "en": "Use compound future: będę + infinitive",
+          "ru": "Используйте составное будущее: będę + инфинитив"
+        }
+      },
+      {
+        "id": "ex5",
+        "type": "multiple_choice",
+        "question": {
+          "en": "What does \"Chcę zostać lekarzem\" mean?",
+          "ru": "Что означает \"Chcę zostać lekarzem\"?"
+        },
+        "options": [
+          {"id": "a", "text": "I want to become a doctor", "isCorrect": true},
+          {"id": "b", "text": "I am a doctor", "isCorrect": false},
+          {"id": "c", "text": "I was a doctor", "isCorrect": false},
+          {"id": "d", "text": "I like doctors", "isCorrect": false}
+        ],
+        "explanation": {
+          "en": "''Zostać'' means to become. This expresses intention or aspiration.",
+          "ru": "''Zostać'' означает стать. Выражает намерение или стремление."
+        }
+      },
+      {
+        "id": "ex6",
+        "type": "fill_blank",
+        "sentence": {
+          "polish": "W wakacje _____ do Polski.",
+          "en": "During vacation I will travel to Poland.",
+          "ru": "Во время отпуска я поеду в Польшу."
+        },
+        "correctAnswer": "pojadę",
+        "acceptableAnswers": ["pojadę", "pojade"],
+        "hint": {
+          "en": "Perfective future of ''jechać'' (to travel)",
+          "ru": "Совершенный вид будущего времени ''jechać'' (ехать)"
+        }
+      }
+    ]
+  }'::jsonb
+);
