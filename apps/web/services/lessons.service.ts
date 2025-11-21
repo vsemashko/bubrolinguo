@@ -25,25 +25,21 @@ export async function getLessonById(lessonId: string) {
  */
 export async function submitLessonResult(
   lessonId: string,
-  result: LessonResult
+  result: { score: number; timeSpent: number }
 ) {
   return post<{
-    xp_earned: number;
-    achievements_unlocked: string[];
-    level_up: boolean;
-  }>(`/api/v1/lessons/${lessonId}/submit`, result);
-}
-
-/**
- * Get next recommended lesson
- */
-export async function getNextLesson() {
-  return get<{ lesson: Lesson }>('/api/v1/lessons/next');
-}
-
-/**
- * Get user's lesson progress
- */
-export async function getUserLessonProgress(lessonId: string) {
-  return get(`/api/v1/lessons/${lessonId}/progress`);
+    progress: {
+      lessonId: string;
+      completed: boolean;
+      score: number;
+      timeSpent: number;
+      xpEarned: number;
+      completedAt: string;
+    };
+    achievements: Array<{
+      id: string;
+      name: string;
+      description: string;
+    }>;
+  }>(`/api/v1/lessons/${lessonId}/complete`, result);
 }

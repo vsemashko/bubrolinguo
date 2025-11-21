@@ -18,52 +18,28 @@ export async function getDashboardData() {
 }
 
 /**
- * Get user statistics
- */
-export async function getUserStatistics() {
-  return get<UserStats>('/api/v1/progress/statistics');
-}
-
-/**
- * Get daily activities
- */
-export async function getDailyActivities(days = 30) {
-  return get<{ activities: DailyActivity[] }>(
-    '/api/v1/progress/daily-activities',
-    { days }
-  );
-}
-
-/**
- * Get recent activities
- */
-export async function getRecentActivities(limit = 10) {
-  return get<{ activities: RecentActivity[] }>(
-    '/api/v1/progress/recent-activities',
-    { limit }
-  );
-}
-
-/**
  * Get achievements
  */
 export async function getAchievements() {
-  return get<{ achievements: Achievement[] }>('/api/v1/progress/achievements');
+  return get<{
+    achievements: Achievement[];
+    unlockedCount: number;
+    totalCount: number;
+  }>('/api/v1/progress/achievements');
 }
 
 /**
  * Get leaderboard
  */
-export async function getLeaderboard(type: 'xp' | 'streak' = 'xp', limit = 50) {
-  return get<{ leaderboard: LeaderboardEntry[] }>(
-    '/api/v1/progress/leaderboard',
-    { type, limit }
-  );
-}
-
-/**
- * Get level progress
- */
-export async function getLevelProgress() {
-  return get('/api/v1/progress/levels');
+export async function getLeaderboard(params?: {
+  timeframe?: 'weekly' | 'monthly' | 'alltime';
+  limit?: number;
+}) {
+  return get<{
+    leaderboard: LeaderboardEntry[];
+    userRank?: {
+      rank: number;
+      totalXp: number;
+    };
+  }>('/api/v1/progress/leaderboard', params);
 }

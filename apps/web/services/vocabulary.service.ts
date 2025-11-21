@@ -12,21 +12,27 @@ import {
  * Get vocabulary words for review (spaced repetition)
  */
 export async function getReviewQueue(limit?: number) {
-  return get<{ words: VocabularyWithUserProgress[]; totalDue: number }>(
+  return get<{ reviewQueue: VocabularyWithUserProgress[]; total: number }>(
     '/api/v1/vocabulary/review',
     { limit }
   );
 }
 
 /**
- * Submit vocabulary review results
+ * Submit vocabulary review result for a single word
  */
-export async function submitReviewResults(results: ReviewResult[]) {
+export async function submitReviewResult(
+  vocabularyId: string,
+  result: { correct: boolean; timeSpent: number }
+) {
   return post<{
-    words_reviewed: number;
-    xp_earned: number;
-    next_review_count: number;
-  }>('/api/v1/vocabulary/review/submit', { results });
+    vocabulary: {
+      id: string;
+      nextReview: string;
+      mastery: number;
+      reviewCount: number;
+    };
+  }>(`/api/v1/vocabulary/${vocabularyId}/review`, result);
 }
 
 /**
@@ -42,44 +48,21 @@ export async function getVocabularyById(vocabularyId: string) {
  * Get vocabulary statistics
  */
 export async function getVocabularyStats() {
-  return get<VocabularyStats>('/api/v1/vocabulary/stats');
+  return get<{ stats: VocabularyStats }>('/api/v1/vocabulary/stats');
 }
 
 /**
- * Search vocabulary
+ * Get all vocabulary with optional filtering
  */
-export async function searchVocabulary(
-  query: string,
-  filters?: VocabularyFilters
-) {
-  return get<{ words: VocabularyWithUserProgress[] }>(
-    '/api/v1/vocabulary/search',
-    { query, ...filters }
-  );
-}
-
-/**
- * Get vocabulary by level
- */
-export async function getVocabularyByLevel(level: string, page = 1, limit = 20) {
+export async function getVocabulary(filters?: {
+  level?: string;
+  partOfSpeech?: string;
+  search?: string;
+  limit?: number;
+  offset?: number;
+}) {
   return get<{
-    words: VocabularyWithUserProgress[];
+    vocabulary: VocabularyWithUserProgress[];
     total: number;
-    page: number;
-    totalPages: number;
-  }>('/api/v1/vocabulary', { level, page, limit });
-}
-
-/**
- * Mark vocabulary word as known
- */
-export async function markWordAsKnown(vocabularyId: string) {
-  return post(`/api/v1/vocabulary/${vocabularyId}/known`);
-}
-
-/**
- * Reset vocabulary progress
- */
-export async function resetWordProgress(vocabularyId: string) {
-  return post(`/api/v1/vocabulary/${vocabularyId}/reset`);
+  }>('/api/v1/vocabulary', filters);
 }
