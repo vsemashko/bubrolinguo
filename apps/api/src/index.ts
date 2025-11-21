@@ -1,0 +1,68 @@
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
+import { logger } from './utils/logger';
+import { errorHandler } from './middleware/errorHandler';
+import authRoutes from './routes/auth.routes';
+import lessonsRoutes from './routes/lessons.routes';
+import vocabularyRoutes from './routes/vocabulary.routes';
+import progressRoutes from './routes/progress.routes';
+
+// Load environment variables
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Middleware
+app.use(helmet());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true,
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Request logging
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.path}`);
+  next();
+});
+
+// Health check
+app.get('/health', (req: Request, res: Response) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    version: '0.1.0',
+  });
+});
+
+// API Routes
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/lessons', lessonsRoutes);
+app.use('/api/v1/vocabulary', vocabularyRoutes);
+app.use('/api/v1/progress', progressRoutes);
+
+// 404 handler
+app.use((req: Request, res: Response) => {
+  res.status(404).json({
+    success: false,
+    error: {
+      code: 'NOT_FOUND',
+      message: 'The requested resource was not found',
+    },
+  });
+});
+
+// Error handler
+app.use(errorHandler);
+
+// Start server
+app.listen(PORT, () => {
+  logger.info(`🦫 Bubrolinguo API server running on port ${PORT}`);
+  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+export default app;
