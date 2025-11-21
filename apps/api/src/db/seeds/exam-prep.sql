@@ -307,3 +307,297 @@ GROUP BY me.id, me.level, me.title_en
 ORDER BY me.level, me.title_en;
 
 COMMENT ON VIEW exam_statistics IS 'Aggregated statistics for exam performance analysis';
+
+-- =====================================================
+-- A2 LEVEL MOCK EXAM
+-- =====================================================
+
+INSERT INTO mock_exams (
+  title_en, title_ru, description_en, description_ru,
+  level, exam_type, total_time_minutes, passing_score_percentage,
+  instructions_en, instructions_ru
+) VALUES (
+  'A2 Polish Language Certification Mock Exam',
+  'Пробный экзамен A2 на сертификат польского языка',
+  'Elementary-level practice test simulating the official A2 Polish certification exam',
+  'Практический тест элементарного уровня, имитирующий официальный экзамен A2 на польский язык',
+  'A2',
+  'full',
+  110, -- Total: 40+25+35+10 minutes
+  60,
+  'This elementary-level exam tests your ability to handle everyday situations in Polish. Passing score: 60%.',
+  'Этот экзамен элементарного уровня проверяет вашу способность справляться с повседневными ситуациями на польском языке. Проходной балл: 60%.'
+);
+
+-- A2 Exam Sections
+INSERT INTO mock_exam_sections (mock_exam_id, section_type, section_number, title_en, title_ru, instructions_en, instructions_ru, time_limit_minutes, max_points)
+VALUES
+  (3, 'reading', 1, 'Reading Comprehension', 'Понимание прочитанного', 'Read the texts and answer the questions', 'Прочитайте тексты и ответьте на вопросы', 40, 35),
+  (3, 'listening', 2, 'Listening Comprehension', 'Понимание на слух', 'Listen to the recordings and answer the questions', 'Прослушайте записи и ответьте на вопросы', 25, 25),
+  (3, 'writing', 3, 'Writing', 'Письмо', 'Complete the writing tasks', 'Выполните письменные задания', 35, 35),
+  (3, 'speaking', 4, 'Speaking', 'Говорение', 'Respond to the speaking prompts', 'Ответьте на устные задания', 10, 25);
+
+-- A2 Reading Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, correct_answers)
+VALUES
+  (9, 1, 'multiple_choice', '{
+    "prompt": {
+      "en": "Read the advertisement: \"Sprzedam rower górski. Stan bardzo dobry. Cena: 800 zł. Kontakt: 555-123-456.\" What is being sold?",
+      "ru": "Прочитайте объявление: «Sprzedam rower górski. Stan bardzo dobry. Cena: 800 zł. Kontakt: 555-123-456.» Что продаётся?"
+    },
+    "options": [
+      {"id": "a", "text": "Mountain bike / Горный велосипед", "isCorrect": true},
+      {"id": "b", "text": "Car / Машина", "isCorrect": false},
+      {"id": "c", "text": "Apartment / Квартира", "isCorrect": false},
+      {"id": "d", "text": "Phone / Телефон", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "Rower górski means mountain bike. Sprzedam means I am selling.",
+      "ru": "Rower górski означает горный велосипед. Sprzedam означает продаю."
+    }
+  }', 3, 'easy', '["a"]'),
+
+  (9, 2, 'multiple_choice', '{
+    "prompt": {
+      "en": "Read: \"Jutro pogoda będzie pochmurna z przejaśnieniami. Temperatura maksymalna 15 stopni. Możliwe krótkie opady deszczu.\" What should you bring?",
+      "ru": "Прочитайте: «Jutro pogoda będzie pochmurna z przejaśnieniami. Temperatura maksymalna 15 stopni. Możliwe krótkie opady deszczu.» Что следует взять с собой?"
+    },
+    "options": [
+      {"id": "a", "text": "Umbrella / Зонт", "isCorrect": true},
+      {"id": "b", "text": "Sunglasses / Солнечные очки", "isCorrect": false},
+      {"id": "c", "text": "Winter coat / Зимнее пальто", "isCorrect": false},
+      {"id": "d", "text": "Swimming suit / Купальник", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "Możliwe krótkie opady deszczu (possible short rain showers) suggests bringing an umbrella.",
+      "ru": "Możliwe krótkie opady deszczu (возможны короткие дожди) предполагает взять зонт."
+    }
+  }', 3, 'medium', '["a"]'),
+
+  (9, 3, 'fill_blank', '{
+    "sentence": "W weekendy lubię ___ do kina z przyjaciółmi. (On weekends I like going to the cinema with friends)",
+    "options": ["chodzić", "chodzę", "poszedłem", "będę chodził"],
+    "correctAnswer": "chodzić",
+    "explanation": {
+      "en": "After lubię (I like), use the infinitive form: chodzić (to go).",
+      "ru": "После lubię (я люблю) используйте инфинитив: chodzić (ходить)."
+    }
+  }', 3, 'medium', '["chodzić"]');
+
+-- A2 Listening Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, correct_answers)
+VALUES
+  (10, 1, 'listening_comprehension', '{
+    "audioText": "Przepraszam, szukam apteki. Wie Pan, gdzie jest najbliższa apteka? Tak, apteka jest na rogu ulicy Głównej i Polnej, obok banku.",
+    "prompt": {
+      "en": "Where is the pharmacy located?",
+      "ru": "Где находится аптека?"
+    },
+    "options": [
+      {"id": "a", "text": "Corner of Główna and Polna streets, next to bank", "isCorrect": true},
+      {"id": "b", "text": "Inside the bank", "isCorrect": false},
+      {"id": "c", "text": "On Main Street only", "isCorrect": false},
+      {"id": "d", "text": "Next to the post office", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "Na rogu ulicy Głównej i Polnej, obok banku (on the corner of Główna and Polna streets, next to the bank).",
+      "ru": "Na rogu ulicy Głównej i Polnej, obok banku (на углу улиц Główna и Polna, рядом с банком)."
+    }
+  }', 3, 'medium', '["a"]');
+
+-- A2 Writing Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, grading_criteria)
+VALUES
+  (11, 1, 'short_answer', '{
+    "prompt": {
+      "en": "Write a short message to a friend canceling your meeting (40-60 words). Include: reason, apology, suggest new time",
+      "ru": "Напишите короткое сообщение другу об отмене встречи (40-60 слов). Включите: причину, извинение, предложите новое время"
+    },
+    "minWords": 40,
+    "maxWords": 60,
+    "sampleAnswer": "Cześć Kasiu! Niestety muszę odwołać nasze spotkanie dzisiaj. Zachorowałam i czuję się źle. Bardzo przepraszam! Może spotkamy się w przyszłą sobotę? Pozdrawiam, Ania"
+  }', 15, 'medium', '{
+    "criteria": [
+      {"name": "task_completion", "points": 5, "description": "Includes all required elements"},
+      {"name": "grammar", "points": 5, "description": "Grammar accuracy"},
+      {"name": "vocabulary", "points": 3, "description": "Appropriate vocabulary"},
+      {"name": "coherence", "points": 2, "description": "Message is clear and coherent"}
+    ]
+  }');
+
+-- A2 Speaking Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, grading_criteria)
+VALUES
+  (12, 1, 'speaking_prompt', '{
+    "prompt": {
+      "en": "Describe your last vacation: where you went, what you did, and what you liked most",
+      "ru": "Опишите свой последний отпуск: куда вы поехали, что делали и что понравилось больше всего"
+    },
+    "preparationTime": 60,
+    "speakingTime": 90,
+    "sampleAnswer": "W zeszłym miesiącu pojechałem nad morze do Gdańska. Mieszkałem w hotelu blisko plaży. Codziennie pływałem w morzu i spacer na plaży. Najbardziej podobało mi się Stare Miasto z pięknymi kolorowymi kamienicami."
+  }', 12, 'medium', '{
+    "criteria": [
+      {"name": "pronunciation", "points": 3},
+      {"name": "grammar", "points": 3},
+      {"name": "vocabulary", "points": 3},
+      {"name": "fluency", "points": 2},
+      {"name": "task_completion", "points": 1}
+    ]
+  }');
+
+-- =====================================================
+-- B2 LEVEL MOCK EXAM
+-- =====================================================
+
+INSERT INTO mock_exams (
+  title_en, title_ru, description_en, description_ru,
+  level, exam_type, total_time_minutes, passing_score_percentage,
+  instructions_en, instructions_ru
+) VALUES (
+  'B2 Polish Language Certification Mock Exam',
+  'Пробный экзамен B2 на сертификат польского языка',
+  'Upper intermediate-level practice test simulating the official B2 Polish certification exam',
+  'Практический тест продвинутого среднего уровня, имитирующий официальный экзамен B2 на польский язык',
+  'B2',
+  'full',
+  195, -- Total: 70+40+70+15 minutes
+  60,
+  'This upper intermediate exam tests your ability to understand and produce complex Polish in various contexts. Passing score: 60%.',
+  'Этот экзамен продвинутого среднего уровня проверяет вашу способность понимать и использовать сложный польский язык в различных контекстах. Проходной балл: 60%.'
+);
+
+-- B2 Exam Sections
+INSERT INTO mock_exam_sections (mock_exam_id, section_type, section_number, title_en, title_ru, instructions_en, instructions_ru, time_limit_minutes, max_points)
+VALUES
+  (4, 'reading', 1, 'Reading Comprehension', 'Понимание прочитанного', 'Read the texts and answer the questions', 'Прочитайте тексты и ответьте на вопросы', 70, 50),
+  (4, 'listening', 2, 'Listening Comprehension', 'Понимание на слух', 'Listen to the recordings and answer the questions', 'Прослушайте записи и ответьте на вопросы', 40, 35),
+  (4, 'writing', 3, 'Writing', 'Письмо', 'Complete the writing tasks', 'Выполните письменные задания', 70, 50),
+  (4, 'speaking', 4, 'Speaking', 'Говорение', 'Respond to the speaking prompts', 'Ответьте на устные задания', 15, 35);
+
+-- B2 Reading Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, correct_answers)
+VALUES
+  (13, 1, 'multiple_choice', '{
+    "prompt": {
+      "en": "Read the article excerpt: \"Współczesne społeczeństwo boryka się z licznymi wyzwaniami związanymi z szybkim tempem życia. Stres, przepracowanie i brak równowagi między życiem zawodowym a prywatnym to problemy dotyczące coraz większej liczby osób.\" What is the main topic?",
+      "ru": "Прочитайте отрывок из статьи: «Współczesne społeczeństwo boryka się z licznymi wyzwaniami związanymi z szybkim tempem życia. Stres, przepracowanie i brak równowagi między życiem zawodowym a prywatnym to problemy dotyczące coraz większej liczby osób.» Какая основная тема?"
+    },
+    "options": [
+      {"id": "a", "text": "Work-life balance challenges in modern society", "isCorrect": true},
+      {"id": "b", "text": "Economic problems", "isCorrect": false},
+      {"id": "c", "text": "Educational system issues", "isCorrect": false},
+      {"id": "d", "text": "Healthcare reforms", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "The text discusses stress, overwork, and work-life imbalance as challenges in modern society.",
+      "ru": "Текст обсуждает стресс, переработку и дисбаланс между работой и личной жизнью как вызовы современного общества."
+    }
+  }', 4, 'hard', '["a"]'),
+
+  (13, 2, 'multiple_choice', '{
+    "prompt": {
+      "en": "Read: \"Gdyby rząd wprowadził surowsze przepisy dotyczące ochrony środowiska, sytuacja ekologiczna w kraju mogłaby się znacznie poprawić. Jednak takie zmiany wymagają nie tylko woli politycznej, ale także społecznego poparcia.\" What does the author suggest?",
+      "ru": "Прочитайте: «Gdyby rząd wprowadził surowsze przepisy dotyczące ochrony środowiska, sytuacja ekologiczna w kraju mogłaby się znacznie poprawić. Jednak takie zmiany wymagają nie tylko woli politycznej, ale także społecznego poparcia.» Что предполагает автор?"
+    },
+    "options": [
+      {"id": "a", "text": "Environmental improvements need both political will and public support", "isCorrect": true},
+      {"id": "b", "text": "The government already has strict environmental laws", "isCorrect": false},
+      {"id": "c", "text": "Public support is not important", "isCorrect": false},
+      {"id": "d", "text": "Environmental situation cannot be improved", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "The conditional sentence (gdyby...mogłaby) suggests a hypothetical improvement, and the second sentence emphasizes the need for both political will and public support.",
+      "ru": "Условное предложение (gdyby...mogłaby) предполагает гипотетическое улучшение, а второе предложение подчёркивает необходимость как политической воли, так и общественной поддержки."
+    }
+  }', 4, 'hard', '["a"]');
+
+-- B2 Listening Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, correct_answers)
+VALUES
+  (14, 1, 'listening_comprehension', '{
+    "audioText": "W dzisiejszym wywiadzie rozmawiamy z prof. Kowalskim o wpływie technologii na współczesną edukację. Profesor twierdzi, że chociaż technologia oferuje nowe możliwości, nie może zastąpić bezpośredniej interakcji między nauczycielem a uczniem. Jego zdaniem, kluczem jest znalezienie odpowiedniej równowagi.",
+    "prompt": {
+      "en": "What is Professor Kowalski''s main point about technology in education?",
+      "ru": "Какая основная мысль профессора Ковальского о технологии в образовании?"
+    },
+    "options": [
+      {"id": "a", "text": "Technology offers opportunities but cannot replace direct teacher-student interaction; balance is key", "isCorrect": true},
+      {"id": "b", "text": "Technology should completely replace traditional teaching", "isCorrect": false},
+      {"id": "c", "text": "Technology has no place in education", "isCorrect": false},
+      {"id": "d", "text": "Teachers are not needed anymore", "isCorrect": false}
+    ],
+    "explanation": {
+      "en": "The professor acknowledges technology''s potential (oferuje nowe możliwości) but emphasizes it cannot replace direct interaction, and balance is key.",
+      "ru": "Профессор признаёт потенциал технологии (oferuje nowe możliwości), но подчёркивает, что она не может заменить прямое взаимодействие, и ключ - это баланс."
+    }
+  }', 4, 'hard', '["a"]');
+
+-- B2 Writing Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, grading_criteria)
+VALUES
+  (15, 1, 'essay', '{
+    "prompt": {
+      "en": "Write an essay (200-250 words): Should cities ban cars from city centers? Present arguments for and against, and state your opinion.",
+      "ru": "Напишите эссе (200-250 слов): Следует ли городам запретить автомобили в центре города? Представьте аргументы за и против, и выразите своё мнение."
+    },
+    "minWords": 200,
+    "maxWords": 250,
+    "sampleAnswer": "Kwestia zakazu samochodów w centrach miast jest kontrowersyjna. Z jednej strony, taki zakaz mógłby znacznie poprawić jakość powietrza i zmniejszyć hałas. Centra miast stałyby się bardziej przyjazne dla pieszych i rowerzystów. Z drugiej strony, zakaz utrudniłby życie osobom starszym i niepełnosprawnym. Moim zdaniem, lepszym rozwiązaniem byłoby ograniczenie ruchu, a nie całkowity zakaz."
+  }', 25, 'hard', '{
+    "criteria": [
+      {"name": "task_completion", "points": 6, "description": "Addresses all aspects of the task"},
+      {"name": "organization", "points": 5, "description": "Clear structure with introduction, body, conclusion"},
+      {"name": "grammar", "points": 6, "description": "Range and accuracy of grammar"},
+      {"name": "vocabulary", "points": 5, "description": "Range and precision of vocabulary"},
+      {"name": "coherence", "points": 3, "description": "Use of linking devices and paragraph structure"}
+    ]
+  }');
+
+-- B2 Speaking Questions
+INSERT INTO exam_questions (section_id, question_number, question_type, question_data, points, difficulty, grading_criteria)
+VALUES
+  (16, 1, 'speaking_prompt', '{
+    "prompt": {
+      "en": "Discuss the advantages and disadvantages of social media. Give examples from your own experience.",
+      "ru": "Обсудите преимущества и недостатки социальных сетей. Приведите примеры из вашего собственного опыта."
+    },
+    "preparationTime": 90,
+    "speakingTime": 180,
+    "sampleAnswer": "Media społecznościowe zmieniły sposób, w jaki się komunikujemy. Z jednej strony, pozwalają nam utrzymywać kontakt z przyjaciółmi i rodziną na całym świecie. Osobiście, dzięki Facebookowi odnalazłem kolegów ze szkoły. Z drugiej strony, media społecznościowe mogą być uzależniające i często pokazują nierealny obraz życia innych ludzi, co może wpływać negatywnie na nasze zdrowie psychiczne."
+  }', 17, 'hard', '{
+    "criteria": [
+      {"name": "pronunciation", "points": 4},
+      {"name": "grammar", "points": 4},
+      {"name": "vocabulary", "points": 4},
+      {"name": "fluency", "points": 3},
+      {"name": "task_completion", "points": 2}
+    ]
+  }');
+
+-- Additional Study Resources for Advanced Levels
+
+INSERT INTO exam_study_resources (level, section_type, resource_type, title_en, title_ru, content_en, content_ru, display_order)
+VALUES
+  ('A2', 'reading', 'strategy', 'Understanding Context Clues', 'Понимание контекстных подсказок',
+  'When you encounter unfamiliar words, use context clues: look at surrounding words, sentence structure, and overall topic. For example, if you see "rower górski w dobrym stanie," even if you don''t know "stan," you can guess it means "condition" from context.',
+  'Когда встречаете незнакомые слова, используйте контекстные подсказки: смотрите на окружающие слова, структуру предложения и общую тему. Например, если видите "rower górski w dobrym stanie," даже если не знаете "stan," вы можете догадаться, что это означает "состояние" из контекста.', 10),
+
+  ('A2', 'writing', 'tip', 'Using Connectors', 'Использование связующих слов',
+  'Make your writing more cohesive with connectors: i (and), ale/lecz (but), więc (so), bo/ponieważ (because), dlatego (therefore). Example: "Lubię kawę, ale nie lubię herbaty" (I like coffee, but I don''t like tea).',
+  'Сделайте своё письмо более связным с помощью связующих слов: i (и), ale/lecz (но), więc (итак), bo/ponieważ (потому что), dlatego (поэтому). Пример: "Lubię kawę, ale nie lubię herbaty" (Я люблю кофе, но не люблю чай).', 11),
+
+  ('B2', 'reading', 'strategy', 'Analyzing Author''s Perspective', 'Анализ позиции автора',
+  'At B2 level, identify the author''s stance and tone. Look for opinion markers: moim zdaniem (in my opinion), uważam że (I believe), wydaje się że (it seems that). Notice hedging language: być może (perhaps), prawdopodobnie (probably), z pewnością (certainly).',
+  'На уровне B2 определяйте позицию и тон автора. Ищите маркеры мнения: moim zdaniem (по моему мнению), uważam że (я считаю), wydaje się że (кажется что). Обратите внимание на язык неопределённости: być może (возможно), prawdopodobnie (вероятно), z pewnością (безусловно).', 12),
+
+  ('B2', 'writing', 'tip', 'Advanced Sentence Structures', 'Продвинутые структуры предложений',
+  'Use complex sentences to show language mastery: conditional (gdyby...to...), passive voice (został napisany), reported speech (powiedział, że...). Vary your sentence length and structure. Use subordinate clauses with chociaż (although), ponieważ (because), żeby (in order to).',
+  'Используйте сложные предложения, чтобы показать владение языком: условные (gdyby...to...), страдательный залог (został napisany), косвенная речь (powiedział, że...). Варьируйте длину и структуру предложений. Используйте придаточные с chociaż (хотя), ponieważ (потому что), żeby (чтобы).', 13),
+
+  ('B2', 'speaking', 'strategy', 'Structuring Arguments', 'Структурирование аргументов',
+  'When discussing complex topics, structure your response: 1) State your position, 2) Give 2-3 arguments with examples, 3) Acknowledge counterarguments, 4) Conclude. Use phrases like: po pierwsze (firstly), poza tym (moreover), jednakże (however), podsumowując (in summary).',
+  'При обсуждении сложных тем структурируйте ответ: 1) Выскажите позицию, 2) Дайте 2-3 аргумента с примерами, 3) Признайте контраргументы, 4) Заключите. Используйте фразы: po pierwsze (во-первых), poza tym (кроме того), jednakże (однако), podsumowując (подводя итог).', 14);
+
+-- Update exam statistics to show expanded content
+COMMENT ON TABLE mock_exams IS 'Mock exam templates: A1 (complete), A2 (complete), B1 (partial), B2 (complete) - ready for implementation';

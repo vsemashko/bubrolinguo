@@ -103,7 +103,10 @@ This will populate:
   - 15 A1-A2 lessons (Basic to Elementary)
   - 10 B1 lessons (Intermediate)
   - 5 B2 lessons (Upper Intermediate)
-- **Mock exam preparation** with official format simulation for A1-B2 levels
+- **Mock exam preparation** with official format simulation:
+  - 4 mock exams (A1, A2, B1, B2) with 25+ sample questions
+  - 14 study resources (strategies, tips, common mistakes)
+  - Analytics and progress tracking
 - **425 vocabulary words** with Polish/English/Russian translations and IPA
 - **58 achievements** for gamification
 
