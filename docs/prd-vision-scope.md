@@ -46,118 +46,296 @@ To break down language barriers between Polish and the Russian/English-speaking 
 
 ### Primary Personas
 
-#### 1. Marina - The Russian Professional
+#### 1. 🦫 Bubr the Beaver - The Motivated Builder
+**"Building my new life, one word at a time!"**
+
+**Demographics:**
+- Age: 32
+- Location: Yekaterinburg → Kraków (relocating in 3 months)
+- Occupation: Construction Engineer
+- Nickname: "Bubr" (means beaver in Polish - hardworking!)
+
+**Distinctive Features:**
+- Works like a beaver: systematic, persistent, never gives up
+- Has a spreadsheet tracking every word learned (yes, really)
+- Wears a hard hat even while learning Polish at home
+- Proudly tells everyone he's "building fluency brick by brick"
+- Already bought Polish construction vocabulary flashcards
+
+**Background:**
+- Got dream job with Polish construction firm
+- Wife laughs at his obsessive planning but supports him
+- Created a 90-day "Polish Building Project" with daily targets
+- Tried 3 other apps, quit them all - "Not serious enough!"
+- Native Russian speaker who learned English "the hard way"
+
+**Goals:**
+- Reach B1 before relocation (NON-NEGOTIABLE)
+- Learn all construction/engineering terms in Polish
+- Not embarrass himself at Polish work site
+- Beat his friend Dmitry's learning speed (friendly competition)
+
+**Pain Points:**
+- Duolingo felt like a game, not serious learning
+- Works 10-hour days, only has morning + commute time
+- Terrified of making mistakes in front of Polish colleagues
+- Needs PROOF he's making progress (data-driven personality)
+
+**Memorable Quote:**
+> "I built a 12-story building, I can build my Polish vocabulary to 10,000 words!"
+
+**Why Users Remember Him:**
+- The beaver mascot connection (Bubrolinguo = Bubr + linguo!)
+- Extreme dedication is inspiring
+- His spreadsheet obsession is both funny and relatable
+- "Building" metaphors make language learning tangible
+
+**Bubrolinguo Value:**
+- Detailed progress tracking feeds his spreadsheet addiction
+- Structured path appeals to his engineering mindset
+- Can learn during commute (mobile app)
+- Exam prep gives him a concrete goal
+- Russian interface + technical vocabulary modules
+
+---
+
+#### 2. 🐱 Crazy Cat Lady Irina - The Perfectionist
+**"If I can't say it perfectly, I won't say it at all!"**
+
 **Demographics:**
 - Age: 28
-- Location: Moscow → Warsaw (relocating)
-- Occupation: IT Project Manager
-- Education: University degree
+- Location: Moscow (remote work for Polish company)
+- Occupation: Software Developer
+- Lives with: 5 cats (all named after Polish cities)
+
+**Distinctive Features:**
+- Repeats every word 10 times until pronunciation is PERFECT
+- Her cats only respond to Polish commands now (seriously)
+- Has a color-coded notebook for each grammar case
+- Cries when she makes a mistake (but keeps going)
+- Asks AI to explain grammar rules 3 different ways
 
 **Background:**
-- Received job offer in Warsaw
-- Needs to learn Polish for work and daily life
-- Has 3 months before relocation
-- Previously tried Duolingo but found it too basic
-- Native Russian speaker, intermediate English
+- Got promoted to work with Polish development team
+- Extreme perfectionist who re-writes code until it's flawless
+- Previously spent 6 months on Duolingo without speaking once
+- Terrified of sounding "stupid" in meetings
+- Native Russian speaker with advanced English
 
 **Goals:**
-- Reach B1 level before relocation
-- Learn business Polish vocabulary
-- Understand Polish culture and workplace norms
-- Pass language requirements for work permit
+- Achieve C1 level (nothing less is acceptable)
+- Pronounce every word like a native Pole
+- Never make a grammar mistake in work chats
+- Impress Polish team lead with her dedication
 
 **Pain Points:**
-- Limited time (busy job)
-- Needs structured, efficient learning
-- Fears making mistakes in professional settings
-- Wants to understand grammar differences from Russian
+- Paralyzing fear of making mistakes
+- Needs to understand WHY a rule exists, not just memorize
+- Basic apps don't explain grammar deeply enough
+- Needs unlimited practice without judgment
+- Afraid to speak with real people
+
+**Memorable Quote:**
+> "My cats understand Polish better than my colleagues understand my code!"
+
+**Why Users Remember Her:**
+- The absurdity of teaching cats Polish is hilarious
+- Her perfectionism is extremely relatable
+- Color-coded notebooks = very visual memory anchor
+- Represents anxious learners who need patient, private practice
 
 **Bubrolinguo Value:**
-- Advanced content reaching B1-C1
-- Flexible learning (web + mobile)
-- Russian interface and explanations
-- AI explanations for grammar questions
-- Business Polish vocabulary modules
+- AI explanations satisfy her need to understand WHY
+- Unlimited practice without human judgment
+- Detailed grammar deep-dives (all 7 cases!)
+- Pronunciation practice with instant feedback
+- Can make mistakes safely with AI, not humans
 
-#### 2. Alex - The Heritage Learner
+---
+
+#### 3. 🐻 Wojtek the Party Bear - The Heritage Learner
+**"My babcia says I'm an embarrassment... in Polish!"**
+
+**Demographics:**
+- Age: 24
+- Location: Brooklyn → Gdańsk (gap year/party year)
+- Occupation: Bartender (saving for Poland trip)
+- Named after: Famous Polish army bear from WWII
+
+**Distinctive Features:**
+- Knows how to say "Another beer!" in 12 languages
+- Understands Polish curse words but not "hello"
+- His babcia (grandmother) guilt-trips him weekly
+- Wears a Poland flag tank top to the gym
+- Uses Bubrolinguo while hungover (Sunday mornings)
+
+**Background:**
+- Polish grandparents, grew up hearing language
+- Can understand babcia's complaints but can't respond
+- Planning epic Poland trip: Warsaw → Kraków → Baltic coast
+- Wants to impress relatives and make babcia proud
+- Actually has good ear for pronunciation, just lazy with grammar
+
+**Goals:**
+- Stop embarrassing himself at family gatherings
+- Order food/drinks in Poland without English
+- Understand what babcia is ACTUALLY saying
+- Maybe find Polish girlfriend? (don't tell babcia)
+
+**Pain Points:**
+- Feels guilty about not knowing heritage language
+- Short attention span (needs engaging content)
+- Traditional classes are BORING
+- Babcia's teaching method = guilt + criticism
+- Has passive vocabulary but can't speak
+
+**Memorable Quote:**
+> "Babcia: 'Ty głupi chłopak!' Me: 'Yes, babcia... wait, what did you just call me?!'"
+
+**Why Users Remember Him:**
+- The party bear name and personality are hilarious
+- Babcia guilt is relatable for heritage learners
+- His "tactical" language learning (beer, food, dating) is honest
+- Represents fun-seekers who need engaging content
+
+**Bubrolinguo Value:**
+- AI conversation = low-pressure practice (no babcia judgment!)
+- Cultural content helps understand family traditions
+- Speaking practice builds confidence for Poland trip
+- Character-driven learning keeps him engaged
+- Can learn while... recovering from parties
+
+---
+
+#### 4. 😰 Stressed-Out Sergei - The Corporate Refugee
+**"I escaped Russian corporate hell for Polish corporate... purgatory?"**
+
+**Demographics:**
+- Age: 38
+- Location: St. Petersburg → Warsaw (fled last year)
+- Occupation: Senior Accountant (overqualified, underpaid)
+- Family: Wife + 2 kids who already speak Polish better than him
+
+**Distinctive Features:**
+- Practices Polish during 3 AM anxiety attacks
+- His 7-year-old corrects his pronunciation
+- Uses lunch breaks for lessons (35 minutes exactly)
+- Stress-eats pierogi while doing vocab review
+- Has B1 exam scheduled (company requirement)
+
+**Background:**
+- Left Russia for better opportunities, ended up in entry-level job
+- Kids adapted quickly, he's struggling
+- Pride won't let him admit how hard this is
+- Company will promote him IF he passes B1 exam (6 months to prepare)
+- Never studied languages before, learned English poorly
+
+**Goals:**
+- PASS B1 EXAM (job depends on it!)
+- Stop relying on 7-year-old as translator
+- Get promoted to match his Russian seniority
+- Actually understand parent-teacher conferences
+- Prove he made the right decision moving
+
+**Pain Points:**
+- Crushing pressure to succeed (family watching)
+- Limited time (work + family = exhausted)
+- Pride makes asking for help difficult
+- Exam anxiety is real
+- Budget is tight (family of 4 on one income)
+
+**Memorable Quote:**
+> "My son speaks Polish with his friends. I speak Polish with Google Translate. We are not the same."
+
+**Why Users Remember Him:**
+- The image of a grown man being corrected by a 7-year-old is both funny and sad
+- Represents high-stakes learners (job/visa dependent)
+- The 3 AM anxiety study sessions are darkly relatable
+- Stress-eating pierogi is a specific, memorable detail
+
+**Bubrolinguo Value:**
+- Structured exam prep is exactly what he needs
+- Affordable (vs. private tutors he can't afford)
+- Mobile learning fits his fractured schedule
+- Russian interface = faster comprehension
+- Clear progress tracking reduces anxiety
+
+---
+
+#### 5. 😊 Emma "Babcia's Favorite" - The Guilty Grandchild
+**"I can say 'I love you babcia' but not 'Please pass the salt'"**
+
 **Demographics:**
 - Age: 22
-- Location: Chicago, USA
-- Occupation: University student
-- Education: Undergraduate
-- Background: Polish grandparents
+- Location: London (dreaming of Polish summer visits)
+- Occupation: University student (Psychology)
+- Special skill: Making babcia cry tears of joy (and frustration)
+
+**Distinctive Features:**
+- Only knows food words and "I love you"
+- Her Polish is 90% pierogis, 10% grammar
+- FaceTimes babcia weekly, speaks English, feels guilty
+- Has photo of babcia as phone wallpaper
+- Motivation spikes after every babcia call
 
 **Background:**
-- Grew up hearing Polish from grandparents
-- Wants to reconnect with heritage
-- Plans to study abroad in Kraków
-- Has basic comprehension but can't speak well
-- Native English speaker
+- Polish father, British mother, grew up in UK
+- Babcia visited every summer but now too old to travel
+- Planning surprise visit to Poland for babcia's 80th birthday
+- Wants to have ONE real conversation in Polish
+- Learning primarily driven by love and guilt
 
 **Goals:**
-- Improve speaking and writing
-- Connect with Polish family
-- Prepare for study abroad program
-- Understand Polish media and culture
+- Have full conversation with babcia in Polish
+- Surprise her on 80th birthday
+- Understand family stories babcia tells
+- Stop using dad as translator
+- Learn family recipes IN Polish
 
 **Pain Points:**
-- Feels embarrassed about limited ability
-- Passive vocabulary but can't produce language
-- Needs conversational practice
-- Traditional classes don't fit schedule
+- Inconsistent motivation (guilt-driven learning)
+- Emotional connection makes mistakes feel worse
+- Only practices sporadically
+- University schedule is chaotic
+- Free apps aren't working fast enough
+
+**Memorable Quote:**
+> "Babcia: 'Kocham cię.' Me: 'I love you too!' Babcia: *disappointed Polish grandmother noises*"
+
+**Why Users Remember Her:**
+- Babcia guilt is EXTREMELY relatable for diaspora learners
+- The 90% food vocabulary is funny and accurate
+- Emotional motivation (love + guilt) is powerful
+- Surprise birthday mission creates narrative
 
 **Bubrolinguo Value:**
-- AI conversation practice (low-pressure)
-- Speaking exercises with feedback
-- Cultural content and context
-- Flexible learning schedule
-- Exam prep for university requirements
+- Family/food vocabulary modules match her needs
+- Cultural content about traditions babcia mentions
+- Flexible learning (study between classes)
+- AI conversation practice (safe space before real babcia call)
+- Milestone tracking toward birthday goal
 
-#### 3. Dmitry - The Career Changer
-**Demographics:**
-- Age: 35
-- Location: Minsk → EU
-- Occupation: Logistics coordinator
-- Education: Technical school
-
-**Background:**
-- Seeking opportunities in EU (Poland)
-- Needs B1 certificate for visa/work
-- Limited English proficiency
-- Strong motivation but busy schedule (family, job)
-- Budget-conscious
-
-**Goals:**
-- Pass B1 certification exam
-- Find job in Poland
-- Learn enough for daily life
-- Eventually bring family
-
-**Pain Points:**
-- Limited time (30-45 min/day max)
-- Needs affordable option
-- Must pass exam (high stakes)
-- No local Polish language schools
-
-**Bubrolinguo Value:**
-- Structured exam preparation
-- Russian interface
-- Affordable subscription
-- Mobile learning (commute, breaks)
-- Clear progress toward B1 goal
+---
 
 ### Secondary Personas
 
-#### 4. Sophie - The Curious Traveler
-- Frequent visitor to Poland
-- Wants conversational basics
-- Interested in culture
-- Less time commitment
+#### 6. 🎮 Gamer Dmitry - The Achievement Hunter
+- Treats language learning like a video game
+- Must unlock ALL achievements
+- Competitive with friends on leaderboards
+- Needs gamification to stay engaged
 
-#### 5. Tomek - The Reverse Learner
-- Polish native wanting to maintain language while abroad
-- Interested in advanced content
-- Uses as reference tool
+#### 7. 🧳 Marina the Digital Nomad - The World Wanderer
+- Currently in Bali, heading to Poland next
+- Wants conversational Polish for travel
+- 2-3 months max attention span
+- Needs offline mode (sketchy WiFi)
+
+#### 8. 📚 Professor Kowalski - The Academic Reverse Learner
+- Polish native living abroad
+- Wants to maintain C2 level Polish
+- Uses app to stay sharp
+- Interested in advanced content and literature
 
 ---
 
