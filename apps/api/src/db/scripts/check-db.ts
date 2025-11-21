@@ -10,7 +10,7 @@
  *   npm run db:check
  */
 
-import { getPool } from '../pool';
+import { query, closePool } from '../connection';
 
 interface CheckResult {
   status: 'ok' | 'warning' | 'error';
@@ -21,14 +21,13 @@ interface CheckResult {
 async function checkDatabase(): Promise<void> {
   console.log('🔍 Checking database status...\n');
 
-  const pool = getPool();
   const results: CheckResult[] = [];
 
   try {
     // Check 1: Database connection
     console.log('1. Testing database connection...');
     try {
-      await pool.query('SELECT NOW()');
+      await query('SELECT NOW()');
       results.push({ status: 'ok', message: 'Database connection successful' });
       console.log('   ✅ Connected\n');
     } catch (error) {
@@ -50,18 +49,19 @@ async function checkDatabase(): Promise<void> {
       ORDER BY table_name;
     `;
 
-    const tablesResult = await pool.query(tableQuery);
+    const tablesResult = await query(tableQuery);
     const tables = tablesResult.rows.map((row) => row.table_name);
 
     const requiredTables = [
       'users',
       'lessons',
-      'exercises',
       'vocabulary',
       'user_vocabulary',
       'user_progress',
       'achievements',
       'user_achievements',
+      'mock_exams',
+      'exam_questions',
     ];
 
     const missingTables = requiredTables.filter((t) => !tables.includes(t));
@@ -84,7 +84,7 @@ async function checkDatabase(): Promise<void> {
 
     // Check 3: Lessons count
     console.log('3. Checking lessons...');
-    const lessonsResult = await pool.query('SELECT COUNT(*) FROM lessons');
+    const lessonsResult = await query('SELECT COUNT(*) FROM lessons');
     const lessonsCount = parseInt(lessonsResult.rows[0].count);
 
     if (lessonsCount > 0) {
@@ -104,7 +104,7 @@ async function checkDatabase(): Promise<void> {
 
     // Check 4: Vocabulary count
     console.log('4. Checking vocabulary...');
-    const vocabResult = await pool.query('SELECT COUNT(*) FROM vocabulary');
+    const vocabResult = await query('SELECT COUNT(*) FROM vocabulary');
     const vocabCount = parseInt(vocabResult.rows[0].count);
 
     if (vocabCount > 0) {
@@ -124,7 +124,7 @@ async function checkDatabase(): Promise<void> {
 
     // Check 5: Achievements count
     console.log('5. Checking achievements...');
-    const achievementsResult = await pool.query(
+    const achievementsResult = await query(
       'SELECT COUNT(*) FROM achievements'
     );
     const achievementsCount = parseInt(achievementsResult.rows[0].count);
@@ -144,9 +144,49 @@ async function checkDatabase(): Promise<void> {
       console.log('   ⚠️  No achievements found\n');
     }
 
-    // Check 6: Users count
-    console.log('6. Checking users...');
-    const usersResult = await pool.query('SELECT COUNT(*) FROM users');
+    // Check 6: Mock Exams count
+    console.log('6. Checking mock exams...');
+    const examsResult = await query('SELECT COUNT(*) FROM mock_exams');
+    const examsCount = parseInt(examsResult.rows[0].count);
+
+    if (examsCount > 0) {
+      results.push({
+        status: 'ok',
+        message: `Found ${examsCount} mock exams`,
+        count: examsCount,
+      });
+      console.log(`   ✅ ${examsCount} mock exams\n`);
+    } else {
+      results.push({
+        status: 'warning',
+        message: 'No mock exams found. Run: npm run db:seed',
+      });
+      console.log('   ⚠️  No mock exams found\n');
+    }
+
+    // Check 7: Exam Questions count
+    console.log('7. Checking exam questions...');
+    const questionsResult = await query('SELECT COUNT(*) FROM exam_questions');
+    const questionsCount = parseInt(questionsResult.rows[0].count);
+
+    if (questionsCount > 0) {
+      results.push({
+        status: 'ok',
+        message: `Found ${questionsCount} exam questions`,
+        count: questionsCount,
+      });
+      console.log(`   ✅ ${questionsCount} exam questions\n`);
+    } else {
+      results.push({
+        status: 'warning',
+        message: 'No exam questions found. Run: npm run db:seed',
+      });
+      console.log('   ⚠️  No exam questions found\n');
+    }
+
+    // Check 8: Users count
+    console.log('8. Checking users...');
+    const usersResult = await query('SELECT COUNT(*) FROM users');
     const usersCount = parseInt(usersResult.rows[0].count);
 
     results.push({
@@ -184,6 +224,8 @@ async function checkDatabase(): Promise<void> {
       console.log(`  - ${lessonsCount} lessons`);
       console.log(`  - ${vocabCount} vocabulary words`);
       console.log(`  - ${achievementsCount} achievements`);
+      console.log(`  - ${examsCount} mock exams`);
+      console.log(`  - ${questionsCount} exam questions`);
       console.log(`  - ${usersCount} users\n`);
       process.exit(0);
     }
@@ -196,7 +238,7 @@ async function checkDatabase(): Promise<void> {
     console.log('4. Run migrations: npm run db:migrate\n');
     process.exit(1);
   } finally {
-    await pool.end();
+    await closePool();
   }
 }
 
