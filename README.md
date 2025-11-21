@@ -137,6 +137,10 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed manual setup instructions.
 - **[Production Checklist](./PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
 - **[Project Review](./PROJECT_REVIEW.md)** - Comprehensive code review
 
+### Content & Learning Resources
+- **[Content Expansion Plan](./CONTENT_EXPANSION_PLAN.md)** - 30 lessons + exam prep roadmap
+- **[Polish Grammar Reference](./POLISH_GRAMMAR_REFERENCE.md)** - Complete A1-B2 grammar guide
+
 ### Product Requirements
 - **[PRD Overview](./docs/prd-overview.md)** - High-level product vision
 - **[Vision & Scope](./docs/prd-vision-scope.md)** - Strategy, personas, competitive analysis
