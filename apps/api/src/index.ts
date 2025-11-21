@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
+import { testConnection, closePool } from './db/connection';
 import authRoutes from './routes/auth.routes';
 import lessonsRoutes from './routes/lessons.routes';
 import vocabularyRoutes from './routes/vocabulary.routes';
@@ -60,9 +61,44 @@ app.use((req: Request, res: Response) => {
 app.use(errorHandler);
 
 // Start server
-app.listen(PORT, () => {
-  logger.info(`🦫 Bubrolinguo API server running on port ${PORT}`);
-  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+async function startServer() {
+  try {
+    // Test database connection
+    const dbConnected = await testConnection();
+    if (!dbConnected) {
+      logger.error('Failed to connect to database. Server will start but database operations will fail.');
+      logger.error('Please check your database configuration in .env');
+    }
+
+    // Start Express server
+    app.listen(PORT, () => {
+      logger.info(`🦫 Bubrolinguo API server running on port ${PORT}`);
+      logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+      if (dbConnected) {
+        logger.info('✓ Database connection established');
+      }
+    });
+  } catch (error) {
+    logger.error('Failed to start server', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+    process.exit(1);
+  }
+}
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  logger.info('SIGTERM signal received: closing HTTP server');
+  await closePool();
+  process.exit(0);
 });
+
+process.on('SIGINT', async () => {
+  logger.info('SIGINT signal received: closing HTTP server');
+  await closePool();
+  process.exit(0);
+});
+
+startServer();
 
 export default app;
