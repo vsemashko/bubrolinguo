@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
+import { authenticateToken, optionalAuth } from './middleware/auth.middleware';
 import { testConnection, closePool } from './db/connection';
 import authRoutes from './routes/auth.routes';
 import usersRoutes from './routes/users.routes';
@@ -42,11 +43,11 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // API Routes
-app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/users', usersRoutes);
-app.use('/api/v1/lessons', lessonsRoutes);
-app.use('/api/v1/vocabulary', vocabularyRoutes);
-app.use('/api/v1/progress', progressRoutes);
+app.use('/api/v1/auth', authRoutes); // Auth routes don't need authentication
+app.use('/api/v1/users', authenticateToken, usersRoutes); // Protected routes
+app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows user progress if logged in)
+app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
+app.use('/api/v1/progress', authenticateToken, progressRoutes); // Protected routes
 
 // 404 handler
 app.use((req: Request, res: Response) => {
