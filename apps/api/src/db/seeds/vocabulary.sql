@@ -337,7 +337,150 @@ INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_spe
 ('jak', 'how/like/as', 'как', 'adverb', NULL, 'A1', 299, 'jak', 'Jak się masz?', 'How are you?', 'Как дела?', NULL, NULL),
 ('bardzo', 'very/much', 'очень', 'adverb', NULL, 'A1', 300, 'bardzɔ', 'Bardzo dobrze.', 'Very good.', 'Очень хорошо.', NULL, NULL);
 
--- NOTE: This seed file now contains 300 essential A1-level Polish words.
+-- ANIMALS (301-325)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('pies', 'dog', 'собака', 'noun', 'masculine', 'A1', 301, 'pʲɛs', 'Mam dużego psa.', 'I have a big dog.', 'У меня большая собака.', NULL, NULL),
+('kot', 'cat', 'кот', 'noun', 'masculine', 'A1', 302, 'kɔt', 'Kot śpi na kanapie.', 'The cat sleeps on the couch.', 'Кот спит на диване.', NULL, NULL),
+('koń', 'horse', 'лошадь', 'noun', 'masculine', 'A1', 303, 'kɔɲ', 'Koń biega szybko.', 'The horse runs fast.', 'Лошадь бежит быстро.', NULL, NULL),
+('krowa', 'cow', 'корова', 'noun', 'feminine', 'A1', 304, 'krɔva', 'Krowa daje mleko.', 'The cow gives milk.', 'Корова даёт молоко.', NULL, NULL),
+('świnia', 'pig', 'свинья', 'noun', 'feminine', 'A1', 305, 'ɕfʲiɲa', 'Świnia jest różowa.', 'The pig is pink.', 'Свинья розовая.', NULL, NULL),
+('owca', 'sheep', 'овца', 'noun', 'feminine', 'A1', 306, 'ɔft͡sa', 'Owca ma wełnę.', 'The sheep has wool.', 'У овцы есть шерсть.', NULL, NULL),
+('kura', 'hen/chicken', 'курица', 'noun', 'feminine', 'A1', 307, 'kura', 'Kura znosi jaja.', 'The hen lays eggs.', 'Курица несёт яйца.', NULL, NULL),
+('ptak', 'bird', 'птица', 'noun', 'masculine', 'A1', 308, 'ptak', 'Ptak śpiewa.', 'The bird sings.', 'Птица поёт.', NULL, NULL),
+('ryba', 'fish', 'рыба', 'noun', 'feminine', 'A1', 309, 'rɨba', 'Ryba pływa w wodzie.', 'The fish swims in water.', 'Рыба плавает в воде.', NULL, NULL),
+('mysz', 'mouse', 'мышь', 'noun', 'feminine', 'A1', 310, 'mɨʃ', 'Mysz jest mała.', 'The mouse is small.', 'Мышь маленькая.', NULL, NULL),
+('szczur', 'rat', 'крыса', 'noun', 'masculine', 'A1', 311, 'ʂt͡ʂur', 'Szczur jest większy niż mysz.', 'The rat is bigger than a mouse.', 'Крыса больше мыши.', NULL, NULL),
+('królik', 'rabbit', 'кролик', 'noun', 'masculine', 'A1', 312, 'krulik', 'Królik je marchewkę.', 'The rabbit eats a carrot.', 'Кролик ест морковку.', NULL, NULL),
+('małpa', 'monkey', 'обезьяна', 'noun', 'feminine', 'A1', 313, 'mawpa', 'Małpa wspina się na drzewo.', 'The monkey climbs a tree.', 'Обезьяна лезет на дерево.', NULL, NULL),
+('słoń', 'elephant', 'слон', 'noun', 'masculine', 'A1', 314, 'swɔɲ', 'Słoń jest bardzo duży.', 'The elephant is very big.', 'Слон очень большой.', NULL, NULL),
+('lew', 'lion', 'лев', 'noun', 'masculine', 'A1', 315, 'lɛf', 'Lew jest królem zwierząt.', 'The lion is king of animals.', 'Лев — царь зверей.', NULL, NULL),
+('tygrys', 'tiger', 'тигр', 'noun', 'masculine', 'A1', 316, 'tɨgrɨs', 'Tygrys ma paski.', 'The tiger has stripes.', 'У тигра есть полоски.', NULL, NULL),
+('niedźwiedź', 'bear', 'медведь', 'noun', 'masculine', 'A1', 317, 'ɲɛd͡ʑvʲɛd͡ʑ', 'Niedźwiedź śpi zimą.', 'The bear sleeps in winter.', 'Медведь спит зимой.', NULL, NULL),
+('wilk', 'wolf', 'волк', 'noun', 'masculine', 'A1', 318, 'vilk', 'Wilk wyje do księżyca.', 'The wolf howls at the moon.', 'Волк воет на луну.', NULL, NULL),
+('lis', 'fox', 'лиса', 'noun', 'masculine', 'A1', 319, 'lis', 'Lis jest sprytny.', 'The fox is clever.', 'Лиса хитрая.', NULL, NULL),
+('żaba', 'frog', 'лягушка', 'noun', 'feminine', 'A1', 320, 'ʐaba', 'Żaba skacze.', 'The frog jumps.', 'Лягушка прыгает.', NULL, NULL),
+('motyl', 'butterfly', 'бабочка', 'noun', 'masculine', 'A1', 321, 'mɔtɨl', 'Motyl jest kolorowy.', 'The butterfly is colorful.', 'Бабочка разноцветная.', NULL, NULL),
+('pszczoła', 'bee', 'пчела', 'noun', 'feminine', 'A1', 322, 'pʂt͡ʂɔwa', 'Pszczoła robi miód.', 'The bee makes honey.', 'Пчела делает мёд.', NULL, NULL),
+('mucha', 'fly', 'муха', 'noun', 'feminine', 'A1', 323, 'muxa', 'Mucha lata po pokoju.', 'The fly flies around the room.', 'Муха летает по комнате.', NULL, NULL),
+('pająk', 'spider', 'паук', 'noun', 'masculine', 'A1', 324, 'pajɔnk', 'Pająk plecie pajęczynę.', 'The spider weaves a web.', 'Паук плетёт паутину.', NULL, NULL),
+('wąż', 'snake', 'змея', 'noun', 'masculine', 'A1', 325, 'vɔnʃ', 'Wąż jest niebezpieczny.', 'The snake is dangerous.', 'Змея опасная.', NULL, NULL);
+
+-- CLOTHING (326-350)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('ubranie', 'clothing/clothes', 'одежда', 'noun', 'neuter', 'A1', 326, 'ubraɲɛ', 'Kupuję nowe ubranie.', 'I buy new clothes.', 'Я покупаю новую одежду.', NULL, NULL),
+('koszula', 'shirt', 'рубашка', 'noun', 'feminine', 'A1', 327, 'kɔʃula', 'Noszę białą koszulę.', 'I wear a white shirt.', 'Я ношу белую рубашку.', NULL, NULL),
+('spodnie', 'pants/trousers', 'брюки', 'noun', 'plural', 'A1', 328, 'spɔdɲɛ', 'Mam czarne spodnie.', 'I have black pants.', 'У меня чёрные брюки.', NULL, NULL),
+('sukienka', 'dress', 'платье', 'noun', 'feminine', 'A1', 329, 'sukʲɛnka', 'Ona nosi ładną sukienkę.', 'She wears a nice dress.', 'Она носит красивое платье.', NULL, NULL),
+('spódnica', 'skirt', 'юбка', 'noun', 'feminine', 'A1', 330, 'spudɲit͡sa', 'Spódnica jest za długa.', 'The skirt is too long.', 'Юбка слишком длинная.', NULL, NULL),
+('sweter', 'sweater', 'свитер', 'noun', 'masculine', 'A1', 331, 'sfɛtɛr', 'Noszę ciepły sweter.', 'I wear a warm sweater.', 'Я ношу тёплый свитер.', NULL, NULL),
+('kurtka', 'jacket', 'куртка', 'noun', 'feminine', 'A1', 332, 'kurtka', 'Kurtka jest wodoodporna.', 'The jacket is waterproof.', 'Куртка водонепроницаемая.', NULL, NULL),
+('płaszcz', 'coat', 'пальто', 'noun', 'masculine', 'A1', 333, 'pwaʃt͡ʂ', 'Zimowy płaszcz jest ciepły.', 'The winter coat is warm.', 'Зимнее пальто тёплое.', NULL, NULL),
+('buty', 'shoes', 'ботинки', 'noun', 'plural', 'A1', 334, 'butɨ', 'Kupuję nowe buty.', 'I buy new shoes.', 'Я покупаю новые ботинки.', NULL, NULL),
+('but', 'shoe/boot', 'ботинок', 'noun', 'masculine', 'A1', 335, 'but', 'Lewy but jest za mały.', 'The left shoe is too small.', 'Левый ботинок слишком маленький.', NULL, NULL),
+('skarpetki', 'socks', 'носки', 'noun', 'plural', 'A1', 336, 'skarpɛtkʲi', 'Noszę ciepłe skarpetki.', 'I wear warm socks.', 'Я ношу тёплые носки.', NULL, NULL),
+('czapka', 'hat/cap', 'шапка', 'noun', 'feminine', 'A1', 337, 't͡ʂapka', 'Zimowa czapka jest wełniana.', 'The winter hat is woolen.', 'Зимняя шапка шерстяная.', NULL, NULL),
+('rękawiczki', 'gloves', 'перчатки', 'noun', 'plural', 'A1', 338, 'rɛŋkavʲit͡ʂkʲi', 'Mam ciepłe rękawiczki.', 'I have warm gloves.', 'У меня тёплые перчатки.', NULL, NULL),
+('szalik', 'scarf', 'шарф', 'noun', 'masculine', 'A1', 339, 'ʂalik', 'Szalik chroni przed zimnem.', 'The scarf protects from cold.', 'Шарф защищает от холода.', NULL, NULL),
+('pasek', 'belt', 'ремень', 'noun', 'masculine', 'A1', 340, 'pasɛk', 'Pasek jest skórzany.', 'The belt is leather.', 'Ремень кожаный.', NULL, NULL),
+('krawat', 'tie/necktie', 'галстук', 'noun', 'masculine', 'A1', 341, 'kravat', 'Noszę krawat do pracy.', 'I wear a tie to work.', 'Я ношу галстук на работу.', NULL, NULL),
+('torebka', 'handbag/purse', 'сумочка', 'noun', 'feminine', 'A1', 342, 'tɔrɛbka', 'Torebka jest elegancka.', 'The handbag is elegant.', 'Сумочка элегантная.', NULL, NULL),
+('plecak', 'backpack', 'рюкзак', 'noun', 'masculine', 'A1', 343, 'plɛt͡sak', 'Plecak jest ciężki.', 'The backpack is heavy.', 'Рюкзак тяжёлый.', NULL, NULL),
+('okulary', 'glasses', 'очки', 'noun', 'plural', 'A1', 344, 'ɔkularɨ', 'Noszę okulary do czytania.', 'I wear reading glasses.', 'Я ношу очки для чтения.', NULL, NULL),
+('zegarek', 'watch/wristwatch', 'часы', 'noun', 'masculine', 'A1', 345, 'zɛgarɛk', 'Zegarek pokazuje godzinę.', 'The watch shows the time.', 'Часы показывают время.', NULL, NULL),
+('pierścionek', 'ring', 'кольцо', 'noun', 'masculine', 'A1', 346, 'pʲɛrɕt͡ɕɔnɛk', 'Pierścionek jest złoty.', 'The ring is gold.', 'Кольцо золотое.', NULL, NULL),
+('kolczyki', 'earrings', 'серьги', 'noun', 'plural', 'A1', 347, 'kɔlt͡ʂɨkʲi', 'Kolczyki są srebrne.', 'The earrings are silver.', 'Серьги серебряные.', NULL, NULL),
+('naszyjnik', 'necklace', 'ожерелье', 'noun', 'masculine', 'A1', 348, 'naʃɨjɲik', 'Naszyjnik jest piękny.', 'The necklace is beautiful.', 'Ожерелье красивое.', NULL, NULL),
+('kieszeń', 'pocket', 'карман', 'noun', 'feminine', 'A1', 349, 'kʲɛʃɛɲ', 'Telefon jest w kieszeni.', 'The phone is in the pocket.', 'Телефон в кармане.', NULL, NULL),
+('guzik', 'button', 'пуговица', 'noun', 'masculine', 'A1', 350, 'guzik', 'Guzik się urwał.', 'The button came off.', 'Пуговица оторвалась.', NULL, NULL);
+
+-- WEATHER AND NATURE (351-370)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('pogoda', 'weather', 'погода', 'noun', 'feminine', 'A1', 351, 'pɔgɔda', 'Jaka jest pogoda?', 'What is the weather like?', 'Какая погода?', NULL, NULL),
+('słońce', 'sun', 'солнце', 'noun', 'neuter', 'A1', 352, 'swɔɲt͡sɛ', 'Słońce świeci.', 'The sun is shining.', 'Солнце светит.', NULL, NULL),
+('deszcz', 'rain', 'дождь', 'noun', 'masculine', 'A1', 353, 'dɛʃt͡ʂ', 'Pada deszcz.', 'It is raining.', 'Идёт дождь.', NULL, NULL),
+('śnieg', 'snow', 'снег', 'noun', 'masculine', 'A1', 354, 'ɕɲɛk', 'Pada śnieg.', 'It is snowing.', 'Идёт снег.', NULL, NULL),
+('wiatr', 'wind', 'ветер', 'noun', 'masculine', 'A1', 355, 'vʲatr', 'Wieje silny wiatr.', 'A strong wind is blowing.', 'Дует сильный ветер.', NULL, NULL),
+('chmura', 'cloud', 'облако', 'noun', 'feminine', 'A1', 356, 'xmura', 'Niebo jest pełne chmur.', 'The sky is full of clouds.', 'Небо полно облаков.', NULL, NULL),
+('burza', 'storm/thunderstorm', 'гроза', 'noun', 'feminine', 'A1', 357, 'buʐa', 'Nadchodzi burza.', 'A storm is coming.', 'Приближается гроза.', NULL, NULL),
+('mgła', 'fog', 'туман', 'noun', 'feminine', 'A1', 358, 'mgwa', 'Rano jest mgła.', 'There is fog in the morning.', 'Утром туман.', NULL, NULL),
+('lód', 'ice', 'лёд', 'noun', 'masculine', 'A1', 359, 'lut', 'Na drodze jest lód.', 'There is ice on the road.', 'На дороге лёд.', NULL, NULL),
+('temperatura', 'temperature', 'температура', 'noun', 'feminine', 'A1', 360, 'tɛmpɛratura', 'Jaka jest temperatura?', 'What is the temperature?', 'Какая температура?', NULL, NULL),
+('wiosna', 'spring', 'весна', 'noun', 'feminine', 'A1', 361, 'vʲɔsna', 'Wiosna jest piękna.', 'Spring is beautiful.', 'Весна прекрасна.', NULL, NULL),
+('lato', 'summer', 'лето', 'noun', 'neuter', 'A1', 362, 'latɔ', 'Latem jest gorąco.', 'It is hot in summer.', 'Летом жарко.', NULL, NULL),
+('jesień', 'autumn/fall', 'осень', 'noun', 'feminine', 'A1', 363, 'jɛɕɛɲ', 'Jesienią spadają liście.', 'Leaves fall in autumn.', 'Осенью падают листья.', NULL, NULL),
+('zima', 'winter', 'зима', 'noun', 'feminine', 'A1', 364, 'zʲima', 'Zimą jest zimno.', 'It is cold in winter.', 'Зимой холодно.', NULL, NULL),
+('drzewo', 'tree', 'дерево', 'noun', 'neuter', 'A1', 365, 'd͡ʐɛvɔ', 'Drzewo jest wysokie.', 'The tree is tall.', 'Дерево высокое.', NULL, NULL),
+('kwiat', 'flower', 'цветок', 'noun', 'masculine', 'A1', 366, 'kfʲat', 'Kwiat jest piękny.', 'The flower is beautiful.', 'Цветок красивый.', NULL, NULL),
+('trawa', 'grass', 'трава', 'noun', 'feminine', 'A1', 367, 'trava', 'Trawa jest zielona.', 'The grass is green.', 'Трава зелёная.', NULL, NULL),
+('las', 'forest', 'лес', 'noun', 'masculine', 'A1', 368, 'las', 'Spaceruję po lesie.', 'I walk in the forest.', 'Я гуляю по лесу.', NULL, NULL),
+('góra', 'mountain', 'гора', 'noun', 'feminine', 'A1', 369, 'gura', 'Góra jest wysoka.', 'The mountain is high.', 'Гора высокая.', NULL, NULL),
+('rzeka', 'river', 'река', 'noun', 'feminine', 'A1', 370, 'ʐɛka', 'Rzeka płynie szybko.', 'The river flows fast.', 'Река течёт быстро.', NULL, NULL);
+
+-- EMOTIONS AND STATES (371-390)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('szczęśliwy', 'happy', 'счастливый', 'adjective', NULL, 'A1', 371, 'ʂt͡ʂɛɕlivɨ', 'Jestem bardzo szczęśliwy.', 'I am very happy.', 'Я очень счастлив.', NULL, NULL),
+('smutny', 'sad', 'грустный', 'adjective', NULL, 'A1', 372, 'smutnɨ', 'Dlaczego jesteś smutny?', 'Why are you sad?', 'Почему ты грустный?', NULL, NULL),
+('zmęczony', 'tired', 'уставший', 'adjective', NULL, 'A1', 373, 'zmɛnt͡ʂɔnɨ', 'Jestem bardzo zmęczony.', 'I am very tired.', 'Я очень устал.', NULL, NULL),
+('głodny', 'hungry', 'голодный', 'adjective', NULL, 'A1', 374, 'gwɔdnɨ', 'Jestem głodny.', 'I am hungry.', 'Я голодный.', NULL, NULL),
+('spragniony', 'thirsty', 'испытывающий жажду', 'adjective', NULL, 'A1', 375, 'spragɲɔnɨ', 'Jestem spragniony.', 'I am thirsty.', 'Я хочу пить.', NULL, NULL),
+('zły', 'angry/bad', 'злой/плохой', 'adjective', NULL, 'A1', 376, 'zwɨ', 'Jestem zły na ciebie.', 'I am angry at you.', 'Я злюсь на тебя.', NULL, NULL),
+('przestraszony', 'scared/frightened', 'испуганный', 'adjective', NULL, 'A1', 377, 'pʂɛstraʃɔnɨ', 'Jestem przestraszony.', 'I am scared.', 'Я напуган.', NULL, NULL),
+('zdenerwowany', 'nervous/upset', 'нервный', 'adjective', NULL, 'A1', 378, 'zdɛnɛrvɔvanɨ', 'Jestem zdenerwowany.', 'I am nervous.', 'Я нервничаю.', NULL, NULL),
+('spokojny', 'calm/peaceful', 'спокойный', 'adjective', NULL, 'A1', 379, 'spɔkɔjnɨ', 'Jestem spokojny.', 'I am calm.', 'Я спокоен.', NULL, NULL),
+('pewny', 'certain/confident', 'уверенный', 'adjective', NULL, 'A1', 380, 'pɛvnɨ', 'Jestem pewny siebie.', 'I am confident.', 'Я уверен в себе.', NULL, NULL),
+('zdrowy', 'healthy', 'здоровый', 'adjective', NULL, 'A1', 381, 'zdrɔvɨ', 'Jestem zdrowy.', 'I am healthy.', 'Я здоровый.', NULL, NULL),
+('chory', 'sick/ill', 'больной', 'adjective', NULL, 'A1', 382, 'xɔrɨ', 'Jestem chory.', 'I am sick.', 'Я болен.', NULL, NULL),
+('silny', 'strong', 'сильный', 'adjective', NULL, 'A1', 383, 'ɕilnɨ', 'Jestem silny.', 'I am strong.', 'Я сильный.', NULL, NULL),
+('słaby', 'weak', 'слабый', 'adjective', NULL, 'A1', 384, 'swabɨ', 'Czuję się słaby.', 'I feel weak.', 'Я чувствую себя слабым.', NULL, NULL),
+('zajęty', 'busy/occupied', 'занятый', 'adjective', NULL, 'A1', 385, 'zajɛntɨ', 'Jestem bardzo zajęty.', 'I am very busy.', 'Я очень занят.', NULL, NULL),
+('wolny', 'free/available', 'свободный', 'adjective', NULL, 'A1', 386, 'vɔlnɨ', 'Jestem wolny wieczorem.', 'I am free in the evening.', 'Я свободен вечером.', NULL, NULL),
+('gotowy', 'ready', 'готовый', 'adjective', NULL, 'A1', 387, 'gɔtɔvɨ', 'Jestem gotowy.', 'I am ready.', 'Я готов.', NULL, NULL),
+('zadowolony', 'satisfied/content', 'довольный', 'adjective', NULL, 'A1', 388, 'zadɔvɔlɔnɨ', 'Jestem zadowolony z wyniku.', 'I am satisfied with the result.', 'Я доволен результатом.', NULL, NULL),
+('ciekawy', 'curious/interesting', 'любопытный/интересный', 'adjective', NULL, 'A1', 389, 't͡ɕɛkavɨ', 'Jestem ciekawy co się stanie.', 'I am curious what will happen.', 'Мне любопытно, что будет.', NULL, NULL),
+('nudny', 'boring', 'скучный', 'adjective', NULL, 'A1', 390, 'nudnɨ', 'Film jest nudny.', 'The movie is boring.', 'Фильм скучный.', NULL, NULL);
+
+-- COMMON OBJECTS (391-410)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('telefon', 'phone/telephone', 'телефон', 'noun', 'masculine', 'A1', 391, 'tɛlɛfɔn', 'Mój telefon dzwoni.', 'My phone is ringing.', 'Мой телефон звонит.', NULL, NULL),
+('komputer', 'computer', 'компьютер', 'noun', 'masculine', 'A1', 392, 'kɔmputɛr', 'Pracuję na komputerze.', 'I work on a computer.', 'Я работаю за компьютером.', NULL, NULL),
+('książka', 'book', 'книга', 'noun', 'feminine', 'A1', 393, 'kɕɔnʃka', 'Czytam książkę.', 'I am reading a book.', 'Я читаю книгу.', NULL, NULL),
+('długopis', 'pen', 'ручка', 'noun', 'masculine', 'A1', 394, 'dwugɔpis', 'Piszę długopisem.', 'I write with a pen.', 'Я пишу ручкой.', NULL, NULL),
+('ołówek', 'pencil', 'карандаш', 'noun', 'masculine', 'A1', 395, 'ɔwuvɛk', 'Rysuję ołówkiem.', 'I draw with a pencil.', 'Я рисую карандашом.', NULL, NULL),
+('papier', 'paper', 'бумага', 'noun', 'masculine', 'A1', 396, 'papʲɛr', 'Papier jest biały.', 'The paper is white.', 'Бумага белая.', NULL, NULL),
+('zeszyt', 'notebook', 'тетрадь', 'noun', 'masculine', 'A1', 397, 'zɛʃɨt', 'Piszę w zeszycie.', 'I write in a notebook.', 'Я пишу в тетради.', NULL, NULL),
+('stół', 'table', 'стол', 'noun', 'masculine', 'A1', 398, 'stuw', 'Książka leży na stole.', 'The book is on the table.', 'Книга лежит на столе.', NULL, NULL),
+('krzesło', 'chair', 'стул', 'noun', 'neuter', 'A1', 399, 'kʂɛswɔ', 'Siedzę na krześle.', 'I sit on a chair.', 'Я сижу на стуле.', NULL, NULL),
+('łóżko', 'bed', 'кровать', 'noun', 'neuter', 'A1', 400, 'wuʃkɔ', 'Śpię w łóżku.', 'I sleep in bed.', 'Я сплю в кровати.', NULL, NULL),
+('szafa', 'wardrobe/closet', 'шкаф', 'noun', 'feminine', 'A1', 401, 'ʂafa', 'Ubrania są w szafie.', 'The clothes are in the wardrobe.', 'Одежда в шкафу.', NULL, NULL),
+('telewizor', 'television/TV', 'телевизор', 'noun', 'masculine', 'A1', 402, 'tɛlɛvizɔr', 'Oglądam telewizor.', 'I watch television.', 'Я смотрю телевизор.', NULL, NULL),
+('radio', 'radio', 'радио', 'noun', 'neuter', 'A1', 403, 'radjɔ', 'Słucham radia.', 'I listen to the radio.', 'Я слушаю радио.', NULL, NULL),
+('lampa', 'lamp', 'лампа', 'noun', 'feminine', 'A1', 404, 'lampa', 'Lampa świeci.', 'The lamp is shining.', 'Лампа светит.', NULL, NULL),
+('okno', 'window', 'окно', 'noun', 'neuter', 'A1', 405, 'ɔknɔ', 'Otwieram okno.', 'I open the window.', 'Я открываю окно.', NULL, NULL),
+('drzwi', 'door', 'дверь', 'noun', 'plural', 'A1', 406, 'd͡ʐvʲi', 'Zamykam drzwi.', 'I close the door.', 'Я закрываю дверь.', NULL, NULL),
+('klucz', 'key', 'ключ', 'noun', 'masculine', 'A1', 407, 'klut͡ʂ', 'Szukam klucza.', 'I am looking for a key.', 'Я ищу ключ.', NULL, NULL),
+('portfel', 'wallet', 'бумажник', 'noun', 'masculine', 'A1', 408, 'pɔrtfɛl', 'Portfel jest w kieszeni.', 'The wallet is in the pocket.', 'Бумажник в кармане.', NULL, NULL),
+('lustro', 'mirror', 'зеркало', 'noun', 'neuter', 'A1', 409, 'lustrɔ', 'Patrzę w lustro.', 'I look in the mirror.', 'Я смотрю в зеркало.', NULL, NULL),
+('zdjęcie', 'photo/picture', 'фотография', 'noun', 'neuter', 'A1', 410, 'zd͡jɛɲt͡ɕɛ', 'To jest moje zdjęcie.', 'This is my photo.', 'Это моя фотография.', NULL, NULL);
+
+-- TRANSPORTATION (411-425)
+INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_speech, gender, level, frequency_rank, pronunciation_ipa, example_sentence_pl, example_sentence_en, example_sentence_ru, mnemonic_en, mnemonic_ru) VALUES
+('samochód', 'car', 'машина', 'noun', 'masculine', 'A1', 411, 'samɔxut', 'Jadę samochodem.', 'I go by car.', 'Я еду на машине.', NULL, NULL),
+('autobus', 'bus', 'автобус', 'noun', 'masculine', 'A1', 412, 'autɔbus', 'Autobus przyjeżdża o ósmej.', 'The bus arrives at eight.', 'Автобус приезжает в восемь.', NULL, NULL),
+('tramwaj', 'tram/streetcar', 'трамвай', 'noun', 'masculine', 'A1', 413, 'tramvaj', 'Jadę tramwajem do pracy.', 'I take the tram to work.', 'Я еду трамваем на работу.', NULL, NULL),
+('metro', 'metro/subway', 'метро', 'noun', 'neuter', 'A1', 414, 'mɛtrɔ', 'Metro jest szybkie.', 'The metro is fast.', 'Метро быстрое.', NULL, NULL),
+('pociąg', 'train', 'поезд', 'noun', 'masculine', 'A1', 415, 'pɔt͡ɕɔnk', 'Pociąg odjeżdża z dworca.', 'The train leaves from the station.', 'Поезд отправляется с вокзала.', NULL, NULL),
+('rower', 'bicycle/bike', 'велосипед', 'noun', 'masculine', 'A1', 416, 'rɔvɛr', 'Jadę na rowerze.', 'I ride a bike.', 'Я еду на велосипеде.', NULL, NULL),
+('motocykl', 'motorcycle', 'мотоцикл', 'noun', 'masculine', 'A1', 417, 'mɔtɔt͡sɨkl', 'Motocykl jest szybki.', 'The motorcycle is fast.', 'Мотоцикл быстрый.', NULL, NULL),
+('samolot', 'airplane', 'самолёт', 'noun', 'masculine', 'A1', 418, 'samɔlɔt', 'Lecę samolotem do Warszawy.', 'I fly to Warsaw.', 'Я лечу самолётом в Варшаву.', NULL, NULL),
+('statek', 'ship/boat', 'корабль', 'noun', 'masculine', 'A1', 419, 'statɛk', 'Statek płynie po morzu.', 'The ship sails on the sea.', 'Корабль плывёт по морю.', NULL, NULL),
+('łódka', 'boat (small)', 'лодка', 'noun', 'feminine', 'A1', 420, 'wutka', 'Płyniemy łódką.', 'We sail by boat.', 'Мы плывём на лодке.', NULL, NULL),
+('taksówka', 'taxi', 'такси', 'noun', 'feminine', 'A1', 421, 'taksufka', 'Jadę taksówką.', 'I take a taxi.', 'Я еду на такси.', NULL, NULL),
+('bilet', 'ticket', 'билет', 'noun', 'masculine', 'A1', 422, 'bʲilɛt', 'Kupuję bilet na pociąg.', 'I buy a train ticket.', 'Я покупаю билет на поезд.', NULL, NULL),
+('przystanek', 'stop/station', 'остановка', 'noun', 'masculine', 'A1', 423, 'pʂɨstanɛk', 'Wsiadam na przystanku.', 'I get on at the stop.', 'Я сажусь на остановке.', NULL, NULL),
+('dworzec', 'station', 'вокзал', 'noun', 'masculine', 'A1', 424, 'dvɔʐɛt͡s', 'Czekam na dworcu.', 'I wait at the station.', 'Я жду на вокзале.', NULL, NULL),
+('lotnisko', 'airport', 'аэропорт', 'noun', 'neuter', 'A1', 425, 'lɔtɲiskɔ', 'Jadę na lotnisko.', 'I go to the airport.', 'Я еду в аэропорт.', NULL, NULL);
+
+-- NOTE: This seed file now contains 425 essential A1-level Polish words.
 -- The expanded vocabulary provides comprehensive coverage for beginners:
 -- - Pronouns (15 words)
 -- - Common verbs in present tense (65 words)
@@ -351,5 +494,11 @@ INSERT INTO vocabulary (polish_word, translation_en, translation_ru, part_of_spe
 -- - Body parts (15 words)
 -- - Common adjectives (25 words)
 -- - Prepositions and conjunctions (20 words)
+-- - Animals (25 words)
+-- - Clothing (25 words)
+-- - Weather and nature (20 words)
+-- - Emotions and states (20 words)
+-- - Common objects (20 words)
+-- - Transportation (15 words)
 --
--- Total: 300 words with complete translations, IPA pronunciations, and example sentences in Polish, English, and Russian.
+-- Total: 425 words with complete translations, IPA pronunciations, and example sentences in Polish, English, and Russian.
