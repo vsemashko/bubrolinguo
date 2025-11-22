@@ -10,6 +10,7 @@ export default function Navigation() {
     { href: '/dashboard', label: 'Dashboard', icon: '📊' },
     { href: '/lessons', label: 'Lessons', icon: '📚' },
     { href: '/vocabulary/review', label: 'Vocabulary', icon: '💬' },
+    { href: '/settings', label: 'Settings', icon: '⚙️' },
   ];
 
   return (
