@@ -3,6 +3,7 @@
  *
  * UI for managing streak freezes and repairs
  * Premium feature that allows users to protect their streak
+ * Now integrated with real API data
  */
 
 'use client';
@@ -10,12 +11,15 @@
 import React, { useState } from 'react';
 import { Card, Button } from '@/components/ui';
 import { useToast } from '@/components/ui/ToastContainer';
+import { useAuth } from '@/contexts/AuthContext';
+import { activateStreakFreeze, repairStreak } from '@/services/streak.service';
 
 interface StreakProtectionProps {
   freezesAvailable: number;
   canRepairStreak?: boolean;
   brokenDaysAgo?: number;
   language?: 'en' | 'ru';
+  onUpdate?: () => void; // Callback to refresh parent data after actions
 }
 
 export function StreakProtection({
@@ -23,9 +27,16 @@ export function StreakProtection({
   canRepairStreak = false,
   brokenDaysAgo = 0,
   language = 'en',
+  onUpdate,
 }: StreakProtectionProps) {
   const { showToast } = useToast();
+  const { user } = useAuth();
   const [isActivating, setIsActivating] = useState(false);
+
+  // If no user, don't allow actions
+  if (!user) {
+    return null;
+  }
 
   const t = language === 'en' ? {
     title: 'Streak Protection',
@@ -69,11 +80,20 @@ export function StreakProtection({
 
     setIsActivating(true);
     try {
-      // TODO: Implement API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      showToast('Streak freeze activated! Your streak is protected for tomorrow.', 'success');
+      const response = await activateStreakFreeze(user.id);
+
+      if (response.success && response.data) {
+        showToast(response.data.message || 'Streak freeze activated! Your streak is protected for tomorrow.', 'success');
+        // Refresh streak data
+        if (onUpdate) {
+          onUpdate();
+        }
+      } else {
+        showToast(response.error?.message || 'Failed to activate streak freeze', 'error');
+      }
     } catch (error) {
       showToast('Failed to activate streak freeze', 'error');
+      console.error('Freeze activation error:', error);
     } finally {
       setIsActivating(false);
     }
@@ -82,11 +102,20 @@ export function StreakProtection({
   const handleRepairStreak = async () => {
     setIsActivating(true);
     try {
-      // TODO: Implement API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      showToast('Streak repaired successfully! Keep it going! 🔥', 'success');
+      const response = await repairStreak(user.id);
+
+      if (response.success && response.data) {
+        showToast(response.data.message || 'Streak repaired successfully! Keep it going! 🔥', 'success');
+        // Refresh streak data
+        if (onUpdate) {
+          onUpdate();
+        }
+      } else {
+        showToast(response.error?.message || 'Failed to repair streak', 'error');
+      }
     } catch (error) {
       showToast('Failed to repair streak', 'error');
+      console.error('Repair streak error:', error);
     } finally {
       setIsActivating(false);
     }

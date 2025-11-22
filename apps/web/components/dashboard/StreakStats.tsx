@@ -2,29 +2,76 @@
  * StreakStats Component
  *
  * Displays detailed streak statistics with visual progress indicators
+ * Now integrated with real API data
  */
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui';
 import { StreakFireIcon } from './StreakFireIcon';
+import { getStreakStats, StreakStats as IStreakStats } from '@/services/streak.service';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface StreakStatsProps {
-  currentStreak: number;
-  longestStreak: number;
-  totalActiveDays: number;
-  streakFreezes?: number;
   language?: 'en' | 'ru';
+  // Optional props for manual override (backward compatibility)
+  currentStreak?: number;
+  longestStreak?: number;
+  totalActiveDays?: number;
+  streakFreezes?: number;
 }
 
 export function StreakStats({
-  currentStreak,
-  longestStreak,
-  totalActiveDays,
-  streakFreezes = 0,
   language = 'en',
+  currentStreak: manualCurrentStreak,
+  longestStreak: manualLongestStreak,
+  totalActiveDays: manualTotalActiveDays,
+  streakFreezes: manualStreakFreezes,
 }: StreakStatsProps) {
+  const { user } = useAuth();
+  const [streakData, setStreakData] = useState<IStreakStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Use manual props if provided (backward compatibility), otherwise use API data
+  const currentStreak = manualCurrentStreak ?? streakData?.currentStreak ?? 0;
+  const longestStreak = manualLongestStreak ?? streakData?.longestStreak ?? 0;
+  const totalActiveDays = manualTotalActiveDays ?? streakData?.totalActiveDays ?? 0;
+  const streakFreezes = manualStreakFreezes ?? streakData?.streakFreezeAvailable ?? 0;
+
+  useEffect(() => {
+    async function fetchStreakData() {
+      if (!user?.id) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        setError(null);
+        const response = await getStreakStats(user.id);
+
+        if (response.success && response.data) {
+          setStreakData(response.data.stats);
+        } else {
+          setError(response.error?.message || 'Failed to load streak data');
+        }
+      } catch (err) {
+        setError('An error occurred while loading streak data');
+        console.error('Streak data fetch error:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    // Only fetch if manual props are not provided
+    if (manualCurrentStreak === undefined) {
+      fetchStreakData();
+    } else {
+      setIsLoading(false);
+    }
+  }, [user?.id, manualCurrentStreak]);
   const t = language === 'en' ? {
     title: 'Streak Statistics',
     current: 'Current Streak',
@@ -62,6 +109,35 @@ export function StreakStats({
     if (days >= 7) {return '⭐';} // Star
     return '🎯'; // Target
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <Card className="overflow-hidden">
+        <div className="animate-pulse">
+          <div className="h-6 bg-gray-200 rounded w-1/3 mb-6"></div>
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-gray-100 rounded-lg p-4 h-24"></div>
+            ))}
+          </div>
+          <div className="bg-gray-100 rounded-lg p-4 h-20"></div>
+        </div>
+      </Card>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <Card className="overflow-hidden">
+        <div className="text-center py-8">
+          <div className="text-red-500 text-4xl mb-2">⚠️</div>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card className="overflow-hidden">

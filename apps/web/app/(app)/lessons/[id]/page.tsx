@@ -8,17 +8,23 @@ import { Lesson } from '@/types/lesson';
 import { LessonPlayer, LessonComplete } from '@/components/lesson';
 import { LessonResult } from '@/types/lesson';
 import { isAuthenticated } from '@/lib/auth';
+import { useAuth } from '@/contexts/AuthContext';
+import { recordActivity } from '@/services/streak.service';
+import { AchievementPopup } from '@/components/achievements/AchievementPopup';
 
 export default function LessonDetailPage() {
   const router = useRouter();
   const params = useParams();
   const lessonId = params.id as string;
+  const { user } = useAuth();
 
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const [isPlaying, setIsPlaying] = useState(false);
   const [lessonResult, setLessonResult] = useState<LessonResult | null>(null);
+  const [achievementQueue, setAchievementQueue] = useState<any[]>([]);
+  const [currentAchievement, setCurrentAchievement] = useState<any | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -89,9 +95,50 @@ export default function LessonDetailPage() {
     setIsPlaying(true);
   };
 
-  const handleLessonComplete = (result: LessonResult) => {
+  const handleLessonComplete = async (result: LessonResult) => {
     setLessonResult(result);
     setIsPlaying(false);
+
+    // Record activity to update streak
+    if (user?.id) {
+      try {
+        const response = await recordActivity(user.id);
+
+        if (response.success && response.data) {
+          console.log('Activity recorded, streak updated:', response.data.stats);
+
+          // Check if any new achievements were unlocked
+          if (response.data.newAchievements && response.data.newAchievements.length > 0) {
+            console.log('New achievements unlocked:', response.data.newAchievements);
+
+            // Queue achievements to show one at a time
+            setAchievementQueue(response.data.newAchievements);
+
+            // Show first achievement immediately
+            setCurrentAchievement(response.data.newAchievements[0]);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to record activity:', error);
+        // Don't block the user flow if streak update fails
+      }
+    }
+  };
+
+  // Handle achievement popup close
+  const handleAchievementClose = () => {
+    setCurrentAchievement(null);
+
+    // Show next achievement in queue if any
+    const remainingAchievements = achievementQueue.slice(1);
+    setAchievementQueue(remainingAchievements);
+
+    if (remainingAchievements.length > 0) {
+      // Show next achievement after a short delay
+      setTimeout(() => {
+        setCurrentAchievement(remainingAchievements[0]);
+      }, 500);
+    }
   };
 
   const handleExitLesson = () => {
@@ -353,6 +400,22 @@ export default function LessonDetailPage() {
           </Button>
         </div>
       </main>
+
+      {/* Achievement Popup */}
+      {currentAchievement && (
+        <AchievementPopup
+          achievement={{
+            id: currentAchievement.id,
+            name: currentAchievement.name,
+            description: currentAchievement.description,
+            icon: currentAchievement.icon,
+            xpReward: currentAchievement.xpReward,
+            rarity: currentAchievement.rarity,
+          }}
+          isOpen={!!currentAchievement}
+          onClose={handleAchievementClose}
+        />
+      )}
     </div>
   );
 }
