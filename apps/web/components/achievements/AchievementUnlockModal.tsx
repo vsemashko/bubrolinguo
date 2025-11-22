@@ -71,7 +71,7 @@ export function AchievementUnlockModal({
     }, 300);
   };
 
-  if (!achievement) return null;
+  if (!achievement) {return null;}
 
   const colors = rarityColors[achievement.rarity];
 

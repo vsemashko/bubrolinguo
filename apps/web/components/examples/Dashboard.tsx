@@ -20,6 +20,7 @@ import {
 } from '@/services/progress.service';
 import type { DashboardData, Achievement } from '@/types/progress';
 import { StreakCalendar } from '@/components/dashboard/StreakCalendar';
+import { SkeletonDashboard } from '@/components/ui/Skeleton';
 
 export function Dashboard() {
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
@@ -54,11 +55,8 @@ export function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
-        </div>
+      <div className="max-w-7xl mx-auto p-6">
+        <SkeletonDashboard />
       </div>
     );
   }
