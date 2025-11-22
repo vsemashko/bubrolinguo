@@ -1,0 +1,41 @@
+# Mise Runtime Manager Configuration
+# https://mise.jdx.dev/configuration.html
+
+[tools]
+node = "20.11.0"
+python = "3.11.7"
+
+[env]
+_.file = [".env"]
+
+[tasks.dev]
+description = "Start development servers"
+run = "npm run dev"
+
+[tasks.build]
+description = "Build all applications"
+run = "npm run build"
+
+[tasks.test]
+description = "Run all tests"
+run = "npm test"
+
+[tasks.lint]
+description = "Run linters"
+run = "npm run lint"
+
+[tasks.db-init]
+description = "Initialize database"
+run = "cd apps/api && npm run db:init"
+
+[tasks.db-seed]
+description = "Seed database with data"
+run = "cd apps/api && npm run db:seed"
+
+[tasks.setup]
+description = "Setup project for development"
+run = """
+npm install
+mise task db-init
+mise task db-seed
+"""

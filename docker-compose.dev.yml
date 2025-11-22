@@ -1,0 +1,16 @@
+version: '3.8'
+
+# Development-specific overrides
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres_dev
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  # For development, you typically run web/api with npm run dev
+  # This compose file just provides the infrastructure services
