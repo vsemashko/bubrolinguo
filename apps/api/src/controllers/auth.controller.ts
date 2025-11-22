@@ -5,11 +5,6 @@ import { query } from '../db/connection';
 import { AppError } from '../middleware/errorHandler';
 import { logger } from '../utils/logger';
 
-const JWT_SECRET: string = process.env.JWT_SECRET || 'your-secret-key-change-this';
-const JWT_EXPIRES_IN: string = process.env.JWT_EXPIRES_IN || '7d';
-const JWT_REFRESH_SECRET: string = process.env.JWT_REFRESH_SECRET || 'your-refresh-secret';
-const JWT_REFRESH_EXPIRES_IN: string = process.env.JWT_REFRESH_EXPIRES_IN || '30d';
-
 interface UserData {
   email: string;
   password: string;
@@ -23,17 +18,45 @@ interface LoginData {
 }
 
 /**
+ * Get JWT secret from environment
+ */
+function getJWTSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    logger.error('JWT_SECRET is not configured');
+    throw new Error('JWT_SECRET is not configured');
+  }
+  return secret;
+}
+
+/**
+ * Get JWT refresh secret from environment
+ */
+function getJWTRefreshSecret(): string {
+  const secret = process.env.JWT_REFRESH_SECRET;
+  if (!secret) {
+    logger.error('JWT_REFRESH_SECRET is not configured');
+    throw new Error('JWT_REFRESH_SECRET is not configured');
+  }
+  return secret;
+}
+
+/**
  * Generate JWT token for user
  */
 function generateToken(userId: string, email: string): string {
-  return jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN } as SignOptions);
+  const jwtSecret = getJWTSecret();
+  const jwtExpiresIn = process.env.JWT_EXPIRES_IN || '7d';
+  return jwt.sign({ userId, email }, jwtSecret, { expiresIn: jwtExpiresIn } as SignOptions);
 }
 
 /**
  * Generate refresh token for user
  */
 function generateRefreshToken(userId: string): string {
-  return jwt.sign({ userId }, JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESH_EXPIRES_IN } as SignOptions);
+  const jwtRefreshSecret = getJWTRefreshSecret();
+  const jwtRefreshExpiresIn = process.env.JWT_REFRESH_EXPIRES_IN || '30d';
+  return jwt.sign({ userId }, jwtRefreshSecret, { expiresIn: jwtRefreshExpiresIn } as SignOptions);
 }
 
 /**
@@ -197,7 +220,8 @@ export async function refreshToken(req: Request, res: Response): Promise<void> {
 
     // Verify refresh token
     try {
-      jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+      const jwtRefreshSecret = getJWTRefreshSecret();
+      jwt.verify(refreshToken, jwtRefreshSecret);
     } catch (error) {
       throw new AppError('Invalid refresh token', 401, 'INVALID_TOKEN');
     }
