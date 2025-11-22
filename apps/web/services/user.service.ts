@@ -23,7 +23,7 @@ export async function getCurrentUser() {
     return mockApiResponse({ user });
   }
 
-  return get<{ user: User }>('/api/v1/users/me');
+  return get<{ user: User }>('/users/me');
 }
 
 /**
@@ -36,7 +36,7 @@ export async function updateUserProfile(updates: Partial<User>) {
     return mockApiResponse({ user: updatedUser as User });
   }
 
-  return put<{ user: User }>('/api/v1/users/me', updates);
+  return put<{ user: User }>('/users/me', updates);
 }
 
 /**
@@ -53,7 +53,7 @@ export async function updateUserSettings(settings: {
     return mockApiResponse({ settings: { ...settings, success: true } });
   }
 
-  return put('/api/v1/users/me/settings', settings);
+  return put('/users/me/settings', settings);
 }
 
 /**
@@ -75,12 +75,12 @@ export async function getUserStats() {
     });
   }
 
-  return get('/api/v1/users/me/stats');
+  return get('/users/me/stats');
 }
 
 /**
  * Delete user account
  */
 export async function deleteUserAccount(password: string) {
-  return post('/api/v1/users/me/delete', { password });
+  return post('/users/me/delete', { password });
 }
