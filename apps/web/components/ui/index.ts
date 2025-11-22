@@ -35,3 +35,7 @@ export type { ModalProps } from './Modal';
 
 export { Avatar } from './Avatar';
 export type { AvatarProps } from './Avatar';
+
+export { default as ConfirmDialog } from './ConfirmDialog';
+export { default as EmptyState } from './EmptyState';
+export { default as ErrorState } from './ErrorState';
