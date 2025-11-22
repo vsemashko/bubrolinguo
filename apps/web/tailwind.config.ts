@@ -35,6 +35,41 @@ const config: Config = {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Poppins', 'sans-serif'],
       },
+      animation: {
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'flicker': 'flicker 1.5s ease-in-out infinite',
+        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+      },
+      keyframes: {
+        pulseGlow: {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            opacity: '1',
+          },
+          '50%': {
+            transform: 'scale(1.05)',
+            opacity: '0.9',
+          },
+        },
+        flicker: {
+          '0%, 100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+          '50%': {
+            opacity: '0.8',
+            transform: 'scale(0.98)',
+          },
+        },
+        bounceGentle: {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-4px)',
+          },
+        },
+      },
     },
   },
   plugins: [],
