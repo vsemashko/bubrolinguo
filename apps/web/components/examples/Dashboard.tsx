@@ -19,6 +19,7 @@ import {
   getAchievements,
 } from '@/services/progress.service';
 import type { DashboardData, Achievement } from '@/types/progress';
+import { StreakCalendar } from '@/components/dashboard/StreakCalendar';
 
 export function Dashboard() {
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
@@ -150,6 +151,14 @@ export function Dashboard() {
             </span>
           </div>
         </div>
+      </div>
+
+      {/* Streak Calendar */}
+      <div className="mb-8">
+        <StreakCalendar
+          dailyActivities={dashboard.dailyActivities || []}
+          language="en"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
