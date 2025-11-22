@@ -14,6 +14,7 @@ import vocabularyRoutes from './routes/vocabulary.routes';
 import progressRoutes from './routes/progress.routes';
 import examsRoutes from './routes/exams.routes';
 import streakRoutes from './routes/streak.routes';
+import achievementsRoutes from './routes/achievements.routes';
 
 // Load environment variables
 dotenv.config();
@@ -51,6 +52,7 @@ app.get('/health', (_req: Request, res: Response) => {
 // API Routes
 app.use('/api/v1/auth', authLimiter, authRoutes); // Auth routes with strict rate limiting
 app.use('/api/v1', streakRoutes); // Streak routes (must be before /users to match longer paths first)
+app.use('/api/v1', achievementsRoutes); // Achievement routes (must be before /users to match longer paths first)
 app.use('/api/v1/users', authenticateToken, usersRoutes); // Protected routes
 app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows user progress if logged in)
 app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
