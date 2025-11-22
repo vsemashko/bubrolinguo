@@ -47,7 +47,7 @@ describe('Lessons Service', () => {
 
   describe('getLessonById', () => {
     it('should return lesson details for valid ID', async () => {
-      const lessonId = 'lesson-1-greetings';
+      const lessonId = 'lesson-1';
       const result = await getLessonById(lessonId);
 
       expect(result.success).toBe(true);
@@ -63,7 +63,7 @@ describe('Lessons Service', () => {
     });
 
     it('should include lesson exercises and metadata', async () => {
-      const result = await getLessonById('lesson-1-greetings');
+      const result = await getLessonById('lesson-1');
 
       expect(result.data.lesson).toHaveProperty('exercises');
       expect(result.data.lesson).toHaveProperty('xp_reward');
@@ -73,7 +73,7 @@ describe('Lessons Service', () => {
 
   describe('submitLessonResult', () => {
     it('should submit lesson completion successfully', async () => {
-      const lessonId = 'lesson-1-greetings';
+      const lessonId = 'lesson-1';
       const result = await submitLessonResult(lessonId, {
         score: 85,
         timeSpent: 180,
@@ -85,7 +85,7 @@ describe('Lessons Service', () => {
     });
 
     it('should mark lesson as completed when score >= 70', async () => {
-      const result = await submitLessonResult('lesson-1-greetings', {
+      const result = await submitLessonResult('lesson-1', {
         score: 75,
         timeSpent: 200,
       });
@@ -94,7 +94,7 @@ describe('Lessons Service', () => {
     });
 
     it('should mark lesson as incomplete when score < 70', async () => {
-      const result = await submitLessonResult('lesson-1-greetings', {
+      const result = await submitLessonResult('lesson-1', {
         score: 65,
         timeSpent: 200,
       });
@@ -103,7 +103,7 @@ describe('Lessons Service', () => {
     });
 
     it('should award XP based on score', async () => {
-      const result = await submitLessonResult('lesson-1-greetings', {
+      const result = await submitLessonResult('lesson-1', {
         score: 100,
         timeSpent: 150,
       });
@@ -112,7 +112,7 @@ describe('Lessons Service', () => {
     });
 
     it('should unlock achievements for high scores', async () => {
-      const result = await submitLessonResult('lesson-1-greetings', {
+      const result = await submitLessonResult('lesson-1', {
         score: 95,
         timeSpent: 120,
       });

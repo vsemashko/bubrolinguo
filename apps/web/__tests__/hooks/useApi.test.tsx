@@ -1,7 +1,7 @@
 /**
  * useApi Hook Tests
  */
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor, act } from '@testing-library/react';
 import { useApi } from '@/hooks/useApi';
 
 describe('useApi Hook', () => {
@@ -70,7 +70,9 @@ describe('useApi Hook', () => {
 
     expect(result.current.loading).toBe(false);
 
-    result.current.execute();
+    await act(async () => {
+      result.current.execute();
+    });
 
     await waitFor(() => {
       expect(result.current.loading).toBe(false);
@@ -95,7 +97,9 @@ describe('useApi Hook', () => {
       expect(result.current.data).toEqual(mockData1);
     });
 
-    result.current.refetch();
+    await act(async () => {
+      result.current.refetch();
+    });
 
     await waitFor(() => {
       expect(result.current.data).toEqual(mockData2);
