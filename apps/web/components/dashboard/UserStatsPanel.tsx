@@ -38,18 +38,18 @@ export function UserStatsPanel({ stats }: UserStatsPanelProps) {
   };
 
   const getAccuracyColor = (accuracy: number): string => {
-    if (accuracy >= 90) return 'text-green-600';
-    if (accuracy >= 75) return 'text-blue-600';
-    if (accuracy >= 60) return 'text-yellow-600';
+    if (accuracy >= 90) {return 'text-green-600';}
+    if (accuracy >= 75) {return 'text-blue-600';}
+    if (accuracy >= 60) {return 'text-yellow-600';}
     return 'text-orange-600';
   };
 
   const getStreakTier = (streak: number): { emoji: string; text: string; color: string } => {
-    if (streak >= 100) return { emoji: '🔥', text: 'Legendary', color: 'text-purple-600' };
-    if (streak >= 50) return { emoji: '💎', text: 'Diamond', color: 'text-blue-600' };
-    if (streak >= 30) return { emoji: '⭐', text: 'Gold', color: 'text-yellow-600' };
-    if (streak >= 14) return { emoji: '🥇', text: 'Silver', color: 'text-gray-500' };
-    if (streak >= 7) return { emoji: '🥉', text: 'Bronze', color: 'text-orange-600' };
+    if (streak >= 100) {return { emoji: '🔥', text: 'Legendary', color: 'text-purple-600' };}
+    if (streak >= 50) {return { emoji: '💎', text: 'Diamond', color: 'text-blue-600' };}
+    if (streak >= 30) {return { emoji: '⭐', text: 'Gold', color: 'text-yellow-600' };}
+    if (streak >= 14) {return { emoji: '🥇', text: 'Silver', color: 'text-gray-500' };}
+    if (streak >= 7) {return { emoji: '🥉', text: 'Bronze', color: 'text-orange-600' };}
     return { emoji: '🌱', text: 'Beginner', color: 'text-green-600' };
   };
 

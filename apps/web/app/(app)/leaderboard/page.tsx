@@ -99,16 +99,16 @@ export default function LeaderboardPage() {
   };
 
   const getRankBadge = (rank: number) => {
-    if (rank === 1) return '🥇';
-    if (rank === 2) return '🥈';
-    if (rank === 3) return '🥉';
+    if (rank === 1) {return '🥇';}
+    if (rank === 2) {return '🥈';}
+    if (rank === 3) {return '🥉';}
     return rank;
   };
 
   const getRankColor = (rank: number) => {
-    if (rank === 1) return 'text-yellow-600';
-    if (rank === 2) return 'text-gray-500';
-    if (rank === 3) return 'text-orange-600';
+    if (rank === 1) {return 'text-yellow-600';}
+    if (rank === 2) {return 'text-gray-500';}
+    if (rank === 3) {return 'text-orange-600';}
     return 'text-gray-700';
   };
 

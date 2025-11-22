@@ -16,6 +16,7 @@
 import { useEffect, useState } from 'react';
 import { getLessons } from '@/services/lessons.service';
 import type { Lesson, CEFRLevel } from '@/types/lesson';
+import { SkeletonLessonCard } from '@/components/ui/Skeleton';
 
 export function LessonsList() {
   const [lessons, setLessons] = useState<Lesson[]>([]);
@@ -51,10 +52,40 @@ export function LessonsList() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading lessons...</p>
+      <div className="max-w-6xl mx-auto p-6">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Polish Lessons
+          </h1>
+          <p className="text-gray-600">
+            Choose a lesson to start learning Polish
+          </p>
+        </div>
+
+        {/* Level Filter - shown while loading */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Filter by Level
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {(['all', 'A1', 'A2', 'B1', 'B2', 'C1'] as const).map((level) => (
+              <button
+                key={level}
+                disabled
+                className="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-400 cursor-not-allowed"
+              >
+                {level === 'all' ? 'All Levels' : level}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Skeleton Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <SkeletonLessonCard key={i} />
+          ))}
         </div>
       </div>
     );
