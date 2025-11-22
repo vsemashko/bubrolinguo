@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, Badge, Progress } from '@/components/ui';
+import { useAuth } from '@/contexts/AuthContext';
+import { getUserAchievements, getAchievementStats } from '@/services/achievements.service';
 
 interface Achievement {
   id: string;
@@ -20,17 +22,131 @@ interface Achievement {
 type AchievementCategory = 'all' | 'lessons' | 'vocabulary' | 'streak' | 'social' | 'special';
 
 export default function AchievementsPage() {
+  const { user } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState<AchievementCategory>('all');
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    loadAchievements();
-  }, []);
+    if (user?.id) {
+      loadAchievements();
+    }
+  }, [user?.id]);
 
   const loadAchievements = async () => {
+    if (!user?.id) return;
+
     setLoading(true);
-    // TODO: Replace with actual API call
+    setError(null);
+
+    try {
+      const response = await getUserAchievements(user.id);
+
+      if (response.success && response.data) {
+        // Convert API response to component format
+        const allAchievements: Achievement[] = [
+          ...response.data.unlocked.map(a => ({
+            id: a.id,
+            name: a.titleEn,
+            description: a.descriptionEn || '',
+            icon: getCategoryIcon(a.category),
+            xpReward: a.xpReward,
+            rarity: a.rarity,
+            category: mapCategory(a.category),
+            unlocked: true,
+            unlockedAt: a.unlockedAt,
+          })),
+          ...response.data.locked.map(a => ({
+            id: a.id,
+            name: a.titleEn,
+            description: a.descriptionEn || '',
+            icon: getCategoryIcon(a.category),
+            xpReward: a.xpReward,
+            rarity: a.rarity,
+            category: mapCategory(a.category),
+            unlocked: false,
+            // TODO: Add progress calculation based on requirement
+          })),
+        ];
+
+        setAchievements(allAchievements);
+      } else {
+        setError(response.error?.message || 'Failed to load achievements');
+      }
+    } catch (err) {
+      console.error('Error loading achievements:', err);
+      setError('An error occurred while loading achievements');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Helper function to map category strings
+  const mapCategory = (category: string): AchievementCategory => {
+    const validCategories = ['lessons', 'vocabulary', 'streak', 'social', 'special'];
+    return validCategories.includes(category) ? category as AchievementCategory : 'special';
+  };
+
+  // Helper function to get icon based on category
+  const getCategoryIcon = (category: string): string => {
+    const iconMap: Record<string, string> = {
+      lessons: '📚',
+      vocabulary: '💬',
+      streak: '🔥',
+      xp: '⚡',
+      review: '🔄',
+      perfect: '⭐',
+      speed: '⚡',
+      special: '✨',
+      level: '🎓',
+      mastery: '💎',
+    };
+    return iconMap[category] || '🏆';
+  };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="animate-pulse">
+          <div className="h-12 bg-gray-200 rounded w-1/3 mb-8"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="bg-gray-100 rounded-lg h-32"></div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <div key={i} className="bg-gray-100 rounded-lg h-64"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="text-center py-12">
+          <div className="text-red-500 text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Error Loading Achievements</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={loadAchievements}
+            className="px-6 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-primary-dark"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const loadAchievementsMock = async () => {
+    // Fallback mock data (kept for reference)
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     // Mock data
@@ -135,6 +251,7 @@ export default function AchievementsPage() {
       ? achievements
       : achievements.filter((a) => a.category === selectedCategory);
 
+  // Calculate stats from loaded achievements
   const stats = {
     total: achievements.length,
     unlocked: achievements.filter((a) => a.unlocked).length,
