@@ -11,6 +11,7 @@ import { isAuthenticated } from '@/lib/auth';
 import { useAuth } from '@/contexts/AuthContext';
 import { recordActivity } from '@/services/streak.service';
 import { AchievementPopup } from '@/components/achievements/AchievementPopup';
+import LevelUpModal from '@/components/LevelUpModal';
 
 export default function LessonDetailPage() {
   const router = useRouter();
@@ -25,6 +26,8 @@ export default function LessonDetailPage() {
   const [lessonResult, setLessonResult] = useState<LessonResult | null>(null);
   const [achievementQueue, setAchievementQueue] = useState<any[]>([]);
   const [currentAchievement, setCurrentAchievement] = useState<any | null>(null);
+  const [showLevelUp, setShowLevelUp] = useState(false);
+  const [levelUpData, setLevelUpData] = useState<{ oldLevel: string; newLevel: string } | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -98,6 +101,15 @@ export default function LessonDetailPage() {
   const handleLessonComplete = async (result: LessonResult) => {
     setLessonResult(result);
     setIsPlaying(false);
+
+    // Check if user leveled up
+    if ((result as any).level_up && (result as any).old_level && (result as any).new_level) {
+      setLevelUpData({
+        oldLevel: (result as any).old_level,
+        newLevel: (result as any).new_level,
+      });
+      setShowLevelUp(true);
+    }
 
     // Record activity to update streak
     if (user?.id) {
@@ -414,6 +426,19 @@ export default function LessonDetailPage() {
           }}
           isOpen={!!currentAchievement}
           onClose={handleAchievementClose}
+        />
+      )}
+
+      {/* Level Up Modal */}
+      {showLevelUp && levelUpData && (
+        <LevelUpModal
+          isOpen={showLevelUp}
+          oldLevel={levelUpData.oldLevel}
+          newLevel={levelUpData.newLevel}
+          onClose={() => {
+            setShowLevelUp(false);
+            setLevelUpData(null);
+          }}
         />
       )}
     </div>

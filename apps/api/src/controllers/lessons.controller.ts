@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { query, transaction } from '../db/connection';
 import { AppError } from '../middleware/errorHandler';
 import { logger } from '../utils/logger';
+import { checkLevelUp } from '../utils/levels';
 
 /**
  * Get all lessons with optional filtering
@@ -154,6 +155,14 @@ export async function submitLessonResult(req: Request, res: Response) {
     const { score, xp_earned, mistakes_count, time_spent, exercise_results } = req.body;
 
     await transaction(async (client) => {
+      // Get user's current XP before update (for level-up detection)
+      const userResult = await client.query(
+        `SELECT total_xp, current_level FROM users WHERE id = $1`,
+        [userId]
+      );
+      const oldXp = userResult.rows[0]?.total_xp || 0;
+      const oldLevel = userResult.rows[0]?.current_level || 'A1';
+
       // Insert or update user progress
       await client.query(
         `INSERT INTO user_progress (
@@ -175,14 +184,29 @@ export async function submitLessonResult(req: Request, res: Response) {
         [userId, id, score, xp_earned, mistakes_count, time_spent, JSON.stringify(exercise_results)]
       );
 
-      // Update user XP
-      await client.query(
-        `UPDATE users SET
-          total_xp = total_xp + $1,
-          last_activity_date = CURRENT_DATE
-         WHERE id = $2`,
-        [xp_earned, userId]
-      );
+      // Calculate new XP and check for level-up
+      const newXp = oldXp + xp_earned;
+      const levelUpInfo = checkLevelUp(oldXp, newXp);
+
+      // Update user XP and level if leveled up
+      if (levelUpInfo.leveledUp) {
+        await client.query(
+          `UPDATE users SET
+            total_xp = total_xp + $1,
+            current_level = $2,
+            last_activity_date = CURRENT_DATE
+           WHERE id = $3`,
+          [xp_earned, levelUpInfo.newLevel, userId]
+        );
+      } else {
+        await client.query(
+          `UPDATE users SET
+            total_xp = total_xp + $1,
+            last_activity_date = CURRENT_DATE
+           WHERE id = $2`,
+          [xp_earned, userId]
+        );
+      }
 
       // Insert daily activity
       await client.query(
@@ -227,7 +251,10 @@ export async function submitLessonResult(req: Request, res: Response) {
         data: {
           xp_earned,
           achievements_unlocked,
-          level_up: false, // TODO: Implement level up logic
+          level_up: levelUpInfo.leveledUp,
+          old_level: levelUpInfo.leveledUp ? levelUpInfo.oldLevel : undefined,
+          new_level: levelUpInfo.leveledUp ? levelUpInfo.newLevel : undefined,
+          total_xp: newXp,
         },
       });
     });
