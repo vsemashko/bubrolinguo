@@ -39,6 +39,8 @@ const config: Config = {
         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
         'flicker': 'flicker 1.5s ease-in-out infinite',
         'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+        'confetti': 'confetti 3s ease-out forwards',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
         pulseGlow: {
@@ -67,6 +69,24 @@ const config: Config = {
           },
           '50%': {
             transform: 'translateY(-4px)',
+          },
+        },
+        confetti: {
+          '0%': {
+            transform: 'translateY(-10vh) rotate(0deg)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateY(100vh) rotate(720deg)',
+            opacity: '0',
+          },
+        },
+        shimmer: {
+          '0%': {
+            transform: 'translateX(-100%)',
+          },
+          '100%': {
+            transform: 'translateX(100%)',
           },
         },
       },

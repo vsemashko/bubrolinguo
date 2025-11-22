@@ -21,6 +21,8 @@ import {
 import type { DashboardData, Achievement } from '@/types/progress';
 import { StreakCalendar } from '@/components/dashboard/StreakCalendar';
 import { SkeletonDashboard } from '@/components/ui/Skeleton';
+import { StreakStats } from '@/components/dashboard/StreakStats';
+import { StreakProtection } from '@/components/dashboard/StreakProtection';
 
 export function Dashboard() {
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
@@ -111,43 +113,49 @@ export function Dashboard() {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        {/* Streak Card */}
-        <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Current Streak</h3>
-            <span className="text-4xl">🔥</span>
-          </div>
-          <div className="text-5xl font-bold mb-2">{stats.currentStreak}</div>
-          <div className="text-orange-100">
-            days in a row • Longest: {stats.longestStreak} days
-          </div>
+      {/* Enhanced Streak Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Streak Stats - Enhanced */}
+        <StreakStats
+          currentStreak={stats.currentStreak}
+          longestStreak={stats.longestStreak}
+          totalActiveDays={stats.lessonsCompleted}
+          streakFreezes={2}
+          language="en"
+        />
+
+        {/* Streak Protection */}
+        <StreakProtection
+          freezesAvailable={2}
+          canRepairStreak={false}
+          brokenDaysAgo={0}
+          language="en"
+        />
+      </div>
+
+      {/* Daily Goal Progress */}
+      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">Daily Goal</h3>
+          <span className="text-2xl font-bold text-blue-600">
+            {dailyGoalProgress?.percentage || 0}%
+          </span>
         </div>
 
-        {/* Daily Goal Progress */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6 lg:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Daily Goal</h3>
-            <span className="text-2xl font-bold text-blue-600">
-              {dailyGoalProgress?.percentage || 0}%
-            </span>
-          </div>
+        <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
+          <div
+            className="bg-blue-600 h-4 rounded-full transition-all duration-500"
+            style={{ width: `${dailyGoalProgress?.percentage || 0}%` }}
+          />
+        </div>
 
-          <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
-            <div
-              className="bg-blue-600 h-4 rounded-full transition-all duration-500"
-              style={{ width: `${dailyGoalProgress?.percentage || 0}%` }}
-            />
-          </div>
-
-          <div className="flex items-center justify-between text-sm text-gray-600">
-            <span>
-              {dailyGoalProgress?.current || 0} / {dailyGoalProgress?.target || 200} XP
-            </span>
-            <span>
-              {(dailyGoalProgress?.target || 200) - (dailyGoalProgress?.current || 0)} XP to goal
-            </span>
-          </div>
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <span>
+            {dailyGoalProgress?.current || 0} / {dailyGoalProgress?.target || 200} XP
+          </span>
+          <span>
+            {(dailyGoalProgress?.target || 200) - (dailyGoalProgress?.current || 0)} XP to goal
+          </span>
         </div>
       </div>
 
