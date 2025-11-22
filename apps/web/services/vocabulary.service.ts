@@ -79,7 +79,7 @@ export async function getReviewQueue(limit?: number) {
   }
 
   return get<{ reviewQueue: VocabularyWithUserProgress[]; total: number }>(
-    '/api/v1/vocabulary/review',
+    '/vocabulary/review',
     { limit }
   );
 }
@@ -120,7 +120,7 @@ export async function submitReviewResult(
       mastery: number;
       reviewCount: number;
     };
-  }>(`/api/v1/vocabulary/${vocabularyId}/review`, result);
+  }>(`/vocabulary/${vocabularyId}/review`, result);
 }
 
 /**
@@ -141,7 +141,7 @@ export async function getVocabularyById(vocabularyId: string) {
   }
 
   return get<{ word: VocabularyWithUserProgress }>(
-    `/api/v1/vocabulary/${vocabularyId}`
+    `/vocabulary/${vocabularyId}`
   );
 }
 
@@ -170,7 +170,7 @@ export async function getVocabularyStats() {
     });
   }
 
-  return get<{ stats: VocabularyStats }>('/api/v1/vocabulary/stats');
+  return get<{ stats: VocabularyStats }>('/vocabulary/stats');
 }
 
 /**
@@ -220,5 +220,5 @@ export async function getVocabulary(filters?: {
   return get<{
     vocabulary: VocabularyWithUserProgress[];
     total: number;
-  }>('/api/v1/vocabulary', filters);
+  }>('/vocabulary', filters);
 }

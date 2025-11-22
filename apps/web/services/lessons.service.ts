@@ -50,7 +50,7 @@ export async function getLessons(filters?: {
     return mockApiResponse({ lessons });
   }
 
-  return get<{ lessons: Lesson[] }>('/api/v1/lessons', filters);
+  return get<{ lessons: Lesson[] }>('/lessons', filters);
 }
 
 /**
@@ -72,7 +72,7 @@ export async function getLessonById(lessonId: string) {
     return mockApiResponse({ lesson });
   }
 
-  return get<{ lesson: Lesson }>(`/api/v1/lessons/${lessonId}`);
+  return get<{ lesson: Lesson }>(`/lessons/${lessonId}`);
 }
 
 /**
@@ -119,5 +119,5 @@ export async function submitLessonResult(
       name: string;
       description: string;
     }>;
-  }>(`/api/v1/lessons/${lessonId}/complete`, result);
+  }>(`/lessons/${lessonId}/complete`, result);
 }

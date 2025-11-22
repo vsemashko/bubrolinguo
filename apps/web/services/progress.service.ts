@@ -59,7 +59,7 @@ export async function getDashboardData() {
     return mockApiResponse(dashboardData);
   }
 
-  return get<DashboardData>('/api/v1/progress/dashboard');
+  return get<DashboardData>('/progress/dashboard');
 }
 
 /**
@@ -92,7 +92,7 @@ export async function getAchievements() {
     achievements: Achievement[];
     unlockedCount: number;
     totalCount: number;
-  }>('/api/v1/progress/achievements');
+  }>('/progress/achievements');
 }
 
 /**
@@ -127,5 +127,5 @@ export async function getLeaderboard(params?: {
       rank: number;
       totalXp: number;
     };
-  }>('/api/v1/progress/leaderboard', params);
+  }>('/progress/leaderboard', params);
 }

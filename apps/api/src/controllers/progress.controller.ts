@@ -340,28 +340,29 @@ export async function getAchievements(req: Request, res: Response) {
     // Get all achievements with user progress
     const result = await query(
       `SELECT
-        a.id, a.name_en, a.name_ru, a.description_en, a.description_ru,
-        a.icon, a.category, a.requirement_type, a.requirement_value,
-        ua.unlocked_at, ua.progress
+        a.id, a.code, a.title_en, a.title_ru, a.description_en, a.description_ru,
+        a.icon_url, a.badge_color, a.requirement_type, a.requirement_value, a.xp_reward,
+        ua.unlocked_at
        FROM achievements a
        LEFT JOIN user_achievements ua ON a.id = ua.achievement_id AND ua.user_id = $1
-       ORDER BY a.category, a.requirement_value`,
+       ORDER BY a.requirement_type, a.requirement_value`,
       [userId]
     );
 
     const achievements = result.rows.map((row) => ({
       id: row.id,
-      nameEn: row.name_en,
-      nameRu: row.name_ru,
+      code: row.code,
+      titleEn: row.title_en,
+      titleRu: row.title_ru,
       descriptionEn: row.description_en,
       descriptionRu: row.description_ru,
-      icon: row.icon,
-      category: row.category,
+      iconUrl: row.icon_url,
+      badgeColor: row.badge_color,
       requirementType: row.requirement_type,
       requirementValue: row.requirement_value,
+      xpReward: row.xp_reward,
       unlocked: row.unlocked_at !== null,
       unlockedAt: row.unlocked_at,
-      progress: row.progress || 0,
     }));
 
     res.json({
