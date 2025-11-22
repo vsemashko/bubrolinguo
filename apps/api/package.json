@@ -15,7 +15,8 @@
     "db:seed": "tsx src/db/scripts/seed.ts",
     "db:reset": "npm run db:migrate:reset && npm run db:seed",
     "db:init": "tsx src/db/scripts/init-db.ts",
-    "db:check": "tsx src/db/scripts/check-db.ts"
+    "db:check": "tsx src/db/scripts/check-db.ts",
+    "db:add-lessons": "tsx src/db/scripts/add-lessons-16-30.ts"
   },
   "dependencies": {
     "express": "^4.21.2",
