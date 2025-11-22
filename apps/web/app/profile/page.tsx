@@ -4,13 +4,17 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button, Card, Input, Avatar, Badge } from '@/components/ui';
+import { useToast } from '@/components/ui/ToastContainer';
 import { isAuthenticated, logout } from '@/lib/auth';
+import { getCurrentUser, updateUserProfile, getUserStats } from '@/services/user.service';
 
 export default function ProfilePage() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     displayName: 'Anna Kowalska',
@@ -37,21 +41,77 @@ export default function ProfilePage() {
       return;
     }
 
-    // TODO: Load user data from API
-    setLanguage(formData.interfaceLanguage);
+    loadUserData();
   }, []);
+
+  const loadUserData = async () => {
+    try {
+      setLoading(true);
+      const [userResponse, statsResponse] = await Promise.all([
+        getCurrentUser(),
+        getUserStats(),
+      ]);
+
+      if (userResponse.success && userResponse.data) {
+        const user = userResponse.data.user;
+        setFormData({
+          displayName: user.displayName || '',
+          email: user.email || '',
+          interfaceLanguage: user.interfaceLanguage || 'en',
+          dailyGoal: user.dailyGoal || 50,
+          emailNotifications: user.emailNotifications ?? true,
+          pushNotifications: user.pushNotifications ?? true,
+        });
+        setLanguage(user.interfaceLanguage || 'en');
+      }
+
+      if (statsResponse.success && statsResponse.data) {
+        const statsData = statsResponse.data;
+        setStats({
+          totalXp: statsData.totalXp || 0,
+          currentLevel: statsData.currentLevel || 'A1',
+          streakCount: statsData.streakCount || 0,
+          longestStreak: statsData.longestStreak || 0,
+          lessonsCompleted: statsData.lessonsCompleted || 0,
+          wordsLearned: statsData.wordsLearned || 0,
+          memberSince: new Date().toISOString().split('T')[0], // TODO: Get from user createdAt
+        });
+      }
+    } catch (error: any) {
+      console.error('Failed to load user data:', error);
+      showToast(error.message || 'Failed to load profile data', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSave = async () => {
-    setIsSaving(true);
-    // TODO: Save to API
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSaving(false);
-    setIsEditing(false);
-    setLanguage(formData.interfaceLanguage);
+    try {
+      setIsSaving(true);
+      const response = await updateUserProfile({
+        displayName: formData.displayName,
+        email: formData.email,
+      });
+
+      if (response.success) {
+        showToast('Profile updated successfully!', 'success');
+        setIsEditing(false);
+        setLanguage(formData.interfaceLanguage);
+        // Reload data to get updated values
+        await loadUserData();
+      } else {
+        throw new Error(response.error?.message || 'Failed to update profile');
+      }
+    } catch (error: any) {
+      console.error('Failed to save profile:', error);
+      showToast(error.message || 'Failed to update profile', 'error');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleLogout = async () => {

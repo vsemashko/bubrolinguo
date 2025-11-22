@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import bcrypt from 'bcrypt';
 import { query } from '../db/connection';
 import { AppError } from '../middleware/errorHandler';
 import { logger } from '../utils/logger';
@@ -254,6 +255,114 @@ export async function getUserStats(req: Request, res: Response) {
     });
   } catch (error) {
     logger.error('Error getting user stats', { error });
+    throw error;
+  }
+}
+
+/**
+ * Change user password
+ */
+export async function changePassword(req: Request, res: Response) {
+  try {
+    const userId = (req as any).userId;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      throw new AppError('Current password and new password are required', 400, 'MISSING_FIELDS');
+    }
+
+    if (newPassword.length < 8) {
+      throw new AppError('New password must be at least 8 characters', 400, 'PASSWORD_TOO_SHORT');
+    }
+
+    // Get current password hash
+    const userResult = await query(
+      'SELECT password_hash FROM users WHERE id = $1',
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      throw new AppError('User not found', 404, 'USER_NOT_FOUND');
+    }
+
+    // Verify current password
+    const isValid = await bcrypt.compare(currentPassword, userResult.rows[0].password_hash);
+    if (!isValid) {
+      throw new AppError('Current password is incorrect', 401, 'INVALID_PASSWORD');
+    }
+
+    // Hash new password
+    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await query(
+      `UPDATE users
+       SET password_hash = $1, updated_at = CURRENT_TIMESTAMP
+       WHERE id = $2`,
+      [newPasswordHash, userId]
+    );
+
+    logger.info('Password changed successfully', { userId });
+
+    res.json({
+      success: true,
+      data: {
+        message: 'Password changed successfully',
+      },
+    });
+  } catch (error) {
+    logger.error('Error changing password', { error });
+    throw error;
+  }
+}
+
+/**
+ * Delete user account
+ */
+export async function deleteAccount(req: Request, res: Response) {
+  try {
+    const userId = (req as any).userId;
+    const { password, confirmation } = req.body;
+
+    if (!password) {
+      throw new AppError('Password is required to delete account', 400, 'PASSWORD_REQUIRED');
+    }
+
+    if (confirmation !== 'DELETE') {
+      throw new AppError('Confirmation text must be "DELETE"', 400, 'INVALID_CONFIRMATION');
+    }
+
+    // Verify password
+    const userResult = await query(
+      'SELECT password_hash, email FROM users WHERE id = $1',
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      throw new AppError('User not found', 404, 'USER_NOT_FOUND');
+    }
+
+    const isValid = await bcrypt.compare(password, userResult.rows[0].password_hash);
+    if (!isValid) {
+      throw new AppError('Incorrect password', 401, 'INVALID_PASSWORD');
+    }
+
+    // Delete user data (cascade will handle related records)
+    await query('DELETE FROM users WHERE id = $1', [userId]);
+
+    logger.info('User account deleted', {
+      userId,
+      email: userResult.rows[0].email
+    });
+
+    res.json({
+      success: true,
+      data: {
+        message: 'Account deleted successfully',
+      },
+    });
+  } catch (error) {
+    logger.error('Error deleting account', { error });
     throw error;
   }
 }

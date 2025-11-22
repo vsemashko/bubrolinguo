@@ -1,6 +1,6 @@
 // User Service - User data and profile management
 
-import { get, put, post } from '@/lib/api';
+import { get, put, post, del } from '@/lib/api';
 import { User } from '@/types/auth';
 import { mockUser, useMockData, mockDelay, mockApiResponse } from '@/lib/mockData';
 
@@ -79,8 +79,25 @@ export async function getUserStats() {
 }
 
 /**
+ * Change user password
+ */
+export async function changePassword(currentPassword: string, newPassword: string) {
+  if (useMockData()) {
+    await mockDelay(500);
+    return mockApiResponse({ message: 'Password changed successfully' });
+  }
+
+  return put('/users/me/password', { currentPassword, newPassword });
+}
+
+/**
  * Delete user account
  */
-export async function deleteUserAccount(password: string) {
-  return post('/users/me/delete', { password });
+export async function deleteUserAccount(password: string, confirmation: string) {
+  if (useMockData()) {
+    await mockDelay(500);
+    return mockApiResponse({ message: 'Account deleted successfully' });
+  }
+
+  return del('/users/me', { password, confirmation });
 }

@@ -15,6 +15,7 @@ import progressRoutes from './routes/progress.routes';
 import examsRoutes from './routes/exams.routes';
 import streakRoutes from './routes/streak.routes';
 import achievementsRoutes from './routes/achievements.routes';
+import leaderboardRoutes from './routes/leaderboard.routes';
 
 // Load environment variables
 dotenv.config();
@@ -58,6 +59,7 @@ app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows
 app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
 app.use('/api/v1/progress', authenticateToken, progressRoutes); // Protected routes
 app.use('/api/v1/exams', authenticateToken, examsRoutes); // Protected exam routes
+app.use('/api/v1/leaderboard', authenticateToken, leaderboardRoutes); // Protected leaderboard routes
 
 // 404 handler
 app.use((_req: Request, res: Response) => {

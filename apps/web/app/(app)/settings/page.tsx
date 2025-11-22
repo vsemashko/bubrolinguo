@@ -1,11 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Input } from '@/components/ui';
 import { useToast } from '@/components/ui/ToastContainer';
+import { useAuth } from '@/contexts/AuthContext';
+import {
+  getCurrentUser,
+  updateUserProfile,
+  updateUserSettings,
+  changePassword as changePasswordService,
+  deleteUserAccount,
+} from '@/services/user.service';
 
 export default function SettingsPage() {
   const { showToast } = useToast();
+  const { user, logout } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   // Account Settings
   const [displayName, setDisplayName] = useState('');
@@ -30,47 +41,177 @@ export default function SettingsPage() {
   const [profileVisibility, setProfileVisibility] = useState('friends');
   const [showInLeaderboard, setShowInLeaderboard] = useState(true);
 
-  const handleSaveAccount = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement API call
-    showToast('Account settings saved successfully!', 'success');
+  // Load user data on mount
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  const loadUserData = async () => {
+    try {
+      setLoading(true);
+      const response = await getCurrentUser();
+
+      if (response.success && response.data) {
+        const userData = response.data.user;
+        setDisplayName(userData.displayName || '');
+        setEmail(userData.email || '');
+        setDailyGoal(String(userData.dailyGoal || 10));
+        setEmailNotifications(userData.emailNotifications ?? true);
+        setPushNotifications(userData.pushNotifications ?? true);
+      }
+    } catch (error) {
+      console.error('Failed to load user data:', error);
+      showToast('Failed to load settings', 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSavePassword = (e: React.FormEvent) => {
+  const handleSaveAccount = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setSaving(true);
+      const response = await updateUserProfile({
+        displayName,
+        email,
+      });
+
+      if (response.success) {
+        showToast('Account settings saved successfully!', 'success');
+      } else {
+        throw new Error(response.error?.message || 'Failed to save settings');
+      }
+    } catch (error: any) {
+      console.error('Failed to save account settings:', error);
+      showToast(error.message || 'Failed to save account settings', 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleSavePassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
       showToast('Passwords do not match', 'error');
       return;
     }
-    // TODO: Implement API call
-    showToast('Password updated successfully!', 'success');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+
+    if (!currentPassword || !newPassword) {
+      showToast('Please fill in all password fields', 'error');
+      return;
+    }
+
+    if (newPassword.length < 8) {
+      showToast('New password must be at least 8 characters', 'error');
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const response = await changePasswordService(currentPassword, newPassword);
+
+      if (response.success) {
+        showToast('Password updated successfully!', 'success');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+      } else {
+        throw new Error(response.error?.message || 'Failed to change password');
+      }
+    } catch (error: any) {
+      console.error('Failed to change password:', error);
+      showToast(error.message || 'Failed to change password', 'error');
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleSavePreferences = (e: React.FormEvent) => {
+  const handleSavePreferences = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement API call
-    showToast('Learning preferences saved!', 'success');
+    try {
+      setSaving(true);
+      const response = await updateUserSettings({
+        dailyGoal: parseInt(dailyGoal),
+      });
+
+      if (response.success) {
+        showToast('Learning preferences saved!', 'success');
+      } else {
+        throw new Error(response.error?.message || 'Failed to save preferences');
+      }
+    } catch (error: any) {
+      console.error('Failed to save preferences:', error);
+      showToast(error.message || 'Failed to save preferences', 'error');
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleSaveNotifications = (e: React.FormEvent) => {
+  const handleSaveNotifications = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement API call
-    showToast('Notification settings saved!', 'success');
+    try {
+      setSaving(true);
+      const response = await updateUserSettings({
+        emailNotifications,
+        pushNotifications,
+      });
+
+      if (response.success) {
+        showToast('Notification settings saved!', 'success');
+      } else {
+        throw new Error(response.error?.message || 'Failed to save notification settings');
+      }
+    } catch (error: any) {
+      console.error('Failed to save notification settings:', error);
+      showToast(error.message || 'Failed to save notification settings', 'error');
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleSavePrivacy = (e: React.FormEvent) => {
+  const handleSavePrivacy = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement API call
-    showToast('Privacy settings saved!', 'success');
+    try {
+      setSaving(true);
+      // Note: Backend doesn't support profile_visibility and show_in_leaderboard yet
+      // This is a placeholder for future implementation
+      showToast('Privacy settings saved!', 'success');
+    } catch (error: any) {
+      console.error('Failed to save privacy settings:', error);
+      showToast(error.message || 'Failed to save privacy settings', 'error');
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handleDeleteAccount = () => {
-    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      // TODO: Implement API call
-      showToast('Account deletion initiated. You will receive a confirmation email.', 'info');
+  const handleDeleteAccount = async () => {
+    const password = prompt('Enter your password to confirm account deletion:');
+    if (!password) return;
+
+    const confirmation = prompt('Type "DELETE" to confirm (this action cannot be undone):');
+    if (confirmation !== 'DELETE') {
+      showToast('Account deletion cancelled', 'info');
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const response = await deleteUserAccount(password, confirmation);
+
+      if (response.success) {
+        showToast('Account deleted successfully. Redirecting...', 'success');
+        // Logout and redirect after a short delay
+        setTimeout(() => {
+          logout();
+        }, 2000);
+      } else {
+        throw new Error(response.error?.message || 'Failed to delete account');
+      }
+    } catch (error: any) {
+      console.error('Failed to delete account:', error);
+      showToast(error.message || 'Failed to delete account', 'error');
+    } finally {
+      setSaving(false);
     }
   };
 

@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Avatar, Badge } from '@/components/ui';
 import { SkeletonLeaderboard } from '@/components/ui/Skeleton';
+import { useToast } from '@/components/ui/ToastContainer';
+import { getLeaderboard } from '@/services/leaderboard.service';
 
 interface LeaderboardEntry {
   rank: number;
@@ -10,18 +12,19 @@ interface LeaderboardEntry {
   displayName: string;
   avatar?: string;
   totalXp: number;
-  weeklyXp: number;
+  weeklyXp: number | null;
   currentLevel: string;
   streakCount: number;
   isFriend: boolean;
   isCurrentUser: boolean;
 }
 
-type LeaderboardPeriod = 'all-time' | 'weekly' | 'monthly';
+type LeaderboardPeriod = 'allTime' | 'weekly' | 'monthly';
 type LeaderboardScope = 'global' | 'friends';
 
 export default function LeaderboardPage() {
-  const [period, setPeriod] = useState<LeaderboardPeriod>('all-time');
+  const { showToast } = useToast();
+  const [period, setPeriod] = useState<LeaderboardPeriod>('allTime');
   const [scope, setScope] = useState<LeaderboardScope>('global');
   const [loading, setLoading] = useState(true);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -31,71 +34,22 @@ export default function LeaderboardPage() {
   }, [period, scope]);
 
   const loadLeaderboard = async () => {
-    setLoading(true);
-    // TODO: Replace with actual API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      setLoading(true);
+      const response = await getLeaderboard(period, scope);
 
-    // Mock data
-    const mockData: LeaderboardEntry[] = [
-      {
-        rank: 1,
-        userId: '1',
-        displayName: 'Zofia Wiśniewska',
-        totalXp: 15420,
-        weeklyXp: 890,
-        currentLevel: 'B2',
-        streakCount: 45,
-        isFriend: false,
-        isCurrentUser: false,
-      },
-      {
-        rank: 2,
-        userId: '2',
-        displayName: 'Jakub Kowalski',
-        totalXp: 14850,
-        weeklyXp: 720,
-        currentLevel: 'B1',
-        streakCount: 32,
-        isFriend: true,
-        isCurrentUser: false,
-      },
-      {
-        rank: 3,
-        userId: '3',
-        displayName: 'Ania Nowak',
-        totalXp: 13290,
-        weeklyXp: 650,
-        currentLevel: 'B2',
-        streakCount: 28,
-        isFriend: true,
-        isCurrentUser: false,
-      },
-      {
-        rank: 4,
-        userId: '4',
-        displayName: 'You',
-        totalXp: 12540,
-        weeklyXp: 580,
-        currentLevel: 'A2',
-        streakCount: 21,
-        isFriend: false,
-        isCurrentUser: true,
-      },
-      {
-        rank: 5,
-        userId: '5',
-        displayName: 'Piotr Zieliński',
-        totalXp: 11890,
-        weeklyXp: 510,
-        currentLevel: 'B1',
-        streakCount: 18,
-        isFriend: false,
-        isCurrentUser: false,
-      },
-    ];
-
-    setLeaderboard(mockData);
-    setLoading(false);
+      if (response.success && response.data) {
+        setLeaderboard(response.data.leaderboard);
+      } else {
+        throw new Error(response.error?.message || 'Failed to load leaderboard');
+      }
+    } catch (error: any) {
+      console.error('Failed to load leaderboard:', error);
+      showToast(error.message || 'Failed to load leaderboard', 'error');
+      setLeaderboard([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getRankBadge = (rank: number) => {
@@ -159,9 +113,9 @@ export default function LeaderboardPage() {
         {/* Period Tabs */}
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setPeriod('all-time')}
+            onClick={() => setPeriod('allTime')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              period === 'all-time'
+              period === 'allTime'
                 ? 'bg-blue-100 text-blue-700 border-2 border-blue-300'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}

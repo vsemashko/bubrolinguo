@@ -4,6 +4,8 @@ import {
   updateUserProfile,
   updateUserSettings,
   getUserStats,
+  changePassword,
+  deleteAccount,
 } from '../controllers/users.controller';
 
 const router = Router();
@@ -13,5 +15,7 @@ router.get('/me', getCurrentUser);
 router.put('/me', updateUserProfile);
 router.put('/me/settings', updateUserSettings);
 router.get('/me/stats', getUserStats);
+router.put('/me/password', changePassword);
+router.delete('/me', deleteAccount);
 
 export default router;
