@@ -8,11 +8,14 @@ import { Lesson } from '@/types/lesson';
 import { LessonPlayer, LessonComplete } from '@/components/lesson';
 import { LessonResult } from '@/types/lesson';
 import { isAuthenticated } from '@/lib/auth';
+import { useAuth } from '@/contexts/AuthContext';
+import { recordActivity } from '@/services/streak.service';
 
 export default function LessonDetailPage() {
   const router = useRouter();
   const params = useParams();
   const lessonId = params.id as string;
+  const { user } = useAuth();
 
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -89,9 +92,29 @@ export default function LessonDetailPage() {
     setIsPlaying(true);
   };
 
-  const handleLessonComplete = (result: LessonResult) => {
+  const handleLessonComplete = async (result: LessonResult) => {
     setLessonResult(result);
     setIsPlaying(false);
+
+    // Record activity to update streak
+    if (user?.id) {
+      try {
+        const response = await recordActivity(user.id);
+
+        if (response.success && response.data) {
+          console.log('Activity recorded, streak updated:', response.data.stats);
+
+          // Check if any new achievements were unlocked
+          if (response.data.newAchievements && response.data.newAchievements.length > 0) {
+            console.log('New achievements unlocked:', response.data.newAchievements);
+            // TODO: Show achievement popup/toast
+          }
+        }
+      } catch (error) {
+        console.error('Failed to record activity:', error);
+        // Don't block the user flow if streak update fails
+      }
+    }
   };
 
   const handleExitLesson = () => {
