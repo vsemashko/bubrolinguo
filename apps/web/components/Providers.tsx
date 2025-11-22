@@ -10,6 +10,7 @@
 import React from 'react';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ToastProvider } from '@/components/ui/Toast';
+import { AchievementProvider } from '@/contexts/AchievementContext';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -17,7 +18,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ErrorBoundary>
       <AuthProvider>
         <ToastProvider>
-          {children}
+          <AchievementProvider>
+            {children}
+          </AchievementProvider>
         </ToastProvider>
       </AuthProvider>
     </ErrorBoundary>
