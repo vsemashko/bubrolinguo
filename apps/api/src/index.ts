@@ -50,12 +50,12 @@ app.get('/health', (_req: Request, res: Response) => {
 
 // API Routes
 app.use('/api/v1/auth', authLimiter, authRoutes); // Auth routes with strict rate limiting
+app.use('/api/v1', streakRoutes); // Streak routes (must be before /users to match longer paths first)
 app.use('/api/v1/users', authenticateToken, usersRoutes); // Protected routes
 app.use('/api/v1/lessons', optionalAuth, lessonsRoutes); // Optional auth (shows user progress if logged in)
 app.use('/api/v1/vocabulary', authenticateToken, vocabularyRoutes); // Protected routes
 app.use('/api/v1/progress', authenticateToken, progressRoutes); // Protected routes
 app.use('/api/v1/exams', authenticateToken, examsRoutes); // Protected exam routes
-app.use('/api/v1', streakRoutes); // Streak routes (authentication handled in routes file)
 
 // 404 handler
 app.use((_req: Request, res: Response) => {

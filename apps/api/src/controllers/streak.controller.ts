@@ -17,9 +17,10 @@ import { AppError } from '../middleware/errorHandler';
 export async function getStreakStats(req: Request, res: Response) {
   try {
     const { userId } = req.params;
+    const authenticatedUserId = (req as any).userId;
 
-    // Verify user is requesting their own data or is admin
-    if (req.user?.userId !== userId && req.user?.role !== 'admin') {
+    // Verify user is requesting their own data
+    if (authenticatedUserId !== userId) {
       throw new AppError('Unauthorized to view this streak data', 403, 'FORBIDDEN');
     }
 
@@ -45,9 +46,10 @@ export async function getStreakStats(req: Request, res: Response) {
 export async function recordActivity(req: Request, res: Response) {
   try {
     const { userId } = req.params;
+    const authenticatedUserId = (req as any).userId;
 
     // Verify user is updating their own data
-    if (req.user?.userId !== userId) {
+    if (authenticatedUserId !== userId) {
       throw new AppError('Unauthorized to update this user', 403, 'FORBIDDEN');
     }
 
@@ -82,9 +84,10 @@ export async function recordActivity(req: Request, res: Response) {
 export async function activateStreakFreeze(req: Request, res: Response) {
   try {
     const { userId } = req.params;
+    const authenticatedUserId = (req as any).userId;
 
     // Verify user is updating their own data
-    if (req.user?.userId !== userId) {
+    if (authenticatedUserId !== userId) {
       throw new AppError('Unauthorized to use streak freeze', 403, 'FORBIDDEN');
     }
 
@@ -118,9 +121,10 @@ export async function activateStreakFreeze(req: Request, res: Response) {
 export async function repairBrokenStreak(req: Request, res: Response) {
   try {
     const { userId } = req.params;
+    const authenticatedUserId = (req as any).userId;
 
     // Verify user is updating their own data
-    if (req.user?.userId !== userId) {
+    if (authenticatedUserId !== userId) {
       throw new AppError('Unauthorized to repair streak', 403, 'FORBIDDEN');
     }
 
@@ -154,9 +158,10 @@ export async function repairBrokenStreak(req: Request, res: Response) {
 export async function getStreakRawData(req: Request, res: Response) {
   try {
     const { userId } = req.params;
+    const authenticatedUserId = (req as any).userId;
 
-    // Verify user is requesting their own data or is admin
-    if (req.user?.userId !== userId && req.user?.role !== 'admin') {
+    // Verify user is requesting their own data
+    if (authenticatedUserId !== userId) {
       throw new AppError('Unauthorized to view this data', 403, 'FORBIDDEN');
     }
 
