@@ -3,8 +3,9 @@
 
 -- Lesson 16: Past Tense - Perfective & Imperfective Aspects
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Past Tense - Understanding Polish Aspects',
   'Прошедшее время - Понимание польских аспектов',
@@ -12,7 +13,8 @@ INSERT INTO lessons (
   'Освойте совершенный и несовершенный вид в польском прошедшем времени',
   'B1',
   16,
-  25,
+  4,
+  1,  25,
   35,
   true,
   '{
@@ -104,8 +106,9 @@ INSERT INTO lessons (
 
 -- Lesson 17: Future Tense Formation
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Future Tense in Polish',
   'Будущее время в польском языке',
@@ -113,7 +116,8 @@ INSERT INTO lessons (
   'Научитесь выражать будущие действия на польском',
   'B1',
   17,
-  20,
+  4,
+  2,  20,
   30,
   true,
   '{
@@ -205,8 +209,9 @@ INSERT INTO lessons (
 
 -- Lesson 18: Instrumental Case
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Instrumental Case - Narzędnik',
   'Творительный падеж - Narzędnik',
@@ -214,7 +219,8 @@ INSERT INTO lessons (
   'Освойте творительный падеж для профессий, инструментов и многого другого',
   'B1',
   18,
-  25,
+  4,
+  3,  25,
   35,
   true,
   '{
@@ -306,8 +312,9 @@ INSERT INTO lessons (
 
 -- Lesson 19: Comparative and Superlative Forms
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Making Comparisons',
   'Сравнения в польском',
@@ -315,7 +322,8 @@ INSERT INTO lessons (
   'Научитесь сравнивать вещи, используя сравнительную и превосходную степени',
   'B1',
   19,
-  20,
+  4,
+  4,  20,
   30,
   true,
   '{
@@ -407,8 +415,9 @@ INSERT INTO lessons (
 
 -- Lesson 20: Modal Verbs
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Modal Verbs - Expressing Possibility and Necessity',
   'Модальные глаголы - Возможность и необходимость',
@@ -416,7 +425,8 @@ INSERT INTO lessons (
   'Научитесь правильно использовать móc, musieć, chcieć и powinien',
   'B1',
   20,
-  20,
+  4,
+  5,  20,
   30,
   true,
   '{
@@ -508,8 +518,9 @@ INSERT INTO lessons (
 
 -- Lesson 21: Complex Sentences with Conjunctions
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Complex Sentences with Conjunctions',
   'Сложные предложения с союзами',
@@ -517,7 +528,8 @@ INSERT INTO lessons (
   'Научитесь соединять идеи, используя польские союзы: потому что, хотя, когда',
   'B1',
   21,
-  25,
+  5,
+  1,  25,
   35,
   true,
   '{
@@ -609,8 +621,9 @@ INSERT INTO lessons (
 
 -- Lesson 22: At the Doctor - Health and Body
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'At the Doctor - Health and Body',
   'У врача - Здоровье и тело',
@@ -618,7 +631,8 @@ INSERT INTO lessons (
   'Освойте медицинскую лексику и научитесь описывать симптомы по-польски',
   'B1',
   22,
-  25,
+  5,
+  2,  25,
   35,
   true,
   '{
@@ -711,8 +725,9 @@ INSERT INTO lessons (
 
 -- Lesson 23: Travel and Transportation
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Travel and Transportation',
   'Путешествия и транспорт',
@@ -720,7 +735,8 @@ INSERT INTO lessons (
   'Научитесь покупать билеты, спрашивать дорогу и обсуждать жильё по-польски',
   'B1',
   23,
-  25,
+  5,
+  3,  25,
   35,
   true,
   '{
@@ -813,8 +829,9 @@ INSERT INTO lessons (
 
 -- Lesson 24: Polish Culture and Traditions
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Polish Culture and Traditions',
   'Польская культура и традиции',
@@ -822,7 +839,8 @@ INSERT INTO lessons (
   'Исследуйте польские праздники, торжества и культурные обычаи',
   'B1',
   24,
-  25,
+  5,
+  4,  25,
   35,
   true,
   '{
@@ -914,8 +932,9 @@ INSERT INTO lessons (
 
 -- Lesson 25: Business Polish - Basic Professional Communication
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Business Polish - Professional Communication',
   'Деловой польский - Профессиональное общение',
@@ -923,7 +942,8 @@ INSERT INTO lessons (
   'Освойте базовое деловое общение: электронные письма, телефонные звонки и собеседования',
   'B1',
   25,
-  25,
+  5,
+  5,  25,
   35,
   true,
   '{

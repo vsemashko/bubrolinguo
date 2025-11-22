@@ -3,8 +3,9 @@
 
 -- Lesson 1: Basic Greetings
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Basic Greetings',
   'Основные приветствия',
@@ -12,7 +13,8 @@ INSERT INTO lessons (
   'Изучите основные польские приветствия и как представиться',
   'A1',
   1,
-  15,
+  1,
+  1,  15,
   20,
   true,
   '{
@@ -116,8 +118,9 @@ INSERT INTO lessons (
 
 -- Lesson 2: Numbers 1-20
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Numbers 1-20',
   'Числа 1-20',
@@ -125,7 +128,8 @@ INSERT INTO lessons (
   'Научитесь считать от 1 до 20 по-польски',
   'A1',
   2,
-  12,
+  1,
+  2,  12,
   15,
   true,
   '{
@@ -230,8 +234,9 @@ INSERT INTO lessons (
 
 -- Lesson 3: Colors and Adjectives
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Colors and Basic Adjectives',
   'Цвета и основные прилагательные',
@@ -239,7 +244,8 @@ INSERT INTO lessons (
   'Изучите распространённые цвета и простые прилагательные',
   'A1',
   3,
-  15,
+  1,
+  3,  15,
   20,
   true,
   '{
@@ -344,8 +350,9 @@ INSERT INTO lessons (
 
 -- Lesson 4: Family Members
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Family Members',
   'Члены семьи',
@@ -353,7 +360,8 @@ INSERT INTO lessons (
   'Научитесь говорить о своей семье по-польски',
   'A1',
   4,
-  18,
+  1,
+  4,  18,
   25,
   true,
   '{
@@ -458,8 +466,9 @@ INSERT INTO lessons (
 
 -- Lesson 5: Food and Drinks
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Food and Drinks',
   'Еда и напитки',
@@ -467,7 +476,8 @@ INSERT INTO lessons (
   'Изучите распространённую лексику о еде и напитках',
   'A1',
   5,
-  20,
+  1,
+  5,  20,
   25,
   true,
   '{
@@ -572,8 +582,9 @@ INSERT INTO lessons (
 
 -- Lesson 6: Days and Time
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Days of the Week and Time',
   'Дни недели и время',
@@ -581,7 +592,8 @@ INSERT INTO lessons (
   'Изучите дни недели и базовые выражения времени',
   'A1',
   6,
-  15,
+  2,
+  1,  15,
   20,
   true,
   '{
@@ -686,8 +698,9 @@ INSERT INTO lessons (
 
 -- Lesson 7: Common Verbs
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Common Verbs in Present Tense',
   'Распространённые глаголы в настоящем времени',
@@ -695,7 +708,8 @@ INSERT INTO lessons (
   'Изучите основные польские глаголы и их спряжения',
   'A1',
   7,
-  20,
+  2,
+  2,  20,
   25,
   true,
   '{
@@ -800,8 +814,9 @@ INSERT INTO lessons (
 
 -- Lesson 8: At the Shop
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'At the Shop - Shopping Phrases',
   'В магазине - фразы для покупок',
@@ -809,7 +824,8 @@ INSERT INTO lessons (
   'Изучите основные фразы для покупок по-польски',
   'A1',
   8,
-  18,
+  2,
+  3,  18,
   25,
   true,
   '{
@@ -914,8 +930,9 @@ INSERT INTO lessons (
 
 -- Lesson 9: Asking Questions
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Asking Questions',
   'Задавать вопросы',
@@ -923,7 +940,8 @@ INSERT INTO lessons (
   'Научитесь задавать базовые вопросы по-польски',
   'A1',
   9,
-  15,
+  2,
+  4,  15,
   20,
   true,
   '{
@@ -1028,8 +1046,9 @@ INSERT INTO lessons (
 
 -- Lesson 10: Places in the City
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Places in the City',
   'Места в городе',
@@ -1037,7 +1056,8 @@ INSERT INTO lessons (
   'Изучите лексику для распространённых мест и локаций',
   'A1',
   10,
-  20,
+  2,
+  5,  20,
   25,
   true,
   '{
@@ -1142,8 +1162,9 @@ INSERT INTO lessons (
 
 -- Lesson 11: Weather and Seasons
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Weather and Seasons',
   'Погода и времена года',
@@ -1151,7 +1172,8 @@ INSERT INTO lessons (
   'Научитесь говорить о погоде и временах года по-польски',
   'A1',
   11,
-  18,
+  3,
+  1,  18,
   25,
   true,
   '{
@@ -1256,8 +1278,9 @@ INSERT INTO lessons (
 
 -- Lesson 12: Likes and Dislikes
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Expressing Likes and Dislikes',
   'Выражение симпатий и антипатий',
@@ -1265,7 +1288,8 @@ INSERT INTO lessons (
   'Научитесь выражать, что вам нравится и не нравится',
   'A1',
   12,
-  15,
+  3,
+  2,  15,
   20,
   true,
   '{
@@ -1370,8 +1394,9 @@ INSERT INTO lessons (
 
 -- Lesson 13: Present Continuous Actions
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'What Are You Doing? - Present Actions',
   'Что ты делаешь? - Настоящие действия',
@@ -1379,7 +1404,8 @@ INSERT INTO lessons (
   'Научитесь описывать текущие действия',
   'A1',
   13,
-  20,
+  3,
+  3,  20,
   25,
   true,
   '{
@@ -1484,8 +1510,9 @@ INSERT INTO lessons (
 
 -- Lesson 14: Past Tense Introduction
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Talking About the Past',
   'Разговор о прошлом',
@@ -1493,7 +1520,8 @@ INSERT INTO lessons (
   'Изучите базовые глаголы прошедшего времени',
   'A2',
   14,
-  22,
+  3,
+  4,  22,
   30,
   true,
   '{
@@ -1598,8 +1626,9 @@ INSERT INTO lessons (
 
 -- Lesson 15: Future Plans and Intentions
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Future Plans and Intentions',
   'Планы и намерения на будущее',
@@ -1607,7 +1636,8 @@ INSERT INTO lessons (
   'Научитесь говорить о будущих планах и намерениях',
   'A2',
   15,
-  20,
+  3,
+  5,  20,
   30,
   true,
   '{

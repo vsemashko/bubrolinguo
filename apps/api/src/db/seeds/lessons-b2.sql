@@ -3,8 +3,9 @@
 
 -- Lesson 26: Conditional Mood
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Conditional Mood - Real and Hypothetical Conditions',
   'Условное наклонение - Реальные и гипотетические условия',
@@ -12,7 +13,8 @@ INSERT INTO lessons (
   'Освойте польские условные конструкции с "gdyby" и выражайте гипотетические ситуации',
   'B2',
   26,
-  25,
+  6,
+  1,  25,
   40,
   true,
   '{
@@ -104,8 +106,9 @@ INSERT INTO lessons (
 
 -- Lesson 27: Passive Voice
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Passive Voice - Formation and Usage',
   'Страдательный залог - Образование и употребление',
@@ -113,7 +116,8 @@ INSERT INTO lessons (
   'Научитесь образовывать и использовать польский страдательный залог и безличные конструкции',
   'B2',
   27,
-  25,
+  6,
+  2,  25,
   40,
   true,
   '{
@@ -205,8 +209,9 @@ INSERT INTO lessons (
 
 -- Lesson 28: Reported Speech
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Reported Speech - Indirect Communication',
   'Косвенная речь - Непрямое общение',
@@ -214,7 +219,8 @@ INSERT INTO lessons (
   'Освойте преобразование прямой речи в косвенную в польском языке',
   'B2',
   28,
-  25,
+  6,
+  3,  25,
   40,
   true,
   '{
@@ -306,8 +312,9 @@ INSERT INTO lessons (
 
 -- Lesson 29: Abstract Topics and Discussion
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Abstract Topics - Politics, Society, and Environment',
   'Абстрактные темы - Политика, общество и окружающая среда',
@@ -315,7 +322,8 @@ INSERT INTO lessons (
   'Обсуждайте сложные социальные вопросы и выражайте мнения по абстрактным темам',
   'B2',
   29,
-  25,
+  6,
+  4,  25,
   40,
   true,
   '{
@@ -407,8 +415,9 @@ INSERT INTO lessons (
 
 -- Lesson 30: Advanced Reading Comprehension
 INSERT INTO lessons (
+  level, lesson_number, unit_number, order_in_unit,
   title_en, title_ru, description_en, description_ru,
-  level, lesson_number, estimated_minutes, xp_reward, is_published, exercises
+  estimated_duration, xp_reward, is_published, exercises
 ) VALUES (
   'Advanced Reading - Literature, News, and Academic Texts',
   'Продвинутое чтение - Литература, новости и академические тексты',
@@ -416,7 +425,8 @@ INSERT INTO lessons (
   'Развивайте навыки понимания сложных польских текстов различных жанров',
   'B2',
   30,
-  25,
+  6,
+  5,  25,
   40,
   true,
   '{
